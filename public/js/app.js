@@ -1922,6 +1922,166 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/formation.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/formation.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "formation",
+  data: function data() {
+    return {
+      types: {
+        brawler: {
+          name: 'Brawler',
+          type: 'infantry'
+        },
+        marksman: {
+          name: 'Marksman',
+          type: 'hunter'
+        },
+        scout: {
+          name: 'Scout',
+          type: 'rider'
+        }
+      },
+      heroes: {
+        General: [{
+          name: 'march-slots',
+          display: 'March Slots',
+          type: 'general'
+        }, {
+          name: 'march-capacity',
+          display: 'March Capacity',
+          type: 'general'
+        }, {
+          name: 'training-capacity',
+          display: 'Training Capacity',
+          type: 'general'
+        }, {
+          name: 'training-speed',
+          display: 'Training Speed',
+          type: 'general'
+        }],
+        Troop: [{
+          name: 'troop-attack',
+          display: 'Troop Attack',
+          type: 'troop'
+        }, {
+          name: 'troop-defense',
+          display: 'Troop Defense',
+          type: 'troop'
+        }, {
+          name: 'troop-lethality',
+          display: 'Troop Damage',
+          type: 'troop'
+        }, {
+          name: 'troop-health',
+          display: 'Troop Health',
+          type: 'troop'
+        }],
+        Infantry: [{
+          name: 'infantry-attack',
+          display: 'Infantry Attack',
+          type: 'infantry'
+        }, {
+          name: 'infantry-defense',
+          display: 'Infantry Defense',
+          type: 'infantry'
+        }, {
+          name: 'infantry-lethality',
+          display: 'Infantry Lethality',
+          type: 'infantry'
+        }, {
+          name: 'infantry-health',
+          display: 'Infantry Health',
+          type: 'infantry'
+        }],
+        Hunter: [{
+          name: 'hunter-attack',
+          display: 'Hunter Attack',
+          type: 'hunter'
+        }, {
+          name: 'hunter-defense',
+          display: 'Hunter Defense',
+          type: 'hunter'
+        }, {
+          name: 'hunter-lethality',
+          display: 'Hunter Lethality',
+          type: 'hunter'
+        }, {
+          name: 'hunter-health',
+          display: 'Hunter Health',
+          type: 'hunter'
+        }],
+        Rider: [{
+          name: 'rider-attack',
+          display: 'Rider Attack',
+          type: 'rider'
+        }, {
+          name: 'rider-defense',
+          display: 'Rider Defense',
+          type: 'rider'
+        }, {
+          name: 'rider-lethality',
+          display: 'Rider Lethality',
+          type: 'rider'
+        }, {
+          name: 'rider-health',
+          display: 'Rider Health',
+          type: 'rider'
+        }],
+        Settlement: [{
+          name: 'settlement-attack',
+          display: 'Settlement Army Attack',
+          type: 'settlement'
+        }, {
+          name: 'settlement-defense',
+          display: 'Settlement Army Defense',
+          type: 'settlement'
+        }, {
+          name: 'settlement-lethality',
+          display: 'Settlement Troop Lethality',
+          type: 'settlement'
+        }, {
+          name: 'settlement-health',
+          display: 'Settlement Troop Health',
+          type: 'settlement'
+        }]
+      }
+    };
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/hero-gear.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/hero-gear.vue?vue&type=script&lang=js& ***!
@@ -2132,6 +2292,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "heroes",
   data: function data() {
@@ -2150,110 +2329,70 @@ __webpack_require__.r(__webpack_exports__);
           type: 'rider'
         }
       },
-      heroes: {
-        General: [{
-          name: 'march-slots',
-          display: 'March Slots',
-          type: 'general'
-        }, {
-          name: 'march-capacity',
-          display: 'March Capacity',
-          type: 'general'
-        }, {
-          name: 'training-capacity',
-          display: 'Training Capacity',
-          type: 'general'
-        }, {
-          name: 'training-speed',
-          display: 'Training Speed',
-          type: 'general'
-        }],
-        Troop: [{
-          name: 'troop-attack',
-          display: 'Troop Attack',
-          type: 'troop'
-        }, {
-          name: 'troop-defense',
-          display: 'Troop Defense',
-          type: 'troop'
-        }, {
-          name: 'troop-lethality',
-          display: 'Troop Damage',
-          type: 'troop'
-        }, {
-          name: 'troop-health',
-          display: 'Troop Health',
-          type: 'troop'
-        }],
-        Infantry: [{
-          name: 'infantry-attack',
-          display: 'Infantry Attack',
-          type: 'infantry'
-        }, {
-          name: 'infantry-defense',
-          display: 'Infantry Defense',
-          type: 'infantry'
-        }, {
-          name: 'infantry-lethality',
-          display: 'Infantry Lethality',
-          type: 'infantry'
-        }, {
-          name: 'infantry-health',
-          display: 'Infantry Health',
-          type: 'infantry'
-        }],
-        Hunter: [{
-          name: 'hunter-attack',
-          display: 'Hunter Attack',
-          type: 'hunter'
-        }, {
-          name: 'hunter-defense',
-          display: 'Hunter Defense',
-          type: 'hunter'
-        }, {
-          name: 'hunter-lethality',
-          display: 'Hunter Lethality',
-          type: 'hunter'
-        }, {
-          name: 'hunter-health',
-          display: 'Hunter Health',
-          type: 'hunter'
-        }],
-        Rider: [{
-          name: 'rider-attack',
-          display: 'Rider Attack',
-          type: 'rider'
-        }, {
-          name: 'rider-defense',
-          display: 'Rider Defense',
-          type: 'rider'
-        }, {
-          name: 'rider-lethality',
-          display: 'Rider Lethality',
-          type: 'rider'
-        }, {
-          name: 'rider-health',
-          display: 'Rider Health',
-          type: 'rider'
-        }],
-        Settlement: [{
-          name: 'settlement-attack',
-          display: 'Settlement Army Attack',
-          type: 'settlement'
-        }, {
-          name: 'settlement-defense',
-          display: 'Settlement Army Defense',
-          type: 'settlement'
-        }, {
-          name: 'settlement-lethality',
-          display: 'Settlement Troop Lethality',
-          type: 'settlement'
-        }, {
-          name: 'settlement-health',
-          display: 'Settlement Troop Health',
-          type: 'settlement'
-        }]
-      }
+      heroes: [{
+        name: 'Rusty',
+        type: 'brawler'
+      }, {
+        name: 'Ghost',
+        type: 'scout'
+      }, {
+        name: 'Sarge',
+        type: 'marksman'
+      }, {
+        name: 'Travis',
+        type: 'scout'
+      }, {
+        name: 'Mike',
+        type: 'marksman'
+      }, {
+        name: 'Eva',
+        type: 'marksman'
+      }, {
+        name: 'Tony',
+        type: 'scout'
+      }, {
+        name: 'Basel',
+        type: 'scout'
+      }, {
+        name: 'Candy',
+        type: 'scout'
+      }, {
+        name: 'Jane',
+        type: 'scout'
+      }, {
+        name: 'Chef',
+        type: 'brawler'
+      }, {
+        name: 'Maddie and Frank',
+        type: 'scout'
+      }, {
+        name: 'Nikola',
+        type: 'brawler'
+      }, {
+        name: 'Lucky',
+        type: 'marksman'
+      }, {
+        name: 'Ray and Rolex',
+        type: 'brawler'
+      }, {
+        name: 'Wolfe',
+        type: 'brawler'
+      }, {
+        name: 'Trish',
+        type: 'scout'
+      }, {
+        name: 'Jeb',
+        type: 'marksman'
+      }, {
+        name: 'Ash',
+        type: 'brawler'
+      }, {
+        name: 'Zoe',
+        type: 'marksman'
+      }, {
+        name: 'Miho',
+        type: 'scout'
+      }]
     };
   }
 });
@@ -2383,6 +2522,163 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/summary.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/summary.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "summary",
+  props: ['showSummary'],
+  data: function data() {
+    return {
+      stats: {
+        General: [{
+          name: 'march-slots',
+          display: 'March Slots'
+        }, {
+          name: 'march-capacity',
+          display: 'March Capacity'
+        }, {
+          name: 'training-capacity',
+          display: 'Training Capacity'
+        }, {
+          name: 'training-speed',
+          display: 'Training Speed'
+        }],
+        Troop: [{
+          name: 'troop-attack',
+          display: 'Troop Attack'
+        }, {
+          name: 'troop-defense',
+          display: 'Troop Defense'
+        }, {
+          name: 'troop-lethality',
+          display: 'Troop Damage'
+        }, {
+          name: 'troop-health',
+          display: 'Troop Health'
+        }],
+        Infantry: [{
+          name: 'infantry-attack',
+          display: 'Infantry Attack'
+        }, {
+          name: 'infantry-defense',
+          display: 'Infantry Defense'
+        }, {
+          name: 'infantry-lethality',
+          display: 'Infantry Lethality'
+        }, {
+          name: 'infantry-health',
+          display: 'Infantry Health'
+        }],
+        Hunter: [{
+          name: 'hunter-attack',
+          display: 'Hunter Attack'
+        }, {
+          name: 'hunter-defense',
+          display: 'Hunter Defense'
+        }, {
+          name: 'hunter-lethality',
+          display: 'Hunter Lethality'
+        }, {
+          name: 'hunter-health',
+          display: 'Hunter Health'
+        }],
+        Rider: [{
+          name: 'rider-attack',
+          display: 'Rider Attack'
+        }, {
+          name: 'rider-defense',
+          display: 'Rider Defense'
+        }, {
+          name: 'rider-lethality',
+          display: 'Rider Lethality'
+        }, {
+          name: 'rider-health',
+          display: 'Rider Health'
+        }],
+        Settlement: [{
+          name: 'settlement-attack',
+          display: 'Settlement Army Attack'
+        }, {
+          name: 'settlement-defense',
+          display: 'Settlement Army Defense'
+        }, {
+          name: 'settlement-lethality',
+          display: 'Settlement Troop Lethality'
+        }, {
+          name: 'settlement-health',
+          display: 'Settlement Troop Health'
+        }]
+      }
+    };
+  },
+  methods: {
+    toggleSummary: function toggleSummary() {
+      this.$emit('toggleSummary');
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/App.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/App.vue?vue&type=script&lang=js& ***!
@@ -2394,7 +2690,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_military_stats__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/military-stats */ "./resources/js/components/military-stats.vue");
 /* harmony import */ var _components_heroes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/heroes */ "./resources/js/components/heroes.vue");
-/* harmony import */ var _components_hero_gear__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/hero-gear */ "./resources/js/components/hero-gear.vue");
+/* harmony import */ var _components_formation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/formation */ "./resources/js/components/formation.vue");
+/* harmony import */ var _components_hero_gear__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/hero-gear */ "./resources/js/components/hero-gear.vue");
+/* harmony import */ var _components_summary__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/summary */ "./resources/js/components/summary.vue");
 //
 //
 //
@@ -2407,6 +2705,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
@@ -2415,7 +2726,21 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     MilitaryStats: _components_military_stats__WEBPACK_IMPORTED_MODULE_0__["default"],
     Heroes: _components_heroes__WEBPACK_IMPORTED_MODULE_1__["default"],
-    HeroGear: _components_hero_gear__WEBPACK_IMPORTED_MODULE_2__["default"]
+    Formation: _components_formation__WEBPACK_IMPORTED_MODULE_2__["default"],
+    HeroGear: _components_hero_gear__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Summary: _components_summary__WEBPACK_IMPORTED_MODULE_4__["default"]
+  },
+  data: function data() {
+    return {
+      ui: {
+        showSummary: false
+      }
+    };
+  },
+  methods: {
+    toggleSummary: function toggleSummary() {
+      this.ui.showSummary = !this.ui.showSummary;
+    }
   }
 });
 
@@ -33592,6 +33917,69 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/formation.vue?vue&type=template&id=63784276&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/formation.vue?vue&type=template&id=63784276&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "h1",
+      { staticClass: "text-center text-2xl text-gray-800 font-bold mb-8" },
+      [_vm._v("Formation")]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "flex items-center justify-center" },
+      _vm._l(_vm.types, function(type, index, num) {
+        return _c("div", { staticClass: "flex-col p-1 text-gray-700" }, [
+          _c("div", { staticClass: "text-center" }, [
+            _vm._v(_vm._s(type.name))
+          ]),
+          _vm._v(" "),
+          _vm._m(0, true)
+        ])
+      }),
+      0
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "rounded w-32 h-32 border border-gray-400 bg-gray-300 items-center flex justify-center"
+      },
+      [
+        _c("div", { staticClass: "text-gray-500 text-center" }, [
+          _vm._v("Choose hero...")
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/hero-gear.vue?vue&type=template&id=e6f2fe72&scoped=true&":
 /*!************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/hero-gear.vue?vue&type=template&id=e6f2fe72&scoped=true& ***!
@@ -33693,20 +34081,53 @@ var render = function() {
       [_vm._v("Heroes")]
     ),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "flex items-center justify-center" },
-      _vm._l(_vm.types, function(type, index, num) {
-        return _c("div", { staticClass: "flex-col p-1 text-gray-700" }, [
-          _c("div", { staticClass: "text-center" }, [
-            _vm._v(_vm._s(type.name))
-          ]),
+    _c("div", { staticClass: "flex items-center justify-center" }, [
+      _c(
+        "div",
+        [
+          _vm._m(0),
           _vm._v(" "),
-          _vm._m(0, true)
-        ])
-      }),
-      0
-    )
+          _vm._l(_vm.heroes, function(hero, index, num) {
+            return _c("div", [
+              _c(
+                "div",
+                {
+                  staticClass: "rounded flex items-center justify-start text-sm"
+                },
+                [
+                  _c("div", { staticClass: "w-32" }, [
+                    _vm._v(_vm._s(hero.name))
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "w-24" }, [
+                    _vm._v(_vm._s(_vm.types[hero.type].name))
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "pr-2" }, [_vm._v("[rank]")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "w-16 text-right" }, [
+                    _vm._v("0.0%")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "w-16 text-right" }, [
+                    _vm._v("0.0%")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "w-16 text-right" }, [
+                    _vm._v("0.0%")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "w-16 text-right" }, [
+                    _vm._v("0.0%")
+                  ])
+                ]
+              )
+            ])
+          })
+        ],
+        2
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -33714,18 +34135,30 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "rounded w-64 h-64 border border-gray-400 bg-gray-300 items-center flex justify-center"
-      },
-      [
-        _c("div", { staticClass: "text-gray-500 text-center" }, [
-          _vm._v("Choose hero...")
-        ])
-      ]
-    )
+    return _c("div", [
+      _c(
+        "div",
+        {
+          staticClass:
+            "rounded flex items-center justify-start text-xs text-center"
+        },
+        [
+          _c("div", { staticClass: "w-32" }, [_vm._v("Name")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "w-24" }, [_vm._v("Type")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "pr-2" }, [_vm._v("Rank")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "w-16 text-right" }, [_vm._v("Attack")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "w-16 text-right" }, [_vm._v("Defense")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "w-16 text-right" }, [_vm._v("Lethality")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "w-16 text-right" }, [_vm._v("Health")])
+        ]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -33813,6 +34246,115 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/summary.vue?vue&type=template&id=2cf9e62b&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/summary.vue?vue&type=template&id=2cf9e62b&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "text-gray-200 relative" }, [
+    _c("h1", { staticClass: "text-center text-2xl font-bold mb-2" }, [
+      _vm._v("Summary")
+    ]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "text-center font-bold text" }, [
+      _vm.showSummary
+        ? _c(
+            "div",
+            {
+              staticClass: "hover:text-green-400 cursor-pointer",
+              on: {
+                click: function($event) {
+                  return _vm.toggleSummary()
+                }
+              }
+            },
+            [_vm._v("\n            Hide detailed breakdown\n        ")]
+          )
+        : _c(
+            "div",
+            {
+              staticClass: "hover:text-green-400 cursor-pointer",
+              on: {
+                click: function($event) {
+                  return _vm.toggleSummary()
+                }
+              }
+            },
+            [_vm._v("\n            Show detailed breakdown\n        ")]
+          )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "flex flex-wrap items-center justify-center mb-4" },
+      [
+        _c("div", { staticClass: "text-center m-1 mx-4" }, [
+          _c("div", { staticClass: "text-xs" }, [
+            _vm._v("\n                Attack\n            ")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-3xl font-bold" }, [
+            _vm._v("\n                0.0\n            ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-center m-1 mx-4" }, [
+          _c("div", { staticClass: "text-xs" }, [
+            _vm._v("\n                Defense\n            ")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-3xl font-bold" }, [
+            _vm._v("\n                0.0\n            ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-center m-1 mx-4" }, [
+          _c("div", { staticClass: "text-xs" }, [
+            _vm._v("\n                Lethality\n            ")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-3xl font-bold" }, [
+            _vm._v("\n                0.0\n            ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-center m-1 mx-4" }, [
+          _c("div", { staticClass: "text-xs" }, [
+            _vm._v("\n                Health\n            ")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-3xl font-bold" }, [
+            _vm._v("\n                0.0\n            ")
+          ])
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/App.vue?vue&type=template&id=91ac6b5c&scoped=true&":
 /*!*************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/App.vue?vue&type=template&id=91ac6b5c&scoped=true& ***!
@@ -33831,18 +34373,22 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "flex flex-col flex-1 h-screen overflow-y-hidden bg-gray-200"
+      staticClass:
+        "flex-col flex-1 h-screen overflow-y-hidden bg-gray-200 relative"
     },
     [
-      _c("div", { staticClass: "w-full bg-gray-800 text-white h-32" }, [
-        _vm._v("TOP NAVIGATION")
-      ]),
+      _vm._m(0),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "h-full" },
+        {
+          staticClass: "overflow-y-auto fixed inset-x-0 h-auto",
+          staticStyle: { top: "8rem", bottom: "16rem" }
+        },
         [
           _c("MilitaryStats", { staticClass: "border-b border-gray-400 py-8" }),
+          _vm._v(" "),
+          _c("Formation", { staticClass: "border-b border-gray-400 py-8" }),
           _vm._v(" "),
           _c("Heroes", { staticClass: "border-b border-gray-400 py-8" }),
           _vm._v(" "),
@@ -33851,13 +34397,64 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "w-full bg-gray-800 text-white h-32" }, [
-        _vm._v("FOOTER")
-      ])
+      _c(
+        "div",
+        {
+          staticClass:
+            "fixed z-10 bottom-0 inset-x-0 bg-gray-800 text-white mb-24",
+          class: _vm.ui.showSummary ? "h-128" : "h-40"
+        },
+        [
+          _c("Summary", {
+            attrs: { showSummary: _vm.ui.showSummary },
+            on: { toggleSummary: _vm.toggleSummary }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm._m(1)
     ]
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "w-full bg-gray-800 text-white h-32" }, [
+      _c("div", { staticClass: "text-3xl font-bold p-4 tracking-tighter" }, [
+        _vm._v("State of Survival - Military Calculator")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "fixed z-20 bottom-0 inset-x-0 w-full bg-black text-white h-24"
+      },
+      [
+        _c("div", { staticClass: "p-4 text-gray-500 text-sm" }, [
+          _vm._v("SOS Military Calculator © 2020 - Fan made by "),
+          _c(
+            "a",
+            {
+              staticClass: "text-white hover:underline",
+              attrs: { href: "https://www.cerriscapades.com/" }
+            },
+            [_vm._v("Cerriscapades")]
+          ),
+          _vm._v(". No affiliation with KingsGroup.")
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -46174,6 +46771,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/formation.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/components/formation.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _formation_vue_vue_type_template_id_63784276_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./formation.vue?vue&type=template&id=63784276&scoped=true& */ "./resources/js/components/formation.vue?vue&type=template&id=63784276&scoped=true&");
+/* harmony import */ var _formation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./formation.vue?vue&type=script&lang=js& */ "./resources/js/components/formation.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _formation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _formation_vue_vue_type_template_id_63784276_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _formation_vue_vue_type_template_id_63784276_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "63784276",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/formation.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/formation.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/formation.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_formation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./formation.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/formation.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_formation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/formation.vue?vue&type=template&id=63784276&scoped=true&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/formation.vue?vue&type=template&id=63784276&scoped=true& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_formation_vue_vue_type_template_id_63784276_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./formation.vue?vue&type=template&id=63784276&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/formation.vue?vue&type=template&id=63784276&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_formation_vue_vue_type_template_id_63784276_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_formation_vue_vue_type_template_id_63784276_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/hero-gear.vue":
 /*!***********************************************!*\
   !*** ./resources/js/components/hero-gear.vue ***!
@@ -46376,6 +47042,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_military_stats_vue_vue_type_template_id_7fe1676a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_military_stats_vue_vue_type_template_id_7fe1676a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/summary.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/summary.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _summary_vue_vue_type_template_id_2cf9e62b_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./summary.vue?vue&type=template&id=2cf9e62b&scoped=true& */ "./resources/js/components/summary.vue?vue&type=template&id=2cf9e62b&scoped=true&");
+/* harmony import */ var _summary_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./summary.vue?vue&type=script&lang=js& */ "./resources/js/components/summary.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _summary_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _summary_vue_vue_type_template_id_2cf9e62b_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _summary_vue_vue_type_template_id_2cf9e62b_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "2cf9e62b",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/summary.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/summary.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/summary.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_summary_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./summary.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/summary.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_summary_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/summary.vue?vue&type=template&id=2cf9e62b&scoped=true&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/summary.vue?vue&type=template&id=2cf9e62b&scoped=true& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_summary_vue_vue_type_template_id_2cf9e62b_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./summary.vue?vue&type=template&id=2cf9e62b&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/summary.vue?vue&type=template&id=2cf9e62b&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_summary_vue_vue_type_template_id_2cf9e62b_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_summary_vue_vue_type_template_id_2cf9e62b_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
