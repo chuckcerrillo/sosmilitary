@@ -1922,6 +1922,184 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/hero-gear.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/hero-gear.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "hero-gear",
+  data: function data() {
+    return {
+      types: {
+        brawler: {
+          name: 'Brawler',
+          type: 'infantry'
+        },
+        marksman: {
+          name: 'Marksman',
+          type: 'hunter'
+        },
+        scout: {
+          name: 'Scout',
+          type: 'rider'
+        }
+      },
+      slots: [{
+        type: 'helmet',
+        display: 'Helmet'
+      }, {
+        type: 'chest',
+        display: 'Chest'
+      }, {
+        type: 'feet',
+        display: 'Feet'
+      }],
+      heroes: {
+        General: [{
+          name: 'march-slots',
+          display: 'March Slots',
+          type: 'general'
+        }, {
+          name: 'march-capacity',
+          display: 'March Capacity',
+          type: 'general'
+        }, {
+          name: 'training-capacity',
+          display: 'Training Capacity',
+          type: 'general'
+        }, {
+          name: 'training-speed',
+          display: 'Training Speed',
+          type: 'general'
+        }],
+        Troop: [{
+          name: 'troop-attack',
+          display: 'Troop Attack',
+          type: 'troop'
+        }, {
+          name: 'troop-defense',
+          display: 'Troop Defense',
+          type: 'troop'
+        }, {
+          name: 'troop-lethality',
+          display: 'Troop Damage',
+          type: 'troop'
+        }, {
+          name: 'troop-health',
+          display: 'Troop Health',
+          type: 'troop'
+        }],
+        Infantry: [{
+          name: 'infantry-attack',
+          display: 'Infantry Attack',
+          type: 'infantry'
+        }, {
+          name: 'infantry-defense',
+          display: 'Infantry Defense',
+          type: 'infantry'
+        }, {
+          name: 'infantry-lethality',
+          display: 'Infantry Lethality',
+          type: 'infantry'
+        }, {
+          name: 'infantry-health',
+          display: 'Infantry Health',
+          type: 'infantry'
+        }],
+        Hunter: [{
+          name: 'hunter-attack',
+          display: 'Hunter Attack',
+          type: 'hunter'
+        }, {
+          name: 'hunter-defense',
+          display: 'Hunter Defense',
+          type: 'hunter'
+        }, {
+          name: 'hunter-lethality',
+          display: 'Hunter Lethality',
+          type: 'hunter'
+        }, {
+          name: 'hunter-health',
+          display: 'Hunter Health',
+          type: 'hunter'
+        }],
+        Rider: [{
+          name: 'rider-attack',
+          display: 'Rider Attack',
+          type: 'rider'
+        }, {
+          name: 'rider-defense',
+          display: 'Rider Defense',
+          type: 'rider'
+        }, {
+          name: 'rider-lethality',
+          display: 'Rider Lethality',
+          type: 'rider'
+        }, {
+          name: 'rider-health',
+          display: 'Rider Health',
+          type: 'rider'
+        }],
+        Settlement: [{
+          name: 'settlement-attack',
+          display: 'Settlement Army Attack',
+          type: 'settlement'
+        }, {
+          name: 'settlement-defense',
+          display: 'Settlement Army Defense',
+          type: 'settlement'
+        }, {
+          name: 'settlement-lethality',
+          display: 'Settlement Troop Lethality',
+          type: 'settlement'
+        }, {
+          name: 'settlement-health',
+          display: 'Settlement Troop Health',
+          type: 'settlement'
+        }]
+      }
+    };
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/heroes.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/heroes.vue?vue&type=script&lang=js& ***!
@@ -2216,6 +2394,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_military_stats__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/military-stats */ "./resources/js/components/military-stats.vue");
 /* harmony import */ var _components_heroes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/heroes */ "./resources/js/components/heroes.vue");
+/* harmony import */ var _components_hero_gear__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/hero-gear */ "./resources/js/components/hero-gear.vue");
 //
 //
 //
@@ -2227,13 +2406,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
   components: {
     MilitaryStats: _components_military_stats__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Heroes: _components_heroes__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Heroes: _components_heroes__WEBPACK_IMPORTED_MODULE_1__["default"],
+    HeroGear: _components_hero_gear__WEBPACK_IMPORTED_MODULE_2__["default"]
   }
 });
 
@@ -33410,6 +33592,85 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/hero-gear.vue?vue&type=template&id=e6f2fe72&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/hero-gear.vue?vue&type=template&id=e6f2fe72&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "h1",
+      { staticClass: "text-center text-2xl text-gray-800 font-bold mb-8" },
+      [_vm._v("Hero Gear")]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "m-auto w-128" },
+      _vm._l(_vm.types, function(type, index, num) {
+        return _c(
+          "div",
+          {
+            staticClass:
+              "flex p-1 text-gray-700 border items-center justify-center"
+          },
+          [
+            _c("div", { staticClass: "w-24" }, [_vm._v(_vm._s(type.name))]),
+            _vm._v(" "),
+            _vm._l(_vm.slots, function(slot) {
+              return _c("div", [
+                _c("div", { staticClass: "text-center mx-1 px-1 text-xs" }, [
+                  _vm._v(_vm._s(slot.display))
+                ]),
+                _vm._v(" "),
+                _vm._m(0, true)
+              ])
+            })
+          ],
+          2
+        )
+      }),
+      0
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "rounded w-16 h-16 border border-gray-400 bg-gray-300 items-center flex justify-center m-1"
+        },
+        [
+          _c("div", { staticClass: "text-gray-500 text-center text-xs" }, [
+            _vm._v("Choose...")
+          ])
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/heroes.vue?vue&type=template&id=b519779a&scoped=true&":
 /*!*********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/heroes.vue?vue&type=template&id=b519779a&scoped=true& ***!
@@ -33497,7 +33758,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "flex items-center justify-center" },
+      { staticClass: "flex flex-wrap items-center justify-center" },
       _vm._l(_vm.stats, function(types, index, num) {
         return _c(
           "div",
@@ -33583,7 +33844,9 @@ var render = function() {
         [
           _c("MilitaryStats", { staticClass: "border-b border-gray-400 py-8" }),
           _vm._v(" "),
-          _c("Heroes", { staticClass: "border-b border-gray-400 py-8" })
+          _c("Heroes", { staticClass: "border-b border-gray-400 py-8" }),
+          _vm._v(" "),
+          _c("HeroGear", { staticClass: "border-b border-gray-400 py-8" })
         ],
         1
       ),
@@ -45906,6 +46169,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_app_vue_vue_type_template_id_f9a0fcb4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_app_vue_vue_type_template_id_f9a0fcb4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/hero-gear.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/components/hero-gear.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _hero_gear_vue_vue_type_template_id_e6f2fe72_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hero-gear.vue?vue&type=template&id=e6f2fe72&scoped=true& */ "./resources/js/components/hero-gear.vue?vue&type=template&id=e6f2fe72&scoped=true&");
+/* harmony import */ var _hero_gear_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./hero-gear.vue?vue&type=script&lang=js& */ "./resources/js/components/hero-gear.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _hero_gear_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _hero_gear_vue_vue_type_template_id_e6f2fe72_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _hero_gear_vue_vue_type_template_id_e6f2fe72_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "e6f2fe72",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/hero-gear.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/hero-gear.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/hero-gear.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_hero_gear_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./hero-gear.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/hero-gear.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_hero_gear_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/hero-gear.vue?vue&type=template&id=e6f2fe72&scoped=true&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/hero-gear.vue?vue&type=template&id=e6f2fe72&scoped=true& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_hero_gear_vue_vue_type_template_id_e6f2fe72_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./hero-gear.vue?vue&type=template&id=e6f2fe72&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/hero-gear.vue?vue&type=template&id=e6f2fe72&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_hero_gear_vue_vue_type_template_id_e6f2fe72_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_hero_gear_vue_vue_type_template_id_e6f2fe72_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
