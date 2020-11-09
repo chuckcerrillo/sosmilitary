@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="lg:w-200 m-auto">
         <h1 class="text-center text-2xl text-gray-800 font-bold mb-8">Hero Gear</h1>
         <div class="m-auto w-128">
 

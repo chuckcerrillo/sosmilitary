@@ -1,7 +1,12 @@
 <template>
     <div class="flex-col flex-1 h-screen overflow-y-hidden bg-gray-200 relative">
         <div class="w-full bg-gray-800 text-white h-32">
-            <div class="text-3xl font-bold p-4 tracking-tighter">State of Survival - Military Calculator</div>
+            <div class="text-2xl font-bold p-4 tracking-tighter">State of Survival - Military Calculator</div>
+            <div class="flex items-center justify-center">
+                <div class="p-4 px-8">My Stats</div>
+                <div class="p-4 px-8">Enemy Stats</div>
+                <div class="p-4 px-8">Comparison</div>
+            </div>
         </div>
         <div class="overflow-y-auto fixed inset-x-0 h-auto" style="top:8rem; bottom: 16rem;">
             <MilitaryStats class="border-b border-gray-400 py-8" />

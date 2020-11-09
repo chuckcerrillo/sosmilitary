@@ -38,6 +38,24 @@
                     0.0
                 </div>
             </div>
+
+            <div class="text-center m-1 mx-4">
+                <div class="text-xs">
+                    Total Attack Power
+                </div>
+                <div class="text-3xl font-bold">
+                    0.0
+                </div>
+            </div>
+
+            <div class="text-center m-1 mx-4">
+                <div class="text-xs">
+                    Total Defense Power
+                </div>
+                <div class="text-3xl font-bold">
+                    0.0
+                </div>
+            </div>
         </div>
         <div class="text-center font-bold text">
             <div v-if="showSummary" class="hover:text-green-400 cursor-pointer" @click="toggleSummary()">
