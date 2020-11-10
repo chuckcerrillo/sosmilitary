@@ -8,7 +8,7 @@
         <div class="flex flex-wrap items-center justify-center">
 
             <div
-                v-for="(types,index,num) in stats"
+                v-for="(types,index,num) in library.Military"
                 class="flex-col p-1 text-gray-700"
             >
                 <div class="tracking-tight text-center text-xl">{{ index }} Bonuses</div>
@@ -28,6 +28,9 @@
 <script>
 export default {
     name: "military-stats",
+    props: [
+        'library',
+    ],
     data() {
         return {
             data: {
@@ -56,116 +59,7 @@ export default {
                 'settlement-lethality': '0.0%',
                 'settlement-health': '0.0%',
             },
-            stats: {
-                General: [
-                    {
-                        name: 'march-slots',
-                        display: 'March Slots',
-                    },
-                    {
-                        name: 'march-capacity',
-                        display: 'March Capacity',
-                    },
-                    {
-                        name: 'training-capacity',
-                        display: 'Training Capacity',
-                    },
-                    {
-                        name: 'training-speed',
-                        display: 'Training Speed',
-                    },
-                ],
-                Troop: [
-                    {
-                        name: 'troop-attack',
-                        display: 'Troop Attack',
-                    },
-                    {
-                        name: 'troop-defense',
-                        display: 'Troop Defense',
-                    },
-                    {
-                        name: 'troop-lethality',
-                        display: 'Troop Damage',
-                    },
-                    {
-                        name: 'troop-health',
-                        display: 'Troop Health',
-                    },
-                ],
-                Infantry: [
-                    {
-                        name: 'infantry-attack',
-                        display: 'Infantry Attack',
-                    },
-                    {
-                        name: 'infantry-defense',
-                        display: 'Infantry Defense',
-                    },
-                    {
-                        name: 'infantry-lethality',
-                        display: 'Infantry Lethality',
-                    },
-                    {
-                        name: 'infantry-health',
-                        display: 'Infantry Health',
-                    },
-                ],
-                Hunter: [
-                    {
-                        name: 'hunter-attack',
-                        display: 'Hunter Attack',
-                    },
-                    {
-                        name: 'hunter-defense',
-                        display: 'Hunter Defense',
-                    },
-                    {
-                        name: 'hunter-lethality',
-                        display: 'Hunter Lethality',
-                    },
-                    {
-                        name: 'hunter-health',
-                        display: 'Hunter Health',
-                    },
-                ],
-                Rider: [
-                    {
-                        name: 'rider-attack',
-                        display: 'Rider Attack',
-                    },
-                    {
-                        name: 'rider-defense',
-                        display: 'Rider Defense',
-                    },
-                    {
-                        name: 'rider-lethality',
-                        display: 'Rider Lethality',
-                    },
-                    {
-                        name: 'rider-health',
-                        display: 'Rider Health',
-                    },
-                ],
-                Settlement: [
-                    {
-                        name: 'settlement-attack',
-                        display: 'Settlement Army Attack',
-                    },
-                    {
-                        name: 'settlement-defense',
-                        display: 'Settlement Army Defense',
-                    },
-                    {
-                        name: 'settlement-lethality',
-                        display: 'Settlement Troop Lethality',
-                    },
-                    {
-                        name: 'settlement-health',
-                        display: 'Settlement Troop Health',
-                    },
-                ]
-            }
+
         }
     }
 }

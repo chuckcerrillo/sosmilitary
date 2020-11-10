@@ -3,48 +3,48 @@
         <h1 class="text-center text-2xl font-bold mb-2">Summary</h1>
         <div class="flex flex-wrap items-center justify-center mb-4">
 
-            <div class="text-center m-1 mx-4">
-                <div class="text-xs">
-                    Attack
-                </div>
-                <div class="text-3xl font-bold">
-                    0.0
-                </div>
-            </div>
+<!--            <div class="text-center m-1 mx-4">-->
+<!--                <div class="text-xs">-->
+<!--                    Attack-->
+<!--                </div>-->
+<!--                <div class="text-3xl font-bold">-->
+<!--                    0.0-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div class="text-center m-1 mx-4">
-                <div class="text-xs">
-                    Defense
-                </div>
-                <div class="text-3xl font-bold">
-                    0.0
-                </div>
-            </div>
+<!--            <div class="text-center m-1 mx-4">-->
+<!--                <div class="text-xs">-->
+<!--                    Defense-->
+<!--                </div>-->
+<!--                <div class="text-3xl font-bold">-->
+<!--                    0.0-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div class="text-center m-1 mx-4">
-                <div class="text-xs">
-                    Lethality
-                </div>
-                <div class="text-3xl font-bold">
-                    0.0
-                </div>
-            </div>
+<!--            <div class="text-center m-1 mx-4">-->
+<!--                <div class="text-xs">-->
+<!--                    Lethality-->
+<!--                </div>-->
+<!--                <div class="text-3xl font-bold">-->
+<!--                    0.0-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div class="text-center m-1 mx-4">
-                <div class="text-xs">
-                    Health
-                </div>
-                <div class="text-3xl font-bold">
-                    0.0
-                </div>
-            </div>
+<!--            <div class="text-center m-1 mx-4">-->
+<!--                <div class="text-xs">-->
+<!--                    Health-->
+<!--                </div>-->
+<!--                <div class="text-3xl font-bold">-->
+<!--                    0.0-->
+<!--                </div>-->
+<!--            </div>-->
 
             <div class="text-center m-1 mx-4">
                 <div class="text-xs">
                     Total Attack Power
                 </div>
                 <div class="text-3xl font-bold">
-                    0.0
+                    {{ totalAttackPower.toLocaleString() }}
                 </div>
             </div>
 
@@ -53,7 +53,7 @@
                     Total Defense Power
                 </div>
                 <div class="text-3xl font-bold">
-                    0.0
+                    {{ totalAttackPower.toLocaleString() }}
                 </div>
             </div>
         </div>
@@ -72,125 +72,85 @@
 export default {
     name: "summary",
     props: [
-        'showSummary'
+        'showSummary',
+        'library',
+        'data',
     ],
     data() {
         return {
-            stats: {
-                General: [
-                    {
-                        name: 'march-slots',
-                        display: 'March Slots',
-                    },
-                    {
-                        name: 'march-capacity',
-                        display: 'March Capacity',
-                    },
-                    {
-                        name: 'training-capacity',
-                        display: 'Training Capacity',
-                    },
-                    {
-                        name: 'training-speed',
-                        display: 'Training Speed',
-                    },
-                ],
-                Troop: [
-                    {
-                        name: 'troop-attack',
-                        display: 'Troop Attack',
-                    },
-                    {
-                        name: 'troop-defense',
-                        display: 'Troop Defense',
-                    },
-                    {
-                        name: 'troop-lethality',
-                        display: 'Troop Damage',
-                    },
-                    {
-                        name: 'troop-health',
-                        display: 'Troop Health',
-                    },
-                ],
-                Infantry: [
-                    {
-                        name: 'infantry-attack',
-                        display: 'Infantry Attack',
-                    },
-                    {
-                        name: 'infantry-defense',
-                        display: 'Infantry Defense',
-                    },
-                    {
-                        name: 'infantry-lethality',
-                        display: 'Infantry Lethality',
-                    },
-                    {
-                        name: 'infantry-health',
-                        display: 'Infantry Health',
-                    },
-                ],
-                Hunter: [
-                    {
-                        name: 'hunter-attack',
-                        display: 'Hunter Attack',
-                    },
-                    {
-                        name: 'hunter-defense',
-                        display: 'Hunter Defense',
-                    },
-                    {
-                        name: 'hunter-lethality',
-                        display: 'Hunter Lethality',
-                    },
-                    {
-                        name: 'hunter-health',
-                        display: 'Hunter Health',
-                    },
-                ],
-                Rider: [
-                    {
-                        name: 'rider-attack',
-                        display: 'Rider Attack',
-                    },
-                    {
-                        name: 'rider-defense',
-                        display: 'Rider Defense',
-                    },
-                    {
-                        name: 'rider-lethality',
-                        display: 'Rider Lethality',
-                    },
-                    {
-                        name: 'rider-health',
-                        display: 'Rider Health',
-                    },
-                ],
-                Settlement: [
-                    {
-                        name: 'settlement-attack',
-                        display: 'Settlement Army Attack',
-                    },
-                    {
-                        name: 'settlement-defense',
-                        display: 'Settlement Army Defense',
-                    },
-                    {
-                        name: 'settlement-lethality',
-                        display: 'Settlement Troop Lethality',
-                    },
-                    {
-                        name: 'settlement-health',
-                        display: 'Settlement Troop Health',
-                    },
-                ]
-            }
         }
     },
     methods: {
-        toggleSummary() {
+        toggleSummary()
+        {
             this.$emit('toggleSummary');
+        },
+        getPlasma(level,type,stats){
+            let offset = 0;
+            if(level > 0)
+            {
+
+                offset = stats.plasma[level][type];
+            }
+            return stats.stats[type] + offset;
+        },
+    },
+    computed: {
+        attack()
+        {
+            let attack = 0;
+            for(let tier in [9,8,7,6,5,4,3,2,1,0])
+            {
+                for (let troop of ['Infantry','Rider','Hunter'])
+                {
+                    attack += parseInt(this.getPlasma(this.data.Formation.plasma,'attack',this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier]);
+                }
+            }
+            return attack;
+        },
+        lethality()
+        {
+            let lethality = 0;
+            for(let tier in [9,8,7,6,5,4,3,2,1,0])
+            {
+                for (let troop of ['Infantry','Rider','Hunter'])
+                {
+                    lethality += parseInt(this.getPlasma(this.data.Formation.plasma,'lethality',this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier]);
+                }
+            }
+            return lethality;
+        },
+        defense()
+        {
+            let defense = 0;
+            for(let tier in [9,8,7,6,5,4,3,2,1,0])
+            {
+                for (let troop of ['Infantry','Rider','Hunter'])
+                {
+                    defense += parseInt(this.getPlasma(this.data.Formation.plasma,'defense',this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier]);
+                }
+            }
+            return defense;
+        },
+        health()
+        {
+            let health = 0;
+            for(let tier in [9,8,7,6,5,4,3,2,1,0])
+            {
+                for (let troop of ['Infantry','Rider','Hunter'])
+                {
+                    health += parseInt(this.getPlasma(this.data.Formation.plasma,'health',this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier]);
+                }
+            }
+            return health;
+        },
+        totalAttackPower()
+        {
+            return this.attack + this.lethality;
+        },
+        totalDefensePower()
+        {
+            return this.defense + this.health;
         }
     }
 }
