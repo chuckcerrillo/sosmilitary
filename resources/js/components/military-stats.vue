@@ -17,7 +17,8 @@
                     class="flex p-1 text-xs items-center"
                 >
                     <div class="w-48">{{stat.display}}</div>
-                    <div><input class="p-1 border border-gray-400 rounded w-16 text-sm" type="text" v-model="data[stat.name]" /></div>
+                    <div v-if="index == 'General'"><input class="p-1 border border-gray-400 rounded w-16 text-sm" type="number" :max="stat.max !== false ?stat.max:'false'" :min="stat.min !== false ?stat.min:'false'" v-model="data.Military[stat.name]" /></div>
+                    <div v-else><input class="p-1 border border-gray-400 rounded w-16 text-sm mr-1" type="number" :max="stat.max !== false ?stat.max:'false'" :min="stat.min !== false ?stat.min:'false'" v-model="data.Military[stat.name]" />%</div>
                 </div>
 
             </div>
@@ -30,36 +31,10 @@ export default {
     name: "military-stats",
     props: [
         'library',
+        'data'
     ],
     data() {
         return {
-            data: {
-                'march-slots': '0.0%',
-                'march-capacity': '0.0%',
-                'training-capacity': '0.0%',
-                'training-speed': '0.0%',
-                'troop-attack': '0.0%',
-                'troop-defense': '0.0%',
-                'troop-lethality': '0.0%',
-                'troop-health': '0.0%',
-                'infantry-attack': '0.0%',
-                'infantry-defense': '0.0%',
-                'infantry-lethality': '0.0%',
-                'infantry-health': '0.0%',
-                'hunter-attack': '0.0%',
-                'hunter-defense': '0.0%',
-                'hunter-lethality': '0.0%',
-                'hunter-health': '0.0%',
-                'rider-attack': '0.0%',
-                'rider-defense': '0.0%',
-                'rider-lethality': '0.0%',
-                'rider-health': '0.0%',
-                'settlement-attack': '0.0%',
-                'settlement-defense': '0.0%',
-                'settlement-lethality': '0.0%',
-                'settlement-health': '0.0%',
-            },
-
         }
     }
 }

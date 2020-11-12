@@ -4,8 +4,6 @@
         <div class="text-xs my-2">
             <p>This is the troop formation you'll be using in a march. Choose the appropriate heroes and troops for the activity you wish to do. For instance when attacking settlements you might want to use "Siege" heroes, etc.</p>
         </div>
-
-
         <div class="flex items-center justify-center">
             <div
                 v-for="(type,index,num) in library.Formation.types"

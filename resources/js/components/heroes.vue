@@ -30,7 +30,7 @@
                     >
                         <div class="w-20 pr-2">{{hero.name}}</div>
                         <div class="w-24">{{types[hero.type].name}}</div>
-                        <div class="w-16"><input type="number" class="w-12 border border-gray-400 rounded p-1 text-xs" max="80" min="1"  value="1" v-model="data.heroes[hero.key].level"></div>
+                        <div class="w-16"><input type="number" class="w-12 border border-gray-400 rounded p-1 text-xs" max="80" min="1"  value="1" v-model="data.Heroes[hero.key].level"></div>
                         <div class="w-28">{{ getRank(hero.key) }}</div>
                         <div class="w-12">{{getMarch(hero.key)}}</div>
                         <div class="w-16 text-center">{{getAttack(hero.key)}}%</div>
@@ -54,118 +54,10 @@ export default {
     name: "heroes",
     props: [
         'library',
+        'data'
     ],
     data() {
         return {
-            data: {
-                heroes: {
-                    rusty: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    ghost: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    sarge: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    travis: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    mike: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    eva: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    tony: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    basel: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    candy: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    jane: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    chef: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    maddie: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    nikola: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    lucky: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    ray: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    wolfe: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    trish: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    jeb: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    ash: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    zoe: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                    miho: {
-                        rank: 0,
-                        upgrade: 1,
-                        level: 1,
-                    },
-                }
-            },
         }
     },
     computed: {
@@ -193,7 +85,7 @@ export default {
     methods: {
         getRank(key)
         {
-            let hero = this.data.heroes[key];
+            let hero = this.data.Heroes[key];
             let level;
 
             switch(hero.upgrade)
@@ -217,17 +109,17 @@ export default {
         },
         getRankValue(key)
         {
-            let hero = this.data.heroes[key];
+            let hero = this.data.Heroes[key];
             return hero.rank * 5 + hero.upgrade - 1;
         },
         getMarch(key)
         {
-            let hero = this.data.heroes[key];
+            let hero = this.data.Heroes[key];
             return this.march[hero.level - 1];
         },
         getAttack(key)
         {
-            let hero = this.data.heroes[key];
+            let hero = this.data.Heroes[key];
             let heroData;
             let scale;
             let x;
@@ -253,7 +145,7 @@ export default {
         },
         getDefense(key)
         {
-            let hero = this.data.heroes[key];
+            let hero = this.data.Heroes[key];
             let heroData;
             let scale;
             let x;
@@ -287,32 +179,32 @@ export default {
         },
         promote(key)
         {
-            let hero = this.data.heroes[key];
+            let hero = this.data.Heroes[key];
             if(hero.upgrade < 5)
             {
                 if(hero.rank < 7)
                 {
-                    this.data.heroes[key].upgrade++;
+                    this.data.Heroes[key].upgrade++;
                 }
             }
             else if(hero.rank < 7)
             {
-                this.data.heroes[key].rank++;
-                this.data.heroes[key].upgrade = 1;
+                this.data.Heroes[key].rank++;
+                this.data.Heroes[key].upgrade = 1;
             }
             return true;
         },
         demote(key)
         {
-            let hero = this.data.heroes[key];
+            let hero = this.data.Heroes[key];
             if(hero.upgrade > 1)
             {
-                this.data.heroes[key].upgrade--;
+                this.data.Heroes[key].upgrade--;
             }
             else if(hero.rank > 1)
             {
-                this.data.heroes[key].rank--;
-                this.data.heroes[key].upgrade = 5;
+                this.data.Heroes[key].rank--;
+                this.data.Heroes[key].upgrade = 5;
             }
             return true;
         }

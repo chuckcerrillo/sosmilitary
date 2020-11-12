@@ -2045,8 +2045,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "formation",
   props: ['library', 'data'],
@@ -2166,139 +2164,159 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "hero-gear",
+  props: ['data', 'library'],
   data: function data() {
-    return {
-      types: {
-        brawler: {
-          name: 'Brawler',
-          type: 'infantry'
+    return {};
+  },
+  computed: {
+    gears: function gears() {
+      return {
+        brawler: this.brawler,
+        marksman: this.marksman,
+        scout: this.scout
+      };
+    },
+    brawler: function brawler() {
+      var data = {
+        helmet: {
+          tier: 1,
+          step: 1,
+          stats: {}
         },
-        marksman: {
-          name: 'Marksman',
-          type: 'hunter'
+        chest: {
+          tier: 1,
+          step: 1,
+          stats: {}
         },
-        scout: {
-          name: 'Scout',
-          type: 'rider'
+        feet: {
+          tier: 1,
+          step: 1,
+          stats: {}
         }
-      },
-      slots: [{
-        type: 'helmet',
-        display: 'Helmet'
-      }, {
-        type: 'chest',
-        display: 'Chest'
-      }, {
-        type: 'feet',
-        display: 'Feet'
-      }],
-      heroes: {
-        General: [{
-          name: 'march-slots',
-          display: 'March Slots',
-          type: 'general'
-        }, {
-          name: 'march-capacity',
-          display: 'March Capacity',
-          type: 'general'
-        }, {
-          name: 'training-capacity',
-          display: 'Training Capacity',
-          type: 'general'
-        }, {
-          name: 'training-speed',
-          display: 'Training Speed',
-          type: 'general'
-        }],
-        Troop: [{
-          name: 'troop-attack',
-          display: 'Troop Attack',
-          type: 'troop'
-        }, {
-          name: 'troop-defense',
-          display: 'Troop Defense',
-          type: 'troop'
-        }, {
-          name: 'troop-lethality',
-          display: 'Troop Damage',
-          type: 'troop'
-        }, {
-          name: 'troop-health',
-          display: 'Troop Health',
-          type: 'troop'
-        }],
-        Infantry: [{
-          name: 'infantry-attack',
-          display: 'Infantry Attack',
-          type: 'infantry'
-        }, {
-          name: 'infantry-defense',
-          display: 'Infantry Defense',
-          type: 'infantry'
-        }, {
-          name: 'infantry-lethality',
-          display: 'Infantry Lethality',
-          type: 'infantry'
-        }, {
-          name: 'infantry-health',
-          display: 'Infantry Health',
-          type: 'infantry'
-        }],
-        Hunter: [{
-          name: 'hunter-attack',
-          display: 'Hunter Attack',
-          type: 'hunter'
-        }, {
-          name: 'hunter-defense',
-          display: 'Hunter Defense',
-          type: 'hunter'
-        }, {
-          name: 'hunter-lethality',
-          display: 'Hunter Lethality',
-          type: 'hunter'
-        }, {
-          name: 'hunter-health',
-          display: 'Hunter Health',
-          type: 'hunter'
-        }],
-        Rider: [{
-          name: 'rider-attack',
-          display: 'Rider Attack',
-          type: 'rider'
-        }, {
-          name: 'rider-defense',
-          display: 'Rider Defense',
-          type: 'rider'
-        }, {
-          name: 'rider-lethality',
-          display: 'Rider Lethality',
-          type: 'rider'
-        }, {
-          name: 'rider-health',
-          display: 'Rider Health',
-          type: 'rider'
-        }],
-        Settlement: [{
-          name: 'settlement-attack',
-          display: 'Settlement Army Attack',
-          type: 'settlement'
-        }, {
-          name: 'settlement-defense',
-          display: 'Settlement Army Defense',
-          type: 'settlement'
-        }, {
-          name: 'settlement-lethality',
-          display: 'Settlement Troop Lethality',
-          type: 'settlement'
-        }, {
-          name: 'settlement-health',
-          display: 'Settlement Troop Health',
-          type: 'settlement'
-        }]
+      };
+      data = Object.assign(data, this.data.HeroGear.brawler);
+      data.helmet.name = this.library.HeroGear.sets.brawler[data.helmet.tier - 1].name;
+      data.helmet.color = this.library.HeroGear.sets.brawler[data.helmet.tier - 1].color;
+      data.helmet.stats = this.library.HeroGear.sets.brawler[data.helmet.tier - 1].steps[data.helmet.step - 1];
+      data.chest.name = this.library.HeroGear.sets.brawler[data.chest.tier - 1].name;
+      data.chest.color = this.library.HeroGear.sets.brawler[data.chest.tier - 1].color;
+      data.chest.stats = this.library.HeroGear.sets.brawler[data.chest.tier - 1].steps[data.chest.step - 1];
+      data.feet.name = this.library.HeroGear.sets.brawler[data.feet.tier - 1].name;
+      data.feet.color = this.library.HeroGear.sets.brawler[data.feet.tier - 1].color;
+      data.feet.stats = this.library.HeroGear.sets.brawler[data.feet.tier - 1].steps[data.feet.step - 1];
+      return data;
+    },
+    marksman: function marksman() {
+      var data = {
+        helmet: {
+          tier: 1,
+          step: 1,
+          stats: {}
+        },
+        chest: {
+          tier: 1,
+          step: 1,
+          stats: {}
+        },
+        feet: {
+          tier: 1,
+          step: 1,
+          stats: {}
+        }
+      };
+      data = Object.assign(data, this.data.HeroGear.marksman);
+      data.helmet.name = this.library.HeroGear.sets.marksman[data.helmet.tier - 1].name;
+      data.helmet.color = this.library.HeroGear.sets.marksman[data.helmet.tier - 1].color;
+      data.helmet.stats = this.library.HeroGear.sets.marksman[data.helmet.tier - 1].steps[data.helmet.step - 1];
+      data.chest.name = this.library.HeroGear.sets.marksman[data.chest.tier - 1].name;
+      data.chest.color = this.library.HeroGear.sets.marksman[data.chest.tier - 1].color;
+      data.chest.stats = this.library.HeroGear.sets.marksman[data.chest.tier - 1].steps[data.chest.step - 1];
+      data.feet.name = this.library.HeroGear.sets.marksman[data.feet.tier - 1].name;
+      data.feet.color = this.library.HeroGear.sets.marksman[data.feet.tier - 1].color;
+      data.feet.stats = this.library.HeroGear.sets.marksman[data.feet.tier - 1].steps[data.feet.step - 1];
+      return data;
+    },
+    scout: function scout() {
+      var data = {
+        helmet: {
+          tier: 1,
+          step: 1,
+          stats: {}
+        },
+        chest: {
+          tier: 1,
+          step: 1,
+          stats: {}
+        },
+        feet: {
+          tier: 1,
+          step: 1,
+          stats: {}
+        }
+      };
+      data = Object.assign(data, this.data.HeroGear.scout);
+      data.helmet.name = this.library.HeroGear.sets.scout[data.helmet.tier - 1].name;
+      data.helmet.color = this.library.HeroGear.sets.scout[data.helmet.tier - 1].color;
+      data.helmet.stats = this.library.HeroGear.sets.scout[data.helmet.tier - 1].steps[data.helmet.step - 1];
+      data.chest.name = this.library.HeroGear.sets.scout[data.chest.tier - 1].name;
+      data.chest.color = this.library.HeroGear.sets.scout[data.chest.tier - 1].color;
+      data.chest.stats = this.library.HeroGear.sets.scout[data.chest.tier - 1].steps[data.chest.step - 1];
+      data.feet.name = this.library.HeroGear.sets.scout[data.feet.tier - 1].name;
+      data.feet.color = this.library.HeroGear.sets.scout[data.feet.tier - 1].color;
+      data.feet.stats = this.library.HeroGear.sets.scout[data.feet.tier - 1].steps[data.feet.step - 1];
+      return data;
+    }
+  },
+  methods: {
+    upgrade: function upgrade(heroType, slot) {
+      if (this.data.HeroGear[heroType][slot]) {
+        var item = this.data.HeroGear[heroType][slot];
+
+        if (item.tier <= this.library.HeroGear.sets[heroType].length) {
+          if (item.tier < this.library.HeroGear.sets[heroType].length) // item is not highest tier
+            {
+              if (item.step < this.library.HeroGear.sets[heroType][item.tier - 1].steps[slot].length) {
+                item.step++;
+              } else {
+                item.step = 1;
+                item.tier++;
+              }
+            } else if (item.tier === 5 && item.step < this.library.HeroGear.sets[heroType][item.tier - 1].steps[slot].length) // item is not maxed
+            {
+              if (item.step < this.library.HeroGear.sets[heroType][item.tier - 1].steps[slot].length) {
+                item.step++;
+              }
+            }
+        }
       }
-    };
+    },
+    downgrade: function downgrade(heroType, slot) {
+      if (this.data.HeroGear[heroType][slot]) {
+        var item = this.data.HeroGear[heroType][slot];
+
+        if (item.tier >= 1) {
+          if (item.tier > 1) // item is not lowest tier
+            {
+              if (item.step > 1) {
+                item.step--;
+              } else {
+                item.step = this.library.HeroGear.sets[heroType][item.tier - 2].steps[slot].length;
+                item.tier--;
+              }
+            } else if (item.tier === 1 && item.step > 1) // item is not lowest step
+            {
+              item.step--;
+            }
+        }
+      }
+    }
   }
 });
 
@@ -2366,11 +2384,704 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "heroes",
-  props: ['library'],
+  props: ['library', 'data'],
+  data: function data() {
+    return {};
+  },
+  computed: {
+    types: function types() {
+      return this.library.Heroes.types;
+    },
+    ranks: function ranks() {
+      return this.library.Heroes.ranks;
+    },
+    heroes: function heroes() {
+      return this.library.Heroes.heroes;
+    },
+    march: function march() {
+      return this.library.Heroes.march;
+    },
+    scales: function scales() {
+      return this.library.Heroes.scales;
+    }
+  },
+  methods: {
+    getRank: function getRank(key) {
+      var hero = this.data.Heroes[key];
+      var level;
+
+      switch (hero.upgrade) {
+        case 5:
+          level = 'V';
+          break;
+
+        case 4:
+          level = 'IV';
+          break;
+
+        case 3:
+          level = 'III';
+          break;
+
+        case 2:
+          level = 'II';
+          break;
+
+        default:
+          level = 'I';
+      }
+
+      return this.ranks[hero.rank].name + ' ' + level;
+    },
+    getRankValue: function getRankValue(key) {
+      var hero = this.data.Heroes[key];
+      return hero.rank * 5 + hero.upgrade - 1;
+    },
+    getMarch: function getMarch(key) {
+      var hero = this.data.Heroes[key];
+      return this.march[hero.level - 1];
+    },
+    getAttack: function getAttack(key) {
+      var hero = this.data.Heroes[key];
+      var heroData;
+      var scale;
+      var x;
+
+      if (key) {
+        for (x in this.heroes) {
+          if (this.heroes[x] && this.heroes[x].key === key) {
+            heroData = this.heroes[x];
+            break;
+          }
+        }
+      }
+
+      if (heroData && hero) {
+        var _scale = this.scales[heroData.stats.base.attack];
+        return _scale[this.getRankValue(key)];
+      }
+
+      return 0;
+    },
+    getDefense: function getDefense(key) {
+      var hero = this.data.Heroes[key];
+      var heroData;
+      var scale;
+      var x;
+
+      if (key) {
+        for (x in this.heroes) {
+          if (this.heroes[x] && this.heroes[x].key === key) {
+            heroData = this.heroes[x];
+            break;
+          }
+        }
+      }
+
+      if (heroData && hero) {
+        var _scale2 = this.scales[heroData.stats.base.defense];
+        return _scale2[this.getRankValue(key)];
+      }
+
+      return 0;
+    },
+    getLethality: function getLethality(key) {
+      return 0;
+    },
+    getHealth: function getHealth(key) {
+      return 0;
+    },
+    promote: function promote(key) {
+      var hero = this.data.Heroes[key];
+
+      if (hero.upgrade < 5) {
+        if (hero.rank < 7) {
+          this.data.Heroes[key].upgrade++;
+        }
+      } else if (hero.rank < 7) {
+        this.data.Heroes[key].rank++;
+        this.data.Heroes[key].upgrade = 1;
+      }
+
+      return true;
+    },
+    demote: function demote(key) {
+      var hero = this.data.Heroes[key];
+
+      if (hero.upgrade > 1) {
+        this.data.Heroes[key].upgrade--;
+      } else if (hero.rank > 1) {
+        this.data.Heroes[key].rank--;
+        this.data.Heroes[key].upgrade = 5;
+      }
+
+      return true;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/military-stats.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/military-stats.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "military-stats",
+  props: ['library', 'data'],
+  data: function data() {
+    return {};
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/summary.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/summary.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "summary",
+  props: ['showSummary', 'library', 'data'],
+  data: function data() {
+    return {};
+  },
+  methods: {
+    toggleSummary: function toggleSummary() {
+      this.$emit('toggleSummary');
+    },
+    getPlasma: function getPlasma(level, type, stats) {
+      var offset = 0;
+
+      if (level > 0) {
+        offset = stats.plasma[level][type];
+      }
+
+      return stats.stats[type] + offset;
+    },
+    getHero: function getHero(key) {
+      if (key) {
+        var _iterator = _createForOfIteratorHelper(this.library.Heroes.heroes),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var hero = _step.value;
+
+            if (hero.key === key) {
+              return hero;
+            }
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+      }
+
+      return false;
+    },
+    getRankValue: function getRankValue(key) {
+      var hero = this.data.Heroes[key];
+      return hero.rank * 5 + hero.upgrade - 1;
+    },
+    getHeroStats: function getHeroStats(key) {
+      var result = {
+        attack: 0,
+        defense: 0,
+        lethality: 0,
+        health: 0
+      };
+
+      if (key) {
+        if (this.data.Heroes[key]) {
+          var hero = false;
+
+          for (var x in this.library.Heroes.heroes) {
+            if (this.library.Heroes.heroes[x].key === key) {
+              hero = this.library.Heroes.heroes[x];
+            }
+          }
+
+          if (hero) {
+            var heroBase = hero.stats.base;
+            result.attack = this.library.Heroes.scales[heroBase.attack][this.getRankValue(key)];
+            result.defense = this.library.Heroes.scales[heroBase.defense][this.getRankValue(key)];
+          }
+        }
+      }
+
+      return result;
+    },
+    getTotalBoosts: function getTotalBoosts() {
+      var result = {
+        Infantry: {
+          attack: 0,
+          defense: 0,
+          lethality: 0,
+          health: 0
+        },
+        Hunter: {
+          attack: 0,
+          defense: 0,
+          lethality: 0,
+          health: 0
+        },
+        Rider: {
+          attack: 0,
+          defense: 0,
+          lethality: 0,
+          health: 0
+        }
+      }; // Get hero boosts
+
+      var formationHeroes = this.data.Formation.heroes;
+
+      for (var troopType in formationHeroes) {
+        var hero = false;
+
+        if (this.getHeroType(troopType) === 'brawler') {
+          result.Infantry = this.getHeroStats(formationHeroes[troopType]);
+        } else if (this.getHeroType(troopType) === 'marksman') {
+          result.Hunter = this.getHeroStats(formationHeroes[troopType]);
+        } else if (this.getHeroType(troopType) === 'scout') {
+          result.Rider = this.getHeroStats(formationHeroes[troopType]);
+        }
+      } // Get hero gear boosts
+
+
+      result.Infantry.lethality += this.library.HeroGear.sets['brawler'][this.data.HeroGear.brawler.helmet.tier - 1].steps.helmet[this.data.HeroGear.brawler.helmet.step - 1].lethality;
+      result.Infantry.lethality += this.library.HeroGear.sets['brawler'][this.data.HeroGear.brawler.chest.tier - 1].steps.helmet[this.data.HeroGear.brawler.chest.step - 1].lethality;
+      result.Infantry.lethality += this.library.HeroGear.sets['brawler'][this.data.HeroGear.brawler.feet.tier - 1].steps.helmet[this.data.HeroGear.brawler.feet.step - 1].lethality;
+      result.Hunter.lethality += this.library.HeroGear.sets['marksman'][this.data.HeroGear.marksman.helmet.tier - 1].steps.chest[this.data.HeroGear.marksman.helmet.step - 1].lethality;
+      result.Hunter.lethality += this.library.HeroGear.sets['marksman'][this.data.HeroGear.marksman.chest.tier - 1].steps.chest[this.data.HeroGear.marksman.chest.step - 1].lethality;
+      result.Hunter.lethality += this.library.HeroGear.sets['marksman'][this.data.HeroGear.marksman.feet.tier - 1].steps.chest[this.data.HeroGear.marksman.feet.step - 1].lethality;
+      result.Rider.lethality += this.library.HeroGear.sets['scout'][this.data.HeroGear.scout.helmet.tier - 1].steps.feet[this.data.HeroGear.scout.helmet.step - 1].lethality;
+      result.Rider.lethality += this.library.HeroGear.sets['scout'][this.data.HeroGear.scout.chest.tier - 1].steps.feet[this.data.HeroGear.scout.chest.step - 1].lethality;
+      result.Rider.lethality += this.library.HeroGear.sets['scout'][this.data.HeroGear.scout.feet.tier - 1].steps.feet[this.data.HeroGear.scout.feet.step - 1].lethality;
+      result.Infantry.health += this.library.HeroGear.sets['brawler'][this.data.HeroGear.brawler.helmet.tier - 1].steps.helmet[this.data.HeroGear.brawler.helmet.step - 1].health;
+      result.Infantry.health += this.library.HeroGear.sets['brawler'][this.data.HeroGear.brawler.chest.tier - 1].steps.helmet[this.data.HeroGear.brawler.chest.step - 1].health;
+      result.Infantry.health += this.library.HeroGear.sets['brawler'][this.data.HeroGear.brawler.feet.tier - 1].steps.helmet[this.data.HeroGear.brawler.feet.step - 1].health;
+      result.Hunter.health += this.library.HeroGear.sets['marksman'][this.data.HeroGear.marksman.helmet.tier - 1].steps.chest[this.data.HeroGear.marksman.helmet.step - 1].health;
+      result.Hunter.health += this.library.HeroGear.sets['marksman'][this.data.HeroGear.marksman.chest.tier - 1].steps.chest[this.data.HeroGear.marksman.chest.step - 1].health;
+      result.Hunter.health += this.library.HeroGear.sets['marksman'][this.data.HeroGear.marksman.feet.tier - 1].steps.chest[this.data.HeroGear.marksman.feet.step - 1].health;
+      result.Rider.health += this.library.HeroGear.sets['scout'][this.data.HeroGear.scout.helmet.tier - 1].steps.feet[this.data.HeroGear.scout.helmet.step - 1].health;
+      result.Rider.health += this.library.HeroGear.sets['scout'][this.data.HeroGear.scout.chest.tier - 1].steps.feet[this.data.HeroGear.scout.chest.step - 1].health;
+      result.Rider.health += this.library.HeroGear.sets['scout'][this.data.HeroGear.scout.feet.tier - 1].steps.feet[this.data.HeroGear.scout.feet.step - 1].health; // Get military stats boost
+
+      for (var _i = 0, _arr = ['attack', 'defense', 'lethality', 'health']; _i < _arr.length; _i++) {
+        var statType = _arr[_i];
+
+        for (var type in result) {
+          result[type][statType] += parseFloat(this.data.Military['troop-' + statType]);
+        }
+
+        result.Infantry[statType] += parseFloat(this.data.Military['infantry-' + statType]);
+        result.Hunter[statType] += parseFloat(this.data.Military['hunter-' + statType]);
+        result.Rider[statType] += parseFloat(this.data.Military['rider-' + statType]);
+      }
+
+      return result;
+    },
+    getAttack: function getAttack(key) {
+      if (key && key.length > 0) {
+        var hero = this.library.Heroes.heroes[key];
+        var heroData;
+        var scale;
+        var x;
+
+        if (heroData && hero) {
+          scale = this.library.Heroes.scales[heroData.stats.base.attack];
+          return scale[this.getRankValue(key)];
+        }
+      }
+
+      return 0;
+    },
+    getDefense: function getDefense(key) {
+      if (key && key.length > 0) {
+        var hero = this.library.Heroes.heroes[key];
+        var heroData;
+        var scale;
+        var x;
+
+        if (heroData && hero) {
+          scale = this.library.Heroes.scales[heroData.stats.base.defense];
+          return scale[this.getRankValue(key)];
+        }
+      }
+
+      return 0;
+    },
+    getHeroType: function getHeroType(type) {
+      for (var x in this.library.Heroes.types) {
+        if (this.library.Heroes.types[x].type === type) {
+          return x;
+        }
+      }
+
+      return type;
+    },
+    getTroopType: function getTroopType(type) {
+      return this.library.Heroes.types[type];
+    }
+  },
+  computed: {
+    attack: function attack() {
+      var attack = 0;
+
+      for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
+        for (var _i2 = 0, _arr2 = ['Infantry', 'Rider', 'Hunter']; _i2 < _arr2.length; _i2++) {
+          var troop = _arr2[_i2];
+          var troopAttack = parseInt(this.getPlasma(this.data.Formation.plasma, 'attack', this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier]);
+          attack += troopAttack;
+
+          if (this.totalBoosts[troop].attack) {
+            attack += troopAttack * this.totalBoosts[troop].attack / 100;
+          }
+        }
+      }
+
+      return attack;
+    },
+    lethality: function lethality() {
+      var lethality = 0;
+
+      for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
+        for (var _i3 = 0, _arr3 = ['Infantry', 'Rider', 'Hunter']; _i3 < _arr3.length; _i3++) {
+          var troop = _arr3[_i3];
+          var troopLethality = parseInt(this.getPlasma(this.data.Formation.plasma, 'lethality', this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier]);
+          lethality += troopLethality;
+
+          if (this.totalBoosts[troop].lethality) {
+            lethality += troopLethality * this.totalBoosts[troop].lethality / 100;
+          }
+        }
+      }
+
+      return lethality;
+    },
+    defense: function defense() {
+      var defense = 0;
+
+      for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
+        for (var _i4 = 0, _arr4 = ['Infantry', 'Rider', 'Hunter']; _i4 < _arr4.length; _i4++) {
+          var troop = _arr4[_i4];
+          var troopDefense = parseInt(this.getPlasma(this.data.Formation.plasma, 'defense', this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier]);
+          defense += troopDefense;
+
+          if (this.totalBoosts[troop].defense) {
+            defense += troopDefense * this.totalBoosts[troop].defense / 100;
+          }
+        }
+      }
+
+      return defense;
+    },
+    health: function health() {
+      var health = 0;
+
+      for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
+        for (var _i5 = 0, _arr5 = ['Infantry', 'Rider', 'Hunter']; _i5 < _arr5.length; _i5++) {
+          var troop = _arr5[_i5];
+          var troopHealth = parseInt(this.getPlasma(this.data.Formation.plasma, 'health', this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier]);
+          health += troopHealth;
+
+          if (this.totalBoosts[troop].health) {
+            health += troopHealth * this.totalBoosts[troop].health / 100;
+          }
+        }
+      }
+
+      return health;
+    },
+    totalBoosts: function totalBoosts() {
+      return this.getTotalBoosts();
+    },
+    totalAttackPower: function totalAttackPower() {
+      return this.attack + this.lethality;
+    },
+    totalDefensePower: function totalDefensePower() {
+      return this.defense + this.health;
+    },
+    selectedHeroes: function selectedHeroes() {
+      return this.data.Formation.heroes;
+    },
+    isReady: function isReady() {
+      if (this.data && this.data.Formation && this.data.Formation.heroes && this.data.Formation.heroes.brawler) {
+        return true;
+      }
+
+      return false;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/App.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/App.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_military_stats__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/military-stats */ "./resources/js/components/military-stats.vue");
+/* harmony import */ var _components_heroes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/heroes */ "./resources/js/components/heroes.vue");
+/* harmony import */ var _components_formation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/formation */ "./resources/js/components/formation.vue");
+/* harmony import */ var _components_hero_gear__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/hero-gear */ "./resources/js/components/hero-gear.vue");
+/* harmony import */ var _components_summary__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/summary */ "./resources/js/components/summary.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "App",
+  components: {
+    MilitaryStats: _components_military_stats__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Heroes: _components_heroes__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Formation: _components_formation__WEBPACK_IMPORTED_MODULE_2__["default"],
+    HeroGear: _components_hero_gear__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Summary: _components_summary__WEBPACK_IMPORTED_MODULE_4__["default"]
+  },
   data: function data() {
     return {
       data: {
-        heroes: {
+        Military: {
+          'march-slots': '1',
+          'march-capacity': '0',
+          'training-capacity': '0',
+          'training-speed': '0',
+          'troop-attack': '0',
+          'troop-defense': '0',
+          'troop-lethality': '0',
+          'troop-health': '0',
+          'infantry-attack': '0',
+          'infantry-defense': '0',
+          'infantry-lethality': '0',
+          'infantry-health': '0',
+          'hunter-attack': '0',
+          'hunter-defense': '0',
+          'hunter-lethality': '0',
+          'hunter-health': '0',
+          'rider-attack': '0',
+          'rider-defense': '0',
+          'rider-lethality': '0',
+          'rider-health': '0',
+          'settlement-attack': '0',
+          'settlement-defense': '0',
+          'settlement-lethality': '0',
+          'settlement-health': '0'
+        },
+        Formation: {
+          captain: 'infantry',
+          heroes: {
+            brawler: false,
+            marksman: false,
+            scout: false
+          },
+          plasma: 0,
+          quantity: {
+            Infantry: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            Hunter: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            Rider: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          }
+        },
+        Heroes: {
           rusty: {
             rank: 0,
             upgrade: 1,
@@ -2476,455 +3187,89 @@ __webpack_require__.r(__webpack_exports__);
             upgrade: 1,
             level: 1
           }
-        }
-      }
-    };
-  },
-  computed: {
-    types: function types() {
-      return this.library.Heroes.types;
-    },
-    ranks: function ranks() {
-      return this.library.Heroes.ranks;
-    },
-    heroes: function heroes() {
-      return this.library.Heroes.heroes;
-    },
-    march: function march() {
-      return this.library.Heroes.march;
-    },
-    scales: function scales() {
-      return this.library.Heroes.scales;
-    }
-  },
-  methods: {
-    getRank: function getRank(key) {
-      var hero = this.data.heroes[key];
-      var level;
-
-      switch (hero.upgrade) {
-        case 5:
-          level = 'V';
-          break;
-
-        case 4:
-          level = 'IV';
-          break;
-
-        case 3:
-          level = 'III';
-          break;
-
-        case 2:
-          level = 'II';
-          break;
-
-        default:
-          level = 'I';
-      }
-
-      return this.ranks[hero.rank].name + ' ' + level;
-    },
-    getRankValue: function getRankValue(key) {
-      var hero = this.data.heroes[key];
-      return hero.rank * 5 + hero.upgrade - 1;
-    },
-    getMarch: function getMarch(key) {
-      var hero = this.data.heroes[key];
-      return this.march[hero.level - 1];
-    },
-    getAttack: function getAttack(key) {
-      var hero = this.data.heroes[key];
-      var heroData;
-      var scale;
-      var x;
-
-      if (key) {
-        for (x in this.heroes) {
-          if (this.heroes[x] && this.heroes[x].key === key) {
-            heroData = this.heroes[x];
-            break;
+        },
+        Summary: {
+          boosts: {
+            Troop: {
+              attack: 0,
+              defense: 0,
+              lethality: 0,
+              health: 0
+            },
+            Infantry: {
+              attack: 0,
+              defense: 0,
+              lethality: 0,
+              health: 0
+            },
+            Hunter: {
+              attack: 0,
+              defense: 0,
+              lethality: 0,
+              health: 0
+            },
+            Rider: {
+              attack: 0,
+              defense: 0,
+              lethality: 0,
+              health: 0
+            },
+            Settlement: {
+              attack: 0,
+              defense: 0,
+              lethality: 0,
+              health: 0
+            },
+            Enemy: {
+              attack: 0,
+              defense: 0,
+              lethality: 0,
+              health: 0
+            }
           }
-        }
-      }
-
-      if (heroData && hero) {
-        var _scale = this.scales[heroData.stats.base.attack];
-        return _scale[this.getRankValue(key)];
-      }
-
-      return 0;
-    },
-    getDefense: function getDefense(key) {
-      var hero = this.data.heroes[key];
-      var heroData;
-      var scale;
-      var x;
-
-      if (key) {
-        for (x in this.heroes) {
-          if (this.heroes[x] && this.heroes[x].key === key) {
-            heroData = this.heroes[x];
-            break;
-          }
-        }
-      }
-
-      if (heroData && hero) {
-        var _scale2 = this.scales[heroData.stats.base.defense];
-        return _scale2[this.getRankValue(key)];
-      }
-
-      return 0;
-    },
-    getLethality: function getLethality(key) {
-      return 0;
-    },
-    getHealth: function getHealth(key) {
-      return 0;
-    },
-    promote: function promote(key) {
-      var hero = this.data.heroes[key];
-
-      if (hero.upgrade < 5) {
-        if (hero.rank < 7) {
-          this.data.heroes[key].upgrade++;
-        }
-      } else if (hero.rank < 7) {
-        this.data.heroes[key].rank++;
-        this.data.heroes[key].upgrade = 1;
-      }
-
-      return true;
-    },
-    demote: function demote(key) {
-      var hero = this.data.heroes[key];
-
-      if (hero.upgrade > 1) {
-        this.data.heroes[key].upgrade--;
-      } else if (hero.rank > 1) {
-        this.data.heroes[key].rank--;
-        this.data.heroes[key].upgrade = 5;
-      }
-
-      return true;
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/military-stats.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/military-stats.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "military-stats",
-  props: ['library'],
-  data: function data() {
-    return {
-      data: {
-        'march-slots': '0.0%',
-        'march-capacity': '0.0%',
-        'training-capacity': '0.0%',
-        'training-speed': '0.0%',
-        'troop-attack': '0.0%',
-        'troop-defense': '0.0%',
-        'troop-lethality': '0.0%',
-        'troop-health': '0.0%',
-        'infantry-attack': '0.0%',
-        'infantry-defense': '0.0%',
-        'infantry-lethality': '0.0%',
-        'infantry-health': '0.0%',
-        'hunter-attack': '0.0%',
-        'hunter-defense': '0.0%',
-        'hunter-lethality': '0.0%',
-        'hunter-health': '0.0%',
-        'rider-attack': '0.0%',
-        'rider-defense': '0.0%',
-        'rider-lethality': '0.0%',
-        'rider-health': '0.0%',
-        'settlement-attack': '0.0%',
-        'settlement-defense': '0.0%',
-        'settlement-lethality': '0.0%',
-        'settlement-health': '0.0%'
-      }
-    };
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/summary.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/summary.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "summary",
-  props: ['showSummary', 'library', 'data'],
-  data: function data() {
-    return {};
-  },
-  methods: {
-    toggleSummary: function toggleSummary() {
-      this.$emit('toggleSummary');
-    },
-    getPlasma: function getPlasma(level, type, stats) {
-      var offset = 0;
-
-      if (level > 0) {
-        offset = stats.plasma[level][type];
-      }
-
-      return stats.stats[type] + offset;
-    }
-  },
-  computed: {
-    attack: function attack() {
-      var attack = 0;
-
-      for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
-        for (var _i = 0, _arr = ['Infantry', 'Rider', 'Hunter']; _i < _arr.length; _i++) {
-          var troop = _arr[_i];
-          attack += parseInt(this.getPlasma(this.data.Formation.plasma, 'attack', this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier]);
-        }
-      }
-
-      return attack;
-    },
-    lethality: function lethality() {
-      var lethality = 0;
-
-      for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
-        for (var _i2 = 0, _arr2 = ['Infantry', 'Rider', 'Hunter']; _i2 < _arr2.length; _i2++) {
-          var troop = _arr2[_i2];
-          lethality += parseInt(this.getPlasma(this.data.Formation.plasma, 'lethality', this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier]);
-        }
-      }
-
-      return lethality;
-    },
-    defense: function defense() {
-      var defense = 0;
-
-      for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
-        for (var _i3 = 0, _arr3 = ['Infantry', 'Rider', 'Hunter']; _i3 < _arr3.length; _i3++) {
-          var troop = _arr3[_i3];
-          defense += parseInt(this.getPlasma(this.data.Formation.plasma, 'defense', this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier]);
-        }
-      }
-
-      return defense;
-    },
-    health: function health() {
-      var health = 0;
-
-      for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
-        for (var _i4 = 0, _arr4 = ['Infantry', 'Rider', 'Hunter']; _i4 < _arr4.length; _i4++) {
-          var troop = _arr4[_i4];
-          health += parseInt(this.getPlasma(this.data.Formation.plasma, 'health', this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier]);
-        }
-      }
-
-      return health;
-    },
-    totalAttackPower: function totalAttackPower() {
-      return this.attack + this.lethality;
-    },
-    totalDefensePower: function totalDefensePower() {
-      return this.defense + this.health;
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/App.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/App.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_military_stats__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/military-stats */ "./resources/js/components/military-stats.vue");
-/* harmony import */ var _components_heroes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/heroes */ "./resources/js/components/heroes.vue");
-/* harmony import */ var _components_formation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/formation */ "./resources/js/components/formation.vue");
-/* harmony import */ var _components_hero_gear__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/hero-gear */ "./resources/js/components/hero-gear.vue");
-/* harmony import */ var _components_summary__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/summary */ "./resources/js/components/summary.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "App",
-  components: {
-    MilitaryStats: _components_military_stats__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Heroes: _components_heroes__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Formation: _components_formation__WEBPACK_IMPORTED_MODULE_2__["default"],
-    HeroGear: _components_hero_gear__WEBPACK_IMPORTED_MODULE_3__["default"],
-    Summary: _components_summary__WEBPACK_IMPORTED_MODULE_4__["default"]
-  },
-  data: function data() {
-    return {
-      data: {
-        Formation: {
-          captain: 'infantry',
-          heroes: {
-            brawler: '',
-            marksman: '',
-            scout: ''
+        },
+        HeroGear: {
+          brawler: {
+            helmet: {
+              tier: 2,
+              step: 2
+            },
+            chest: {
+              tier: 3,
+              step: 2
+            },
+            feet: {
+              tier: 4,
+              step: 2
+            }
           },
-          plasma: 0,
-          quantity: {
-            Infantry: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            Hunter: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            Rider: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          marksman: {
+            helmet: {
+              tier: 1,
+              step: 1
+            },
+            chest: {
+              tier: 1,
+              step: 1
+            },
+            feet: {
+              tier: 1,
+              step: 1
+            }
+          },
+          scout: {
+            helmet: {
+              tier: 1,
+              step: 1
+            },
+            chest: {
+              tier: 1,
+              step: 1
+            },
+            feet: {
+              tier: 1,
+              step: 1
+            }
           }
         }
       },
@@ -4423,82 +4768,813 @@ __webpack_require__.r(__webpack_exports__);
         Military: {
           General: [{
             name: 'march-slots',
-            display: 'March Slots'
+            display: 'March Slots',
+            max: 6,
+            min: 1
           }, {
             name: 'march-capacity',
-            display: 'March Capacity'
+            display: 'March Capacity',
+            min: 0
           }, {
             name: 'training-capacity',
-            display: 'Training Capacity'
+            display: 'Training Capacity',
+            min: 0
           }, {
             name: 'training-speed',
-            display: 'Training Speed'
+            display: 'Training Speed',
+            min: 0
           }],
           Troop: [{
             name: 'troop-attack',
-            display: 'Troop Attack'
+            display: 'Troop Attack',
+            min: 0
           }, {
             name: 'troop-defense',
-            display: 'Troop Defense'
+            display: 'Troop Defense',
+            min: 0
           }, {
             name: 'troop-lethality',
-            display: 'Troop Damage'
+            display: 'Troop Damage',
+            min: 0
           }, {
             name: 'troop-health',
-            display: 'Troop Health'
+            display: 'Troop Health',
+            min: 0
           }],
           Infantry: [{
             name: 'infantry-attack',
-            display: 'Infantry Attack'
+            display: 'Infantry Attack',
+            min: 0
           }, {
             name: 'infantry-defense',
-            display: 'Infantry Defense'
+            display: 'Infantry Defense',
+            min: 0
           }, {
             name: 'infantry-lethality',
-            display: 'Infantry Lethality'
+            display: 'Infantry Lethality',
+            min: 0
           }, {
             name: 'infantry-health',
-            display: 'Infantry Health'
+            display: 'Infantry Health',
+            min: 0
           }],
           Hunter: [{
             name: 'hunter-attack',
-            display: 'Hunter Attack'
+            display: 'Hunter Attack',
+            min: 0
           }, {
             name: 'hunter-defense',
-            display: 'Hunter Defense'
+            display: 'Hunter Defense',
+            min: 0
           }, {
             name: 'hunter-lethality',
-            display: 'Hunter Lethality'
+            display: 'Hunter Lethality',
+            min: 0
           }, {
             name: 'hunter-health',
-            display: 'Hunter Health'
+            display: 'Hunter Health',
+            min: 0
           }],
           Rider: [{
             name: 'rider-attack',
-            display: 'Rider Attack'
+            display: 'Rider Attack',
+            min: 0
           }, {
             name: 'rider-defense',
-            display: 'Rider Defense'
+            display: 'Rider Defense',
+            min: 0
           }, {
             name: 'rider-lethality',
-            display: 'Rider Lethality'
+            display: 'Rider Lethality',
+            min: 0
           }, {
             name: 'rider-health',
-            display: 'Rider Health'
+            display: 'Rider Health',
+            min: 0
           }],
           Settlement: [{
             name: 'settlement-attack',
-            display: 'Settlement Army Attack'
+            display: 'Settlement Army Attack',
+            min: 0
           }, {
             name: 'settlement-defense',
-            display: 'Settlement Army Defense'
+            display: 'Settlement Army Defense',
+            min: 0
           }, {
             name: 'settlement-lethality',
-            display: 'Settlement Troop Lethality'
+            display: 'Settlement Troop Lethality',
+            min: 0
           }, {
             name: 'settlement-health',
-            display: 'Settlement Troop Health'
+            display: 'Settlement Troop Health',
+            min: 0
           }]
+        },
+        HeroGear: {
+          types: {
+            brawler: {
+              name: 'Brawler',
+              type: 'infantry'
+            },
+            marksman: {
+              name: 'Marksman',
+              type: 'hunter'
+            },
+            scout: {
+              name: 'Scout',
+              type: 'rider'
+            }
+          },
+          slots: [{
+            type: 'helmet',
+            display: 'Helmet'
+          }, {
+            type: 'chest',
+            display: 'Chest'
+          }, {
+            type: 'feet',
+            display: 'Feet'
+          }],
+          sets: {
+            brawler: [{
+              tier: 1,
+              color: 'grey',
+              name: 'Strong Set',
+              steps: {
+                helmet: [{
+                  health: 1.35,
+                  lethality: 3.05
+                }, {
+                  health: 1.95,
+                  lethality: 5.04
+                }, {
+                  health: 2.85,
+                  lethality: 7.55
+                }],
+                chest: [{
+                  health: 3.61,
+                  lethality: 0
+                }, {
+                  health: 6,
+                  lethality: 0
+                }, {
+                  health: 8.92,
+                  lethality: 0
+                }],
+                feet: [{
+                  health: 1.15,
+                  lethality: 3.01
+                }, {
+                  health: 1.65,
+                  lethality: 4.56
+                }, {
+                  health: 2.4,
+                  lethality: 6.67
+                }]
+              }
+            }, {
+              tier: 2,
+              color: 'green',
+              name: 'Firm Set',
+              steps: {
+                helmet: [{
+                  health: 4.1,
+                  lethality: 10.46
+                }, {
+                  health: 5.3,
+                  lethality: 13.37
+                }, {
+                  health: 6.5,
+                  lethality: 16.34
+                }],
+                chest: [{
+                  health: 12.36,
+                  lethality: 0
+                }, {
+                  health: 15.85,
+                  lethality: 0
+                }, {
+                  health: 19.36,
+                  lethality: 0
+                }],
+                feet: [{
+                  health: 3.4,
+                  lethality: 9.4
+                }, {
+                  health: 4.4,
+                  lethality: 12.18
+                }, {
+                  health: 5.4,
+                  lethality: 14.93
+                }]
+              }
+            }, {
+              tier: 3,
+              color: 'blue',
+              name: 'Iron Wall Set',
+              steps: {
+                helmet: [{
+                  health: 7.7,
+                  lethality: 19.36
+                }, {
+                  health: 9.17,
+                  lethality: 22.75
+                }, {
+                  health: 11.3,
+                  lethality: 14.05
+                }, {
+                  health: 14.05,
+                  lethality: 30.62
+                }],
+                chest: [{
+                  health: 22.87,
+                  lethality: 0
+                }, {
+                  health: 26.87,
+                  lethality: 0
+                }, {
+                  health: 31.65,
+                  lethality: 0
+                }, {
+                  health: 35.83,
+                  lethality: 0
+                }],
+                feet: [{
+                  health: 6.45,
+                  lethality: 17.86
+                }, {
+                  health: 7.68,
+                  lethality: 21.2
+                }, {
+                  health: 9.3,
+                  lethality: 25.98
+                }, {
+                  health: 11.62,
+                  lethality: 31.38
+                }]
+              }
+            }, {
+              tier: 4,
+              color: 'purple',
+              name: 'Fanatic Set',
+              steps: {
+                helmet: [{
+                  health: 16.8,
+                  lethality: 34.32
+                }, {
+                  health: 19.55,
+                  lethality: 38.02
+                }, {
+                  health: 22.35,
+                  lethality: 41.72
+                }, {
+                  health: 25.18,
+                  lethality: 45.5
+                }, {
+                  health: 28.02,
+                  lethality: 49.28
+                }],
+                chest: [{
+                  health: 40.02,
+                  lethality: 0
+                }, {
+                  health: 44.2,
+                  lethality: 0
+                }, {
+                  health: 48.45,
+                  lethality: 0
+                }, {
+                  health: 52.71,
+                  lethality: 0
+                }, {
+                  health: 56.96,
+                  lethality: 0
+                }],
+                feet: [{
+                  health: 13.95,
+                  lethality: 36.78
+                }, {
+                  health: 16.27,
+                  lethality: 42.18
+                }, {
+                  health: 18.65,
+                  lethality: 47.73
+                }, {
+                  health: 21.02,
+                  lethality: 53.41
+                }, {
+                  health: 23.38,
+                  lethality: 59.08
+                }]
+              }
+            }, {
+              tier: 5,
+              color: 'orange',
+              name: 'Domineering Set',
+              steps: {
+                helmet: [{
+                  health: 30.85,
+                  lethality: 53.06
+                }, {
+                  health: 33.69,
+                  lethality: 56.84
+                }, {
+                  health: 36.52,
+                  lethality: 60.62
+                }, {
+                  health: 39.36,
+                  lethality: 64.4
+                }, {
+                  health: 43,
+                  lethality: 69.22
+                }],
+                chest: [{
+                  health: 61.22,
+                  lethality: 0
+                }, {
+                  health: 65.47,
+                  lethality: 0
+                }, {
+                  health: 69.73,
+                  lethality: 0
+                }, {
+                  health: 73.98,
+                  lethality: 0
+                }, {
+                  health: 79.41,
+                  lethality: 0
+                }],
+                feet: [{
+                  health: 25.75,
+                  lethality: 64.76
+                }, {
+                  health: 28.11,
+                  lethality: 70.43
+                }, {
+                  health: 30.48,
+                  lethality: 76.11
+                }, {
+                  health: 32.84,
+                  lethality: 81.78
+                }, {
+                  health: 35.84,
+                  lethality: 88.93
+                }]
+              }
+            }],
+            marksman: [{
+              tier: 1,
+              color: 'grey',
+              name: 'Steady Set',
+              steps: {
+                helmet: [{
+                  health: 3.13,
+                  lethality: 0.85
+                }, {
+                  health: 4.82,
+                  lethality: 1.25
+                }, {
+                  health: 7.1,
+                  lethality: 1.8
+                }],
+                chest: [{
+                  health: 0.85,
+                  lethality: 0
+                }, {
+                  health: 1.25,
+                  lethality: 0
+                }, {
+                  health: 1.8,
+                  lethality: 0
+                }],
+                feet: [{
+                  health: 2.99,
+                  lethality: 1.15
+                }, {
+                  health: 4.78,
+                  lethality: 1.65
+                }, {
+                  health: 7.07,
+                  lethality: 2.4
+                }]
+              }
+            }, {
+              tier: 2,
+              color: 'green',
+              name: 'Sprint Set',
+              steps: {
+                helmet: [{
+                  health: 10,
+                  lethality: 2.6
+                }, {
+                  health: 12.86,
+                  lethality: 3.4
+                }, {
+                  health: 15.74,
+                  lethality: 4.17
+                }],
+                chest: [{
+                  health: 0,
+                  lethality: 13.86
+                }, {
+                  health: 0,
+                  lethality: 17.8
+                }, {
+                  health: 0,
+                  lethality: 21.76
+                }],
+                feet: [{
+                  health: 9.85,
+                  lethality: 3.4
+                }, {
+                  health: 12.64,
+                  lethality: 4.4
+                }, {
+                  health: 15.47,
+                  lethality: 5.4
+                }]
+              }
+            }, {
+              tier: 3,
+              color: 'blue',
+              name: 'Armor Break Set',
+              steps: {
+                helmet: [{
+                  health: 18.68,
+                  lethality: 4.96
+                }, {
+                  health: 22.09,
+                  lethality: 5.91
+                }, {
+                  health: 26.46,
+                  lethality: 7.19
+                }, {
+                  health: 31.58,
+                  lethality: 8.92
+                }],
+                chest: [{
+                  health: 0,
+                  lethality: 26.07
+                }, {
+                  health: 0,
+                  lethality: 30.68
+                }, {
+                  health: 0,
+                  lethality: 35.75
+                }, {
+                  health: 0,
+                  lethality: 41
+                }],
+                feet: [{
+                  health: 18.34,
+                  lethality: 6.45
+                }, {
+                  health: 21.62,
+                  lethality: 7.68
+                }, {
+                  health: 25.69,
+                  lethality: 9.4
+                }, {
+                  health: 29.87,
+                  lethality: 11.7
+                }]
+              }
+            }, {
+              tier: 4,
+              color: 'purple',
+              name: 'Troop Break Set',
+              steps: {
+                helmet: [{
+                  health: 36.7,
+                  lethality: 10.65
+                }, {
+                  health: 41.82,
+                  lethality: 12.38
+                }, {
+                  health: 46.96,
+                  lethality: 14.15
+                }, {
+                  health: 52.16,
+                  lethality: 15.94
+                }, {
+                  health: 57.36,
+                  lethality: 17.74
+                }],
+                chest: [{
+                  health: 0,
+                  lethality: 46.25
+                }, {
+                  health: 0,
+                  lethality: 51.5
+                }, {
+                  health: 0,
+                  lethality: 56.65
+                }, {
+                  health: 0,
+                  lethality: 61.95
+                }, {
+                  health: 0,
+                  lethality: 67.24
+                }],
+                feet: [{
+                  health: 34.06,
+                  lethality: 14
+                }, {
+                  health: 38.24,
+                  lethality: 16.3
+                }, {
+                  health: 42.49,
+                  lethality: 18.65
+                }, {
+                  health: 46.75,
+                  lethality: 21.02
+                }, {
+                  health: 51,
+                  lethality: 23.38
+                }]
+              }
+            }, {
+              tier: 5,
+              color: 'orange',
+              name: 'Blast Set',
+              steps: {
+                helmet: [{
+                  health: 62.56,
+                  lethality: 19.53
+                }, {
+                  health: 67.76,
+                  lethality: 21.33
+                }, {
+                  health: 72.96,
+                  lethality: 23.12
+                }, {
+                  health: 78.16,
+                  lethality: 24.92
+                }, {
+                  health: 84.8,
+                  lethality: 27.2
+                }],
+                chest: [{
+                  health: 0,
+                  lethality: 72.54
+                }, {
+                  health: 0,
+                  lethality: 77.83
+                }, {
+                  health: 0,
+                  lethality: 83.13
+                }, {
+                  health: 0,
+                  lethality: 88.42
+                }, {
+                  health: 0,
+                  lethality: 95.07
+                }],
+                feet: [{
+                  health: 55.26,
+                  lethality: 25.75
+                }, {
+                  health: 59.51,
+                  lethality: 28.11
+                }, {
+                  health: 63.77,
+                  lethality: 30.48
+                }, {
+                  health: 68.02,
+                  lethality: 32.84
+                }, {
+                  health: 73.45,
+                  lethality: 35.79
+                }]
+              }
+            }],
+            scout: [{
+              tier: 1,
+              color: 'grey',
+              name: 'Light Set',
+              steps: {
+                helmet: [{
+                  health: 3.13,
+                  lethality: 1.35
+                }, {
+                  health: 5.2,
+                  lethality: 1.95
+                }, {
+                  health: 7.78,
+                  lethality: 2.85
+                }],
+                chest: [{
+                  health: 0,
+                  lethality: 3.81
+                }, {
+                  health: 0,
+                  lethality: 6.35
+                }, {
+                  health: 0,
+                  lethality: 9.42
+                }],
+                feet: [{
+                  health: 2.93,
+                  lethality: 0.9
+                }, {
+                  health: 4.41,
+                  lethality: 1.3
+                }, {
+                  health: 6.44,
+                  lethality: 1.9
+                }]
+              }
+            }, {
+              tier: 2,
+              color: 'green',
+              name: 'Swift Set',
+              steps: {
+                helmet: [{
+                  health: 10.77,
+                  lethality: 4.1
+                }, {
+                  health: 13.76,
+                  lethality: 5.3
+                }, {
+                  health: 16.82,
+                  lethality: 6.5
+                }],
+                chest: [{
+                  health: 0,
+                  lethality: 13.06
+                }, {
+                  health: 0,
+                  lethality: 16.7
+                }, {
+                  health: 0,
+                  lethality: 20.41
+                }],
+                feet: [{
+                  health: 9.09,
+                  lethality: 2.7
+                }, {
+                  health: 11.78,
+                  lethality: 3.55
+                }, {
+                  health: 14.45,
+                  lethality: 4.36
+                }]
+              }
+            }, {
+              tier: 3,
+              color: 'blue',
+              name: 'Rapid Set',
+              steps: {
+                helmet: [{
+                  health: 19.93,
+                  lethality: 7.7
+                }, {
+                  health: 23.41,
+                  lethality: 9.15
+                }, {
+                  health: 27.87,
+                  lethality: 11.3
+                }, {
+                  health: 31.49,
+                  lethality: 14.05
+                }],
+                chest: [{
+                  health: 0,
+                  lethality: 24.17
+                }, {
+                  health: 0,
+                  lethality: 28.41
+                }, {
+                  health: 0,
+                  lethality: 33.55
+                }, {
+                  health: 0,
+                  lethality: 38.21
+                }],
+                feet: [{
+                  health: 17.7,
+                  lethality: 5.15
+                }, {
+                  health: 21.02,
+                  lethality: 6.13
+                }, {
+                  health: 24.59,
+                  lethality: 7.45
+                }, {
+                  health: 30.21,
+                  lethality: 9.31
+                }]
+              }
+            }, {
+              tier: 4,
+              color: 'purple',
+              name: 'Thunder Set',
+              steps: {
+                helmet: [{
+                  health: 35.11,
+                  lethality: 16.8
+                }, {
+                  health: 38.73,
+                  lethality: 19.55
+                }, {
+                  health: 42.47,
+                  lethality: 22.35
+                }, {
+                  health: 46.24,
+                  lethality: 25.18
+                }, {
+                  health: 50.02,
+                  lethality: 28.02
+                }],
+                chest: [{
+                  health: 0,
+                  lethality: 42.87
+                }, {
+                  health: 0,
+                  lethality: 47.52
+                }, {
+                  health: 0,
+                  lethality: 52.15
+                }, {
+                  health: 0,
+                  lethality: 56.87
+                }, {
+                  health: 0,
+                  lethality: 61.6
+                }],
+                feet: [{
+                  health: 35.84,
+                  lethality: 11.17
+                }, {
+                  health: 41.47,
+                  lethality: 13.03
+                }, {
+                  health: 46.99,
+                  lethality: 14.9
+                }, {
+                  health: 52.66,
+                  lethality: 16.79
+                }, {
+                  health: 58.34,
+                  lethality: 18.68
+                }]
+              }
+            }, {
+              tier: 5,
+              color: 'orange',
+              name: 'Lightning Set',
+              steps: {
+                helmet: [{
+                  health: 53.8,
+                  lethality: 30.85
+                }, {
+                  health: 57.58,
+                  lethality: 33.69
+                }, {
+                  health: 61.36,
+                  lethality: 36.52
+                }, {
+                  health: 65.14,
+                  lethality: 39.36
+                }, {
+                  health: 70.01,
+                  lethality: 43
+                }],
+                chest: [{
+                  health: 0,
+                  lethality: 66.32
+                }, {
+                  health: 0,
+                  lethality: 71.05
+                }, {
+                  health: 0,
+                  lethality: 75.77
+                }, {
+                  health: 0,
+                  lethality: 80.5
+                }, {
+                  health: 0,
+                  lethality: 86.57
+                }],
+                feet: [{
+                  health: 64.02,
+                  lethality: 20.57
+                }, {
+                  health: 69.69,
+                  lethality: 22.46
+                }, {
+                  health: 75.37,
+                  lethality: 24.35
+                }, {
+                  health: 81.04,
+                  lethality: 26.24
+                }, {
+                  health: 88.25,
+                  lethality: 28.67
+                }]
+              }
+            }]
+          }
         }
       }
     };
@@ -4508,9 +5584,6 @@ __webpack_require__.r(__webpack_exports__);
       this.ui.showSummary = !this.ui.showSummary;
     },
     selectHero: function selectHero(hero) {
-      console.log('Selecting hero...');
-      console.log(hero);
-
       if (hero) {
         if (hero.type) {
           this.data.Formation.heroes[hero.type] = hero.key;
@@ -36072,8 +37145,8 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "m-auto w-128" },
-      _vm._l(_vm.types, function(type, index, num) {
+      { staticClass: "m-auto w-160" },
+      _vm._l(_vm.library.HeroGear.types, function(type, index, num) {
         return _c(
           "div",
           {
@@ -36083,13 +37156,74 @@ var render = function() {
           [
             _c("div", { staticClass: "w-24" }, [_vm._v(_vm._s(type.name))]),
             _vm._v(" "),
-            _vm._l(_vm.slots, function(slot) {
+            _vm._l(_vm.library.HeroGear.slots, function(slot) {
               return _c("div", [
                 _c("div", { staticClass: "text-center mx-1 px-1 text-xs" }, [
                   _vm._v(_vm._s(slot.display))
                 ]),
                 _vm._v(" "),
-                _vm._m(0, true)
+                _c("div", { staticClass: "flex" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "rounded w-36 border border-gray-400 bg-gray-300 items-center justify-center m-1 p-2",
+                      class: "bg-" + _vm.gears[index][slot.type].color + "-200"
+                    },
+                    [
+                      _c("div", { staticClass: "text-center text-sm" }, [
+                        _vm._v(_vm._s(_vm.gears[index][slot.type].name))
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "text-yellow-600 font-bold text-center text-3xl"
+                        },
+                        [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(
+                                "*".repeat(_vm.gears[index][slot.type].step)
+                              ) +
+                              "\n                        "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "text-xs text-center" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "p-1 m-1 text-xs rounded hover:bg-green-400 hover:text-white cursor-pointer",
+                            on: {
+                              click: function($event) {
+                                return _vm.upgrade(index, slot.type)
+                              }
+                            }
+                          },
+                          [_vm._v("Upgrade")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "p-1 m-1 text-xs rounded hover:bg-red-400 hover:text-white cursor-pointer",
+                            on: {
+                              click: function($event) {
+                                return _vm.downgrade(index, slot.type)
+                              }
+                            }
+                          },
+                          [_vm._v("Downgrade")]
+                        )
+                      ])
+                    ]
+                  )
+                ])
               ])
             })
           ],
@@ -36100,27 +37234,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex" }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "rounded w-16 h-16 border border-gray-400 bg-gray-300 items-center flex justify-center m-1"
-        },
-        [
-          _c("div", { staticClass: "text-gray-500 text-center text-xs" }, [
-            _vm._v("Choose...")
-          ])
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -36179,8 +37293,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.data.heroes[hero.key].level,
-                          expression: "data.heroes[hero.key].level"
+                          value: _vm.data.Heroes[hero.key].level,
+                          expression: "data.Heroes[hero.key].level"
                         }
                       ],
                       staticClass:
@@ -36191,14 +37305,14 @@ var render = function() {
                         min: "1",
                         value: "1"
                       },
-                      domProps: { value: _vm.data.heroes[hero.key].level },
+                      domProps: { value: _vm.data.Heroes[hero.key].level },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
                           _vm.$set(
-                            _vm.data.heroes[hero.key],
+                            _vm.data.Heroes[hero.key],
                             "level",
                             $event.target.value
                           )
@@ -36354,30 +37468,72 @@ var render = function() {
                     _vm._v(_vm._s(stat.display))
                   ]),
                   _vm._v(" "),
-                  _c("div", [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.data[stat.name],
-                          expression: "data[stat.name]"
-                        }
-                      ],
-                      staticClass:
-                        "p-1 border border-gray-400 rounded w-16 text-sm",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.data[stat.name] },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                  index == "General"
+                    ? _c("div", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.data.Military[stat.name],
+                              expression: "data.Military[stat.name]"
+                            }
+                          ],
+                          staticClass:
+                            "p-1 border border-gray-400 rounded w-16 text-sm",
+                          attrs: {
+                            type: "number",
+                            max: stat.max !== false ? stat.max : "false",
+                            min: stat.min !== false ? stat.min : "false"
+                          },
+                          domProps: { value: _vm.data.Military[stat.name] },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.data.Military,
+                                stat.name,
+                                $event.target.value
+                              )
+                            }
                           }
-                          _vm.$set(_vm.data, stat.name, $event.target.value)
-                        }
-                      }
-                    })
-                  ])
+                        })
+                      ])
+                    : _c("div", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.data.Military[stat.name],
+                              expression: "data.Military[stat.name]"
+                            }
+                          ],
+                          staticClass:
+                            "p-1 border border-gray-400 rounded w-16 text-sm mr-1",
+                          attrs: {
+                            type: "number",
+                            max: stat.max !== false ? stat.max : "false",
+                            min: stat.min !== false ? stat.min : "false"
+                          },
+                          domProps: { value: _vm.data.Military[stat.name] },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.data.Military,
+                                stat.name,
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v("%")
+                      ])
                 ]
               )
             })
@@ -36457,7 +37613,7 @@ var render = function() {
           _c("div", { staticClass: "text-3xl font-bold" }, [
             _vm._v(
               "\n                    " +
-                _vm._s(_vm.totalAttackPower.toLocaleString()) +
+                _vm._s(_vm.totalDefensePower.toLocaleString()) +
                 "\n                "
             )
           ])
@@ -36491,10 +37647,94 @@ var render = function() {
             },
             [_vm._v("\n                Show detailed breakdown\n            ")]
           )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "text-gray-200" }, [
+      _c(
+        "h1",
+        { staticClass: "text-center text-2xl font-bold my-2 text-white" },
+        [_vm._v("Power Breakdown")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex items-start justify-center" }, [
+        _c("div", { staticClass: "lg:w-200 border h-64" }, [
+          _c("h1", [_vm._v("Boosts")]),
+          _vm._v(" "),
+          _c("div", [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "p-2 flex items-center justify-start" },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._l(["attack", "defense", "lethality", "health"], function(
+                  stat,
+                  num
+                ) {
+                  return _c("div", { staticClass: "w-20" }, [
+                    _c("div", [
+                      _vm._v(
+                        _vm._s(_vm.getTotalBoosts().Infantry[stat].toFixed(2)) +
+                          "%"
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _vm._v(
+                        _vm._s(_vm.getTotalBoosts().Hunter[stat].toFixed(2)) +
+                          "%"
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _vm._v(
+                        _vm._s(_vm.getTotalBoosts().Rider[stat].toFixed(2)) +
+                          "%"
+                      )
+                    ])
+                  ])
+                })
+              ],
+              2
+            )
+          ])
+        ])
+      ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-2 flex items-center justify-start" }, [
+      _c("div", { staticClass: "w-20" }, [_vm._v("Class")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-20" }, [_vm._v("Attack")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-20" }, [_vm._v("Defense")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-20" }, [_vm._v("Lethality")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-20" }, [_vm._v("Health")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "w-20" }, [
+      _c("div", [_vm._v("Infantry")]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Hunter")]),
+      _vm._v(" "),
+      _c("div", [_vm._v("Rider")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -36561,7 +37801,7 @@ var render = function() {
         {
           staticClass:
             "fixed z-10 bottom-0 inset-x-0 bg-gray-800 text-white mb-24",
-          class: _vm.ui.showSummary ? "h-128" : "h-40"
+          class: _vm.ui.showSummary ? "h-160" : "h-40"
         },
         [
           _c("Summary", {

@@ -1,25 +1,30 @@
 <template>
     <div class="lg:w-200 m-auto">
         <h1 class="text-center text-2xl text-gray-800 font-bold mb-8">Hero Gear</h1>
-        <div class="m-auto w-128">
-
-
-
+        <div class="m-auto w-160">
             <div
-                v-for="(type,index,num) in types"
+                v-for="(type,index,num) in library.HeroGear.types"
                 class="flex p-1 text-gray-700 border items-center justify-center"
             >
                 <div class="w-24">{{ type.name }}</div>
 
                 <div
-                    v-for="slot in slots"
+                    v-for="slot in library.HeroGear.slots"
                 >
                     <div class="text-center mx-1 px-1 text-xs">{{ slot.display }}</div>
                     <div class="flex">
                         <div
-                            class="rounded w-16 h-16 border border-gray-400 bg-gray-300 items-center flex justify-center m-1"
+                            class="rounded w-36 border border-gray-400 bg-gray-300 items-center justify-center m-1 p-2"
+                            :class="'bg-' + gears[index][slot.type].color + '-200'"
                         >
-                            <div class="text-gray-500 text-center text-xs">Choose...</div>
+                            <div class="text-center text-sm">{{gears[index][slot.type].name}}</div>
+                            <div class="text-yellow-600 font-bold text-center text-3xl">
+                                {{"*".repeat(gears[index][slot.type].step)}}
+                            </div>
+                            <div class="text-xs text-center">
+                                <button @click="upgrade(index,slot.type)" class="p-1 m-1 text-xs rounded hover:bg-green-400 hover:text-white cursor-pointer">Upgrade</button>
+                                <button @click="downgrade(index,slot.type)" class="p-1 m-1 text-xs rounded hover:bg-red-400 hover:text-white cursor-pointer">Downgrade</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -32,172 +37,192 @@
 <script>
 export default {
     name: "hero-gear",
+    props: [
+        'data',
+        'library',
+    ],
     data() {
         return {
-            types: {
-                brawler: {
-                    name: 'Brawler',
-                    type: 'infantry',
-                },
-                marksman: {
-                    name: 'Marksman',
-                    type: 'hunter',
-                },
-                scout: {
-                    name: 'Scout',
-                    type: 'rider',
-                }
-            }
-            ,
-            slots: [
-                {
-                    type: 'helmet',
-                    display: 'Helmet',
-                },
-                {
-                    type: 'chest',
-                    display: 'Chest',
-                },
-                {
-                    type: 'feet',
-                    display: 'Feet',
-                }
-            ],
-            heroes: {
-                General: [
-                    {
-                        name: 'march-slots',
-                        display: 'March Slots',
-                        type: 'general',
-                    },
-                    {
-                        name: 'march-capacity',
-                        display: 'March Capacity',
-                        type: 'general',
-                    },
-                    {
-                        name: 'training-capacity',
-                        display: 'Training Capacity',
-                        type: 'general',
-                    },
-                    {
-                        name: 'training-speed',
-                        display: 'Training Speed',
-                        type: 'general',
-                    },
-                ],
-                Troop: [
-                    {
-                        name: 'troop-attack',
-                        display: 'Troop Attack',
-                        type: 'troop',
-                    },
-                    {
-                        name: 'troop-defense',
-                        display: 'Troop Defense',
-                        type: 'troop',
-                    },
-                    {
-                        name: 'troop-lethality',
-                        display: 'Troop Damage',
-                        type: 'troop',
-                    },
-                    {
-                        name: 'troop-health',
-                        display: 'Troop Health',
-                        type: 'troop',
-                    },
-                ],
-                Infantry: [
-                    {
-                        name: 'infantry-attack',
-                        display: 'Infantry Attack',
-                        type: 'infantry',
-                    },
-                    {
-                        name: 'infantry-defense',
-                        display: 'Infantry Defense',
-                        type: 'infantry',
-                    },
-                    {
-                        name: 'infantry-lethality',
-                        display: 'Infantry Lethality',
-                        type: 'infantry',
-                    },
-                    {
-                        name: 'infantry-health',
-                        display: 'Infantry Health',
-                        type: 'infantry',
-                    },
-                ],
-                Hunter: [
-                    {
-                        name: 'hunter-attack',
-                        display: 'Hunter Attack',
-                        type: 'hunter',
-                    },
-                    {
-                        name: 'hunter-defense',
-                        display: 'Hunter Defense',
-                        type: 'hunter',
-                    },
-                    {
-                        name: 'hunter-lethality',
-                        display: 'Hunter Lethality',
-                        type: 'hunter',
-                    },
-                    {
-                        name: 'hunter-health',
-                        display: 'Hunter Health',
-                        type: 'hunter',
-                    },
-                ],
-                Rider: [
-                    {
-                        name: 'rider-attack',
-                        display: 'Rider Attack',
-                        type: 'rider',
-                    },
-                    {
-                        name: 'rider-defense',
-                        display: 'Rider Defense',
-                        type: 'rider',
-                    },
-                    {
-                        name: 'rider-lethality',
-                        display: 'Rider Lethality',
-                        type: 'rider',
-                    },
-                    {
-                        name: 'rider-health',
-                        display: 'Rider Health',
-                        type: 'rider',
-                    },
-                ],
-                Settlement: [
-                    {
-                        name: 'settlement-attack',
-                        display: 'Settlement Army Attack',
-                        type: 'settlement',
-                    },
-                    {
-                        name: 'settlement-defense',
-                        display: 'Settlement Army Defense',
-                        type: 'settlement',
-                    },
-                    {
-                        name: 'settlement-lethality',
-                        display: 'Settlement Troop Lethality',
-                        type: 'settlement',
-                    },
-                    {
-                        name: 'settlement-health',
-                        display: 'Settlement Troop Health',
-                        type: 'settlement',
-                    },
-                ]
-            }
+
         }
+    },
+    computed: {
+        gears()
+        {
+            return {
+                brawler: this.brawler,
+                marksman: this.marksman,
+                scout: this.scout,
+            }
+        },
+        brawler()
+        {
+            let data = {
+                helmet: {
+                    tier: 1,
+                    step: 1,
+                    stats: {
+                    }
+                },
+                chest: {
+                    tier: 1,
+                    step: 1,
+                    stats: {
+                    }
+                },
+                feet: {
+                    tier: 1,
+                    step: 1,
+                    stats: {
+                    }
+                }
+            }
+
+            data = Object.assign(data,this.data.HeroGear.brawler);
+
+            data.helmet.name = this.library.HeroGear.sets.brawler[data.helmet.tier-1].name;
+            data.helmet.color = this.library.HeroGear.sets.brawler[data.helmet.tier-1].color;
+            data.helmet.stats = this.library.HeroGear.sets.brawler[data.helmet.tier-1].steps[data.helmet.step-1];
+            data.chest.name = this.library.HeroGear.sets.brawler[data.chest.tier-1].name;
+            data.chest.color = this.library.HeroGear.sets.brawler[data.chest.tier-1].color;
+            data.chest.stats = this.library.HeroGear.sets.brawler[data.chest.tier-1].steps[data.chest.step-1];
+            data.feet.name = this.library.HeroGear.sets.brawler[data.feet.tier-1].name;
+            data.feet.color = this.library.HeroGear.sets.brawler[data.feet.tier-1].color;
+            data.feet.stats = this.library.HeroGear.sets.brawler[data.feet.tier-1].steps[data.feet.step-1];
+
+            return data;
+        },
+        marksman()
+        {
+            let data = {
+                helmet: {
+                    tier: 1,
+                    step: 1,
+                    stats: {
+                    }
+                },
+                chest: {
+                    tier: 1,
+                    step: 1,
+                    stats: {
+                    }
+                },
+                feet: {
+                    tier: 1,
+                    step: 1,
+                    stats: {
+                    }
+                }
+            }
+
+            data = Object.assign(data,this.data.HeroGear.marksman);
+
+            data.helmet.name = this.library.HeroGear.sets.marksman[data.helmet.tier-1].name;
+            data.helmet.color = this.library.HeroGear.sets.marksman[data.helmet.tier-1].color;
+            data.helmet.stats = this.library.HeroGear.sets.marksman[data.helmet.tier-1].steps[data.helmet.step-1];
+            data.chest.name = this.library.HeroGear.sets.marksman[data.chest.tier-1].name;
+            data.chest.color = this.library.HeroGear.sets.marksman[data.chest.tier-1].color;
+            data.chest.stats = this.library.HeroGear.sets.marksman[data.chest.tier-1].steps[data.chest.step-1];
+            data.feet.name = this.library.HeroGear.sets.marksman[data.feet.tier-1].name;
+            data.feet.color = this.library.HeroGear.sets.marksman[data.feet.tier-1].color;
+            data.feet.stats = this.library.HeroGear.sets.marksman[data.feet.tier-1].steps[data.feet.step-1];
+
+            return data;
+        },
+        scout()
+        {
+            let data = {
+                helmet: {
+                    tier: 1,
+                    step: 1,
+                    stats: {
+                    }
+                },
+                chest: {
+                    tier: 1,
+                    step: 1,
+                    stats: {
+                    }
+                },
+                feet: {
+                    tier: 1,
+                    step: 1,
+                    stats: {
+                    }
+                }
+            }
+
+            data = Object.assign(data,this.data.HeroGear.scout);
+
+            data.helmet.name = this.library.HeroGear.sets.scout[data.helmet.tier-1].name;
+            data.helmet.color = this.library.HeroGear.sets.scout[data.helmet.tier-1].color;
+            data.helmet.stats = this.library.HeroGear.sets.scout[data.helmet.tier-1].steps[data.helmet.step-1];
+            data.chest.name = this.library.HeroGear.sets.scout[data.chest.tier-1].name;
+            data.chest.color = this.library.HeroGear.sets.scout[data.chest.tier-1].color;
+            data.chest.stats = this.library.HeroGear.sets.scout[data.chest.tier-1].steps[data.chest.step-1];
+            data.feet.name = this.library.HeroGear.sets.scout[data.feet.tier-1].name;
+            data.feet.color = this.library.HeroGear.sets.scout[data.feet.tier-1].color;
+            data.feet.stats = this.library.HeroGear.sets.scout[data.feet.tier-1].steps[data.feet.step-1];
+
+            return data;
+        }
+    },
+    methods: {
+        upgrade(heroType,slot)
+        {
+            if(this.data.HeroGear[heroType][slot])
+            {
+                let item = this.data.HeroGear[heroType][slot];
+                if(item.tier <= this.library.HeroGear.sets[heroType].length)
+                {
+                    if (item.tier < this.library.HeroGear.sets[heroType].length) // item is not highest tier
+                    {
+                        if(item.step < this.library.HeroGear.sets[heroType][item.tier-1].steps[slot].length)
+                        {
+                            item.step++;
+                        }
+                        else
+                        {
+                            item.step = 1;
+                            item.tier++;
+                        }
+                    }
+                    else if (item.tier === 5 && item.step < this.library.HeroGear.sets[heroType][item.tier-1].steps[slot].length) // item is not maxed
+                    {
+                        if(item.step < this.library.HeroGear.sets[heroType][item.tier-1].steps[slot].length)
+                        {
+                            item.step++;
+                        }
+                    }
+                }
+            }
+        },
+        downgrade(heroType,slot)
+        {
+            if(this.data.HeroGear[heroType][slot])
+            {
+                let item = this.data.HeroGear[heroType][slot];
+                if(item.tier >= 1)
+                {
+                    if (item.tier > 1) // item is not lowest tier
+                    {
+                        if(item.step > 1)
+                        {
+                            item.step--;
+                        }
+                        else
+                        {
+                            item.step = this.library.HeroGear.sets[heroType][item.tier-2].steps[slot].length;
+                            item.tier--;
+                        }
+                    }
+                    else if (item.tier === 1 && item.step > 1) // item is not lowest step
+                    {
+                        item.step--;
+                    }
+                }
+            }
+        },
     }
 }
 </script>
