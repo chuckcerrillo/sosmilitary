@@ -3050,16 +3050,16 @@ export default {
                                     ],
                                     chest: [
                                         {
-                                            health: 0.85,
-                                            lethality: 0,
+                                            health: 0,
+                                            lethality: 4.11,
                                         },
                                         {
-                                            health: 1.25,
-                                            lethality: 0,
+                                            health: 0,
+                                            lethality: 6.7,
                                         },
                                         {
-                                            health: 1.8,
-                                            lethality: 0,
+                                            health: 0,
+                                            lethality: 9.97,
                                         },
                                     ],
                                     feet: [

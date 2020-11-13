@@ -1,7 +1,7 @@
 <template>
     <div class="lg:w-200 m-auto">
         <h1 class="text-center text-2xl text-gray-800 font-bold mb-8">Hero Gear</h1>
-        <div class="m-auto w-160">
+        <div class="m-auto w-180">
             <div
                 v-for="(type,index,num) in library.HeroGear.types"
                 class="flex p-1 text-gray-700 border items-center justify-center"
@@ -28,7 +28,17 @@
                         </div>
                     </div>
                 </div>
-
+                <div>
+                    <div class="w-32 text-xs p-1 font-bold">Total Boosts:</div>
+                    <div class="flex w-32 text-xs">
+                        <div class="w-16 p-1">Lethality</div>
+                        <div class="p-1">{{ (gears[index].helmet.stats.lethality + gears[index].chest.stats.lethality + gears[index].feet.stats.lethality).toFixed(2) }}%</div>
+                    </div>
+                    <div class="flex w-32 text-xs">
+                        <div class="w-16 p-1">Health</div>
+                        <div class="p-1">{{ (gears[index].helmet.stats.health + gears[index].chest.stats.health + gears[index].feet.stats.health).toFixed(2) }}%</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -82,13 +92,17 @@ export default {
 
             data.helmet.name = this.library.HeroGear.sets.brawler[data.helmet.tier-1].name;
             data.helmet.color = this.library.HeroGear.sets.brawler[data.helmet.tier-1].color;
-            data.helmet.stats = this.library.HeroGear.sets.brawler[data.helmet.tier-1].steps[data.helmet.step-1];
+            console.log(this.library.HeroGear.sets.brawler[data.helmet.tier-1])
+            data.helmet.stats = this.library.HeroGear.sets.brawler[data.helmet.tier-1].steps.helmet[data.helmet.step-1];
+
             data.chest.name = this.library.HeroGear.sets.brawler[data.chest.tier-1].name;
             data.chest.color = this.library.HeroGear.sets.brawler[data.chest.tier-1].color;
-            data.chest.stats = this.library.HeroGear.sets.brawler[data.chest.tier-1].steps[data.chest.step-1];
+            data.chest.stats = this.library.HeroGear.sets.brawler[data.chest.tier-1].steps.chest[data.chest.step-1];
+
             data.feet.name = this.library.HeroGear.sets.brawler[data.feet.tier-1].name;
             data.feet.color = this.library.HeroGear.sets.brawler[data.feet.tier-1].color;
-            data.feet.stats = this.library.HeroGear.sets.brawler[data.feet.tier-1].steps[data.feet.step-1];
+            data.feet.stats = this.library.HeroGear.sets.brawler[data.feet.tier-1].steps.feet[data.feet.step-1];
+
 
             return data;
         },
@@ -119,13 +133,13 @@ export default {
 
             data.helmet.name = this.library.HeroGear.sets.marksman[data.helmet.tier-1].name;
             data.helmet.color = this.library.HeroGear.sets.marksman[data.helmet.tier-1].color;
-            data.helmet.stats = this.library.HeroGear.sets.marksman[data.helmet.tier-1].steps[data.helmet.step-1];
+            data.helmet.stats = this.library.HeroGear.sets.marksman[data.helmet.tier-1].steps.helmet[data.helmet.step-1];
             data.chest.name = this.library.HeroGear.sets.marksman[data.chest.tier-1].name;
             data.chest.color = this.library.HeroGear.sets.marksman[data.chest.tier-1].color;
-            data.chest.stats = this.library.HeroGear.sets.marksman[data.chest.tier-1].steps[data.chest.step-1];
+            data.chest.stats = this.library.HeroGear.sets.marksman[data.chest.tier-1].steps.chest[data.chest.step-1];
             data.feet.name = this.library.HeroGear.sets.marksman[data.feet.tier-1].name;
             data.feet.color = this.library.HeroGear.sets.marksman[data.feet.tier-1].color;
-            data.feet.stats = this.library.HeroGear.sets.marksman[data.feet.tier-1].steps[data.feet.step-1];
+            data.feet.stats = this.library.HeroGear.sets.marksman[data.feet.tier-1].steps.feet[data.feet.step-1];
 
             return data;
         },
@@ -156,13 +170,13 @@ export default {
 
             data.helmet.name = this.library.HeroGear.sets.scout[data.helmet.tier-1].name;
             data.helmet.color = this.library.HeroGear.sets.scout[data.helmet.tier-1].color;
-            data.helmet.stats = this.library.HeroGear.sets.scout[data.helmet.tier-1].steps[data.helmet.step-1];
+            data.helmet.stats = this.library.HeroGear.sets.scout[data.helmet.tier-1].steps.helmet[data.helmet.step-1];
             data.chest.name = this.library.HeroGear.sets.scout[data.chest.tier-1].name;
             data.chest.color = this.library.HeroGear.sets.scout[data.chest.tier-1].color;
-            data.chest.stats = this.library.HeroGear.sets.scout[data.chest.tier-1].steps[data.chest.step-1];
+            data.chest.stats = this.library.HeroGear.sets.scout[data.chest.tier-1].steps.chest[data.chest.step-1];
             data.feet.name = this.library.HeroGear.sets.scout[data.feet.tier-1].name;
             data.feet.color = this.library.HeroGear.sets.scout[data.feet.tier-1].color;
-            data.feet.stats = this.library.HeroGear.sets.scout[data.feet.tier-1].steps[data.feet.step-1];
+            data.feet.stats = this.library.HeroGear.sets.scout[data.feet.tier-1].steps.feet[data.feet.step-1];
 
             return data;
         }

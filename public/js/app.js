@@ -2169,6 +2169,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "hero-gear",
   props: ['data', 'library'],
@@ -2204,13 +2214,14 @@ __webpack_require__.r(__webpack_exports__);
       data = Object.assign(data, this.data.HeroGear.brawler);
       data.helmet.name = this.library.HeroGear.sets.brawler[data.helmet.tier - 1].name;
       data.helmet.color = this.library.HeroGear.sets.brawler[data.helmet.tier - 1].color;
-      data.helmet.stats = this.library.HeroGear.sets.brawler[data.helmet.tier - 1].steps[data.helmet.step - 1];
+      console.log(this.library.HeroGear.sets.brawler[data.helmet.tier - 1]);
+      data.helmet.stats = this.library.HeroGear.sets.brawler[data.helmet.tier - 1].steps.helmet[data.helmet.step - 1];
       data.chest.name = this.library.HeroGear.sets.brawler[data.chest.tier - 1].name;
       data.chest.color = this.library.HeroGear.sets.brawler[data.chest.tier - 1].color;
-      data.chest.stats = this.library.HeroGear.sets.brawler[data.chest.tier - 1].steps[data.chest.step - 1];
+      data.chest.stats = this.library.HeroGear.sets.brawler[data.chest.tier - 1].steps.chest[data.chest.step - 1];
       data.feet.name = this.library.HeroGear.sets.brawler[data.feet.tier - 1].name;
       data.feet.color = this.library.HeroGear.sets.brawler[data.feet.tier - 1].color;
-      data.feet.stats = this.library.HeroGear.sets.brawler[data.feet.tier - 1].steps[data.feet.step - 1];
+      data.feet.stats = this.library.HeroGear.sets.brawler[data.feet.tier - 1].steps.feet[data.feet.step - 1];
       return data;
     },
     marksman: function marksman() {
@@ -2234,13 +2245,13 @@ __webpack_require__.r(__webpack_exports__);
       data = Object.assign(data, this.data.HeroGear.marksman);
       data.helmet.name = this.library.HeroGear.sets.marksman[data.helmet.tier - 1].name;
       data.helmet.color = this.library.HeroGear.sets.marksman[data.helmet.tier - 1].color;
-      data.helmet.stats = this.library.HeroGear.sets.marksman[data.helmet.tier - 1].steps[data.helmet.step - 1];
+      data.helmet.stats = this.library.HeroGear.sets.marksman[data.helmet.tier - 1].steps.helmet[data.helmet.step - 1];
       data.chest.name = this.library.HeroGear.sets.marksman[data.chest.tier - 1].name;
       data.chest.color = this.library.HeroGear.sets.marksman[data.chest.tier - 1].color;
-      data.chest.stats = this.library.HeroGear.sets.marksman[data.chest.tier - 1].steps[data.chest.step - 1];
+      data.chest.stats = this.library.HeroGear.sets.marksman[data.chest.tier - 1].steps.chest[data.chest.step - 1];
       data.feet.name = this.library.HeroGear.sets.marksman[data.feet.tier - 1].name;
       data.feet.color = this.library.HeroGear.sets.marksman[data.feet.tier - 1].color;
-      data.feet.stats = this.library.HeroGear.sets.marksman[data.feet.tier - 1].steps[data.feet.step - 1];
+      data.feet.stats = this.library.HeroGear.sets.marksman[data.feet.tier - 1].steps.feet[data.feet.step - 1];
       return data;
     },
     scout: function scout() {
@@ -2264,13 +2275,13 @@ __webpack_require__.r(__webpack_exports__);
       data = Object.assign(data, this.data.HeroGear.scout);
       data.helmet.name = this.library.HeroGear.sets.scout[data.helmet.tier - 1].name;
       data.helmet.color = this.library.HeroGear.sets.scout[data.helmet.tier - 1].color;
-      data.helmet.stats = this.library.HeroGear.sets.scout[data.helmet.tier - 1].steps[data.helmet.step - 1];
+      data.helmet.stats = this.library.HeroGear.sets.scout[data.helmet.tier - 1].steps.helmet[data.helmet.step - 1];
       data.chest.name = this.library.HeroGear.sets.scout[data.chest.tier - 1].name;
       data.chest.color = this.library.HeroGear.sets.scout[data.chest.tier - 1].color;
-      data.chest.stats = this.library.HeroGear.sets.scout[data.chest.tier - 1].steps[data.chest.step - 1];
+      data.chest.stats = this.library.HeroGear.sets.scout[data.chest.tier - 1].steps.chest[data.chest.step - 1];
       data.feet.name = this.library.HeroGear.sets.scout[data.feet.tier - 1].name;
       data.feet.color = this.library.HeroGear.sets.scout[data.feet.tier - 1].color;
-      data.feet.stats = this.library.HeroGear.sets.scout[data.feet.tier - 1].steps[data.feet.step - 1];
+      data.feet.stats = this.library.HeroGear.sets.scout[data.feet.tier - 1].steps.feet[data.feet.step - 1];
       return data;
     }
   },
@@ -5138,14 +5149,14 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 1.8
                 }],
                 chest: [{
-                  health: 0.85,
-                  lethality: 0
+                  health: 0,
+                  lethality: 4.11
                 }, {
-                  health: 1.25,
-                  lethality: 0
+                  health: 0,
+                  lethality: 6.7
                 }, {
-                  health: 1.8,
-                  lethality: 0
+                  health: 0,
+                  lethality: 9.97
                 }],
                 feet: [{
                   health: 2.99,
@@ -37145,7 +37156,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "m-auto w-160" },
+      { staticClass: "m-auto w-180" },
       _vm._l(_vm.library.HeroGear.types, function(type, index, num) {
         return _c(
           "div",
@@ -37225,7 +37236,45 @@ var render = function() {
                   )
                 ])
               ])
-            })
+            }),
+            _vm._v(" "),
+            _c("div", [
+              _c("div", { staticClass: "w-32 text-xs p-1 font-bold" }, [
+                _vm._v("Total Boosts:")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex w-32 text-xs" }, [
+                _c("div", { staticClass: "w-16 p-1" }, [_vm._v("Lethality")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "p-1" }, [
+                  _vm._v(
+                    _vm._s(
+                      (
+                        _vm.gears[index].helmet.stats.lethality +
+                        _vm.gears[index].chest.stats.lethality +
+                        _vm.gears[index].feet.stats.lethality
+                      ).toFixed(2)
+                    ) + "%"
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex w-32 text-xs" }, [
+                _c("div", { staticClass: "w-16 p-1" }, [_vm._v("Health")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "p-1" }, [
+                  _vm._v(
+                    _vm._s(
+                      (
+                        _vm.gears[index].helmet.stats.health +
+                        _vm.gears[index].chest.stats.health +
+                        _vm.gears[index].feet.stats.health
+                      ).toFixed(2)
+                    ) + "%"
+                  )
+                ])
+              ])
+            ])
           ],
           2
         )
