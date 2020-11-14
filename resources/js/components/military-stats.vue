@@ -17,8 +17,8 @@
                     class="flex p-1 text-xs items-center"
                 >
                     <div class="w-48">{{stat.display}}</div>
-                    <div v-if="index == 'General'"><input class="p-1 border border-gray-400 rounded w-16 text-sm" type="number" :max="stat.max !== false ?stat.max:'false'" :min="stat.min !== false ?stat.min:'false'" v-model="data.Military[stat.name]" /></div>
-                    <div v-else><input class="p-1 border border-gray-400 rounded w-16 text-sm mr-1" type="number" :max="stat.max !== false ?stat.max:'false'" :min="stat.min !== false ?stat.min:'false'" v-model="data.Military[stat.name]" />%</div>
+                    <div v-if="index == 'General'"><input @change="saveLocalStorage()" class="p-1 border border-gray-400 rounded w-16 text-sm" type="number" :max="stat.max !== false ?stat.max:'false'" :min="stat.min !== false ?stat.min:'false'" v-model="data.Military[stat.name]" /></div>
+                    <div v-else><input @change="saveLocalStorage()" class="p-1 border border-gray-400 rounded w-16 text-sm mr-1" type="number" :max="stat.max !== false ?stat.max:'false'" :min="stat.min !== false ?stat.min:'false'" v-model="data.Military[stat.name]" />%</div>
                 </div>
 
             </div>
@@ -35,6 +35,12 @@ export default {
     ],
     data() {
         return {
+        }
+    },
+    methods: {
+        saveLocalStorage()
+        {
+            this.$emit('saveLocalStorage');
         }
     }
 }

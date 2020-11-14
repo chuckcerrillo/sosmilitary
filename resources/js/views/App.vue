@@ -1,30 +1,42 @@
 <template>
     <div class="flex-col flex-1 h-screen overflow-y-hidden bg-gray-200 relative">
-        <div class="w-full bg-gray-800 text-white h-32">
+        <div class="w-full bg-gray-800 text-white">
             <div class="text-2xl font-bold p-4 tracking-tighter">State of Survival - Military Calculator</div>
-            <div class="flex items-center justify-center">
-                <div class="p-4 px-8">My Stats</div>
-                <div class="p-4 px-8">Solo Attack</div>
-                <div class="p-4 px-8">Rally vs Enemy Settlement</div>
-                <div class="p-4 px-8">Rally vs Influencer Trap</div>
+            <div class="flex items-center justify-center text-sm p-2">
+                <a class="inline-block cursor-pointer rounded hover:bg-gray-600 hover:text-white p-2 px-8">My Stats</a>
+                <a class="inline-block cursor-pointer rounded hover:bg-gray-600 hover:text-white p-2 px-8">Heroes</a>
+                <a class="inline-block cursor-pointer rounded hover:bg-gray-600 hover:text-white p-2 px-8">Troop Formation</a>
+                <a class="inline-block cursor-pointer rounded hover:bg-gray-600 hover:text-white p-2 px-8">Import/Export</a>
             </div>
         </div>
-        <div class="overflow-y-auto fixed inset-x-0 h-auto" style="top:8rem; bottom: 16rem;">
+        <div class="overflow-y-auto fixed inset-x-0 h-auto" style="top:7.5rem; bottom: 16rem;">
             <MilitaryStats
+                v-on:saveLocalStorage="saveLocalStorage"
                 :library="library"
                 :data="data"
                 class="border-b border-gray-400 py-8"
             />
             <Formation
                 v-on:selectHero="selectHero"
+                v-on:saveLocalStorage="saveLocalStorage"
                 :library="library"
                 :data="data"
                 class="border-b border-gray-400 py-8"
             />
-            <Heroes :library="library" :data="data" class="border-b border-gray-400 py-8" />
-            <HeroGear :library="library" :data="data" class="border-b border-gray-400 py-8" />
+            <Heroes
+                v-on:saveLocalStorage="saveLocalStorage"
+                :library="library"
+                :data="data"
+                class="border-b border-gray-400 py-8"
+            />
+            <HeroGear
+                v-on:saveLocalStorage="saveLocalStorage"
+                :library="library"
+                :data="data"
+                class="border-b border-gray-400 py-8"
+            />
         </div>
-        <div class="fixed z-10 bottom-0 inset-x-0 bg-gray-800 text-white mb-24" :class="ui.showSummary ? 'h-160' : 'h-40'">
+        <div class="fixed z-10 bottom-0 inset-x-0 bg-gray-700 text-white mb-24" :class="ui.showSummary ? '' : 'h-40'" :style="ui.showSummary ? 'top: 7.5rem; bottom: 0;' : ''">
             <Summary
                 v-on:toggleSummary="toggleSummary"
                 :library="library"
@@ -33,6 +45,9 @@
             />
         </div>
         <div class="fixed z-20 bottom-0 inset-x-0 w-full bg-black text-white h-24">
+<!--            <button @click="saveLocalStorage()">Save</button>-->
+<!--            <button @click="loadLocalStorage()">Load</button>-->
+<!--            <button @click="checkLocalStorage()">Check</button>-->
             <div class="p-4 text-gray-500 text-sm">SOS Military Calculator &copy; 2020 - Fan made by <a class="text-white hover:underline" href="https://www.cerriscapades.com/">Cerriscapades</a>. No affiliation with KingsGroup.</div>
         </div>
     </div>
@@ -84,24 +99,27 @@ export default {
                     'settlement-health': '0',
                 },
                 Formation: {
-                    captain: 'infantry',
-                    heroes: {
-                        brawler: false,
-                        marksman: false,
-                        scout: false,
-                    },
-                    plasma: 0,
-                    quantity: {
-                        Infantry: [
-                            0,0,0,0,0,0,0,0,0,0
-                        ],
-                        Hunter: [
-                            0,0,0,0,0,0,0,0,0,0
-                        ],
-                        Rider: [
-                            0,0,0,0,0,0,0,0,0,0
-                        ],
-                    }
+                    active: 0,
+                    saved: [{
+                        captain: 'infantry',
+                        heroes: {
+                            brawler: false,
+                            marksman: false,
+                            scout: false,
+                        },
+                        plasma: 0,
+                        quantity: {
+                            Infantry: [
+                                0,0,0,0,0,0,0,0,0,0
+                            ],
+                            Hunter: [
+                                0,0,0,0,0,0,0,0,0,0
+                            ],
+                            Rider: [
+                                0,0,0,0,0,0,0,0,0,0
+                            ],
+                        }
+                    }]
                 },
                 Heroes: {
                     rusty: {
@@ -296,7 +314,7 @@ export default {
                 }
             },
             ui : {
-                showSummary: false,
+                showSummary: true,
             },
             library: {
                 Heroes: {
@@ -3649,7 +3667,8 @@ export default {
         }
     },
     methods: {
-        toggleSummary() {
+        toggleSummary()
+        {
             this.ui.showSummary = !this.ui.showSummary;
         },
         selectHero(hero)
@@ -3661,7 +3680,32 @@ export default {
                     this.data.Formation.heroes[hero.type] = hero.key;
                 }
             }
-        }
+        },
+        saveLocalStorage()
+        {
+            localStorage.setItem('sosMilitaryData',JSON.stringify(this.data));
+            console.log('Saved data to local storage');
+        },
+        loadLocalStorage()
+        {
+            let data = localStorage.getItem('sosMilitaryData');
+            if(data)
+            {
+                this.data = JSON.parse(data);
+            }
+        },
+        checkLocalStorage()
+        {
+            let data = localStorage.getItem('sosMilitaryDatasasas');
+            if(data)
+            {
+                console.log(JSON.parse(data));
+            }
+        },
+    },
+    mounted()
+    {
+        this.loadLocalStorage();
     }
 }
 </script>

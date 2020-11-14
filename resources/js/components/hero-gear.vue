@@ -22,8 +22,8 @@
                                 {{"*".repeat(gears[index][slot.type].step)}}
                             </div>
                             <div class="text-xs text-center">
-                                <button @click="upgrade(index,slot.type)" class="p-1 m-1 text-xs rounded hover:bg-green-400 hover:text-white cursor-pointer">Upgrade</button>
-                                <button @click="downgrade(index,slot.type)" class="p-1 m-1 text-xs rounded hover:bg-red-400 hover:text-white cursor-pointer">Downgrade</button>
+                                <button @change="saveLocalStorage()" @click="upgrade(index,slot.type)" class="p-1 m-1 text-xs rounded hover:bg-green-400 hover:text-white cursor-pointer">Upgrade</button>
+                                <button @change="saveLocalStorage()" @click="downgrade(index,slot.type)" class="p-1 m-1 text-xs rounded hover:bg-red-400 hover:text-white cursor-pointer">Downgrade</button>
                             </div>
                         </div>
                     </div>
@@ -236,6 +236,10 @@ export default {
                     }
                 }
             }
+        },
+        saveLocalStorage()
+        {
+            this.$emit('saveLocalStorage');
         },
     }
 }

@@ -30,7 +30,7 @@
                     >
                         <div class="w-20 pr-2">{{hero.name}}</div>
                         <div class="w-24">{{types[hero.type].name}}</div>
-                        <div class="w-16"><input type="number" class="w-12 border border-gray-400 rounded p-1 text-xs" max="80" min="1"  value="1" v-model="data.Heroes[hero.key].level"></div>
+                        <div class="w-16"><input @change="saveLocalStorage()" type="number" class="w-12 border border-gray-400 rounded p-1 text-xs" max="80" min="1"  value="1" v-model="data.Heroes[hero.key].level"></div>
                         <div class="w-28">{{ getRank(hero.key) }}</div>
                         <div class="w-12">{{getMarch(hero.key)}}</div>
                         <div class="w-16 text-center">{{getAttack(hero.key)}}%</div>
@@ -192,6 +192,7 @@ export default {
                 this.data.Heroes[key].rank++;
                 this.data.Heroes[key].upgrade = 1;
             }
+            this.$emit('saveLocalStorage');
             return true;
         },
         demote(key)
@@ -206,8 +207,13 @@ export default {
                 this.data.Heroes[key].rank--;
                 this.data.Heroes[key].upgrade = 5;
             }
+            this.$emit('saveLocalStorage');
             return true;
-        }
+        },
+        saveLocalStorage()
+        {
+            this.$emit('saveLocalStorage');
+        },
     }
 }
 </script>

@@ -57,7 +57,7 @@
                 </div>
             </div>
         </div>
-        <div class="text-center font-bold text">
+        <div class="text-center font-bold">
             <div v-if="showSummary" class="hover:text-green-400 cursor-pointer" @click="toggleSummary()">
                 Hide detailed breakdown
             </div>
@@ -65,37 +65,62 @@
                 Show detailed breakdown
             </div>
         </div>
-        <div class="text-gray-200">
+        <div class="text-gray-200 text border-t border-gray-600 mt-4">
             <h1 class="text-center text-2xl font-bold my-2 text-white">Power Breakdown</h1>
             <div class="flex items-start justify-center">
-                <div class="lg:w-200 border h-64">
-                    <h1>Boosts</h1>
+                <div class="lg:w-200 p-2">
+                    <h1 class="text-xl font-bold p-2">Total Boosts</h1>
                     <div>
                         <div
-                            class="p-2 flex items-center justify-start"
+                            class="p-2 py-1 flex items-center justify-center font-bold text-xs"
                         >
-                            <div class="w-20">Class</div>
-                            <div class="w-20">Attack</div>
-                            <div class="w-20">Defense</div>
-                            <div class="w-20">Lethality</div>
-                            <div class="w-20">Health</div>
+                            <div class="w-20 p-1">Class</div>
+                            <div class="w-20 p-1">Attack</div>
+                            <div class="w-20 p-1">Defense</div>
+                            <div class="w-20 p-1">Lethality</div>
+                            <div class="w-20 p-1">Health</div>
                         </div>
                         <div
-                            class="p-2 flex items-center justify-start"
+                            v-for="(troopType,num) in ['Infantry','Hunter','Rider']"
+                            class="p-2 py-1 flex items-center justify-center text-xs rounded"
+                            :class="num % 2 === 0 ? 'bg-gray-600':''"
                         >
-                            <div class="w-20">
-                                <div>Infantry</div>
-                                <div>Hunter</div>
-                                <div>Rider</div>
-                            </div>
+                            <div class="w-20 p-1">{{ troopType }}</div>
                             <div
                                 v-for="(stat,num) in ['attack','defense','lethality','health']"
-                                class="w-20"
+                                class="w-20 p-1"
+
                             >
 
-                                <div>{{getTotalBoosts().Infantry[stat].toFixed(2)}}%</div>
-                                <div>{{getTotalBoosts().Hunter[stat].toFixed(2)}}%</div>
-                                <div>{{getTotalBoosts().Rider[stat].toFixed(2)}}%</div>
+                                {{getTotalBoosts()[troopType][stat].toFixed(2)}}%
+                            </div>
+                        </div>
+                    </div>
+
+                    <h1 class="text-xl font-bold p-2">Hero Boosts</h1>
+                    <div>
+                        <div
+                            class="p-2 py-1 flex items-center justify-center font-bold text-xs"
+                        >
+                            <div class="w-20 p-1">Class</div>
+                            <div class="w-20 p-1">Attack</div>
+                            <div class="w-20 p-1">Defense</div>
+                            <div class="w-20 p-1">Lethality</div>
+                            <div class="w-20 p-1">Health</div>
+                        </div>
+                        <div
+                            v-for="(troopType,num) in ['Infantry','Hunter','Rider']"
+                            class="p-2 py-1 flex items-center justify-center text-xs rounded"
+                            :class="num % 2 === 0 ? 'bg-gray-600':''"
+                        >
+                            <div class="w-20 p-1">{{ troopType }}</div>
+                            <div
+                                v-for="(stat,num) in ['attack','defense','lethality','health']"
+                                class="w-20 p-1"
+
+                            >
+
+                                {{getTotalBoosts()[troopType][stat].toFixed(2)}}%
                             </div>
                         </div>
                     </div>
