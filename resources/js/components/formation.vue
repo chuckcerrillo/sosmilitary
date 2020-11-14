@@ -12,19 +12,19 @@
                 <div class="text-center">{{ type.name }}</div>
                 <div
                     class="rounded w-32 h-32 border border-gray-400 bg-gray-300 items-center flex justify-center cursor-pointer"
-                    :class="data.Formation.saved[data.Formation.active].captain === type.type ? 'border-blue-400':''"
+                    :class="data.Formation.captain === type.type ? 'border-blue-400':''"
                     @click="toggleHeroes(getHeroType(type.type))"
                 >
-                    <div v-if="data.Formation.saved[data.Formation.active].heroes[getHeroType(type.type)]">
-                        {{findHero(data.Formation.saved[data.Formation.active].heroes[getHeroType(type.type)])}}
+                    <div v-if="data.Formation.heroes[getHeroType(type.type)]">
+                        {{findHero(data.Formation.heroes[getHeroType(type.type)])}}
                     </div>
                     <div v-else class="text-gray-500 text-center">Choose hero...</div>
                 </div>
-                <div v-if="data.Formation.saved[data.Formation.active].captain === type.type"
+                <div v-if="data.Formation.captain === type.type"
                      class="text-sm p-2 text-center text-blue-400 font-bold">
                     Captain
                 </div>
-                <div v-else class="text-sm p-2 text-center text-gray-600 hover:text-blue-400 hover:underline cursor-pointer" @click="data.Formation.saved[data.Formation.active].captain = type.type">Make captain</div>
+                <div v-else class="text-sm p-2 text-center text-gray-600 hover:text-blue-400 hover:underline cursor-pointer" @click="data.Formation.captain = type.type">Make captain</div>
 
             </div>
 
@@ -58,7 +58,7 @@
                             <div
                                 v-for="level in [0,1,2,3]"
                                 class="p-2 m-2 text-2xl border border-gray-400 rounded w-12 h-12 text-center bg-gray-300 hover:border-blue-400 cursor-pointer"
-                                :class="data.Formation.saved[data.Formation.active].plasma === level ? 'border-blue-400 text-blue-600 bg-blue-200' : ''"
+                                :class="data.Formation.plasma === level ? 'border-blue-400 text-blue-600 bg-blue-200' : ''"
                                 @click="setPlasmaLevel(level)"
                             >
                                 <div>{{"*".repeat(level)}}</div>
@@ -93,10 +93,10 @@
                         <div class="p-1 w-8 text-right">T{{tier+1}}</div>
                         <div class="p-1 w-28">{{library.Formation.troops[troop][tier].name}}</div>
                         <div class="p-1 w-16">{{library.Formation.troops[troop][tier].stats.type}}</div>
-                        <div class="p-1 w-16 text-right">{{getPlasma(data.Formation.saved[data.Formation.active].plasma,'attack',library.Formation.troops[troop][tier])}}</div>
-                        <div class="p-1 w-16 text-right">{{getPlasma(data.Formation.saved[data.Formation.active].plasma,'defense',library.Formation.troops[troop][tier])}}</div>
-                        <div class="p-1 w-16 text-right">{{getPlasma(data.Formation.saved[data.Formation.active].plasma,'lethality',library.Formation.troops[troop][tier])}}</div>
-                        <div class="p-1 w-16 text-right">{{getPlasma(data.Formation.saved[data.Formation.active].plasma,'health',library.Formation.troops[troop][tier])}}</div>
+                        <div class="p-1 w-16 text-right">{{getPlasma(data.Formation.plasma,'attack',library.Formation.troops[troop][tier])}}</div>
+                        <div class="p-1 w-16 text-right">{{getPlasma(data.Formation.plasma,'defense',library.Formation.troops[troop][tier])}}</div>
+                        <div class="p-1 w-16 text-right">{{getPlasma(data.Formation.plasma,'lethality',library.Formation.troops[troop][tier])}}</div>
+                        <div class="p-1 w-16 text-right">{{getPlasma(data.Formation.plasma,'health',library.Formation.troops[troop][tier])}}</div>
                         <div class="p-1 w-20"><input @change="saveLocalStorage()" type="number" class="w-20 border border-gray-400 rounded p-1 text-xs" v-model="data.Formation.quantity[troop][tier]" /></div>
                     </div>
                 </div>
@@ -124,7 +124,7 @@ export default {
     methods: {
         setPlasmaLevel(level)
         {
-            this.data.Formation.saved[this.data.Formation.active].plasma = level;
+            this.data.Formation.plasma = level;
             this.$emit('saveLocalStorage');
         },
         getHeroType(type)

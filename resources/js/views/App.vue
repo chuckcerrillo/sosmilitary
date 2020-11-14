@@ -314,7 +314,7 @@ export default {
                 }
             },
             ui : {
-                showSummary: true,
+                showSummary: false,
             },
             library: {
                 Heroes: {

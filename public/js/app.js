@@ -2058,7 +2058,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   methods: {
     setPlasmaLevel: function setPlasmaLevel(level) {
-      this.data.Formation.saved[this.data.Formation.active].plasma = level;
+      this.data.Formation.plasma = level;
       this.$emit('saveLocalStorage');
     },
     getHeroType: function getHeroType(type) {
@@ -3349,7 +3349,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       },
       ui: {
-        showSummary: true
+        showSummary: false
       },
       library: {
         Heroes: {
@@ -36899,8 +36899,7 @@ var render = function() {
               staticClass:
                 "rounded w-32 h-32 border border-gray-400 bg-gray-300 items-center flex justify-center cursor-pointer",
               class:
-                _vm.data.Formation.saved[_vm.data.Formation.active].captain ===
-                type.type
+                _vm.data.Formation.captain === type.type
                   ? "border-blue-400"
                   : "",
               on: {
@@ -36910,16 +36909,15 @@ var render = function() {
               }
             },
             [
-              _vm.data.Formation.saved[_vm.data.Formation.active].heroes[
-                _vm.getHeroType(type.type)
-              ]
+              _vm.data.Formation.heroes[_vm.getHeroType(type.type)]
                 ? _c("div", [
                     _vm._v(
                       "\n                    " +
                         _vm._s(
                           _vm.findHero(
-                            _vm.data.Formation.saved[_vm.data.Formation.active]
-                              .heroes[_vm.getHeroType(type.type)]
+                            _vm.data.Formation.heroes[
+                              _vm.getHeroType(type.type)
+                            ]
                           )
                         ) +
                         "\n                "
@@ -36931,8 +36929,7 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _vm.data.Formation.saved[_vm.data.Formation.active].captain ===
-          type.type
+          _vm.data.Formation.captain === type.type
             ? _c(
                 "div",
                 {
@@ -36947,9 +36944,7 @@ var render = function() {
                     "text-sm p-2 text-center text-gray-600 hover:text-blue-400 hover:underline cursor-pointer",
                   on: {
                     click: function($event) {
-                      _vm.data.Formation.saved[
-                        _vm.data.Formation.active
-                      ].captain = type.type
+                      _vm.data.Formation.captain = type.type
                     }
                   }
                 },
@@ -37028,8 +37023,7 @@ var render = function() {
                         staticClass:
                           "p-2 m-2 text-2xl border border-gray-400 rounded w-12 h-12 text-center bg-gray-300 hover:border-blue-400 cursor-pointer",
                         class:
-                          _vm.data.Formation.saved[_vm.data.Formation.active]
-                            .plasma === level
+                          _vm.data.Formation.plasma === level
                             ? "border-blue-400 text-blue-600 bg-blue-200"
                             : "",
                         on: {
@@ -37091,8 +37085,7 @@ var render = function() {
                       _vm._v(
                         _vm._s(
                           _vm.getPlasma(
-                            _vm.data.Formation.saved[_vm.data.Formation.active]
-                              .plasma,
+                            _vm.data.Formation.plasma,
                             "attack",
                             _vm.library.Formation.troops[troop][tier]
                           )
@@ -37104,8 +37097,7 @@ var render = function() {
                       _vm._v(
                         _vm._s(
                           _vm.getPlasma(
-                            _vm.data.Formation.saved[_vm.data.Formation.active]
-                              .plasma,
+                            _vm.data.Formation.plasma,
                             "defense",
                             _vm.library.Formation.troops[troop][tier]
                           )
@@ -37117,8 +37109,7 @@ var render = function() {
                       _vm._v(
                         _vm._s(
                           _vm.getPlasma(
-                            _vm.data.Formation.saved[_vm.data.Formation.active]
-                              .plasma,
+                            _vm.data.Formation.plasma,
                             "lethality",
                             _vm.library.Formation.troops[troop][tier]
                           )
@@ -37130,8 +37121,7 @@ var render = function() {
                       _vm._v(
                         _vm._s(
                           _vm.getPlasma(
-                            _vm.data.Formation.saved[_vm.data.Formation.active]
-                              .plasma,
+                            _vm.data.Formation.plasma,
                             "health",
                             _vm.library.Formation.troops[troop][tier]
                           )
