@@ -269,16 +269,16 @@ export default {
                 HeroGear: {
                     brawler: {
                         helmet: {
-                            tier: 2,
-                            step: 2,
+                            tier: 1,
+                            step: 1,
                         },
                         chest: {
-                            tier: 3,
-                            step: 2,
+                            tier: 1,
+                            step: 1,
                         },
                         feet: {
-                            tier: 4,
-                            step: 2,
+                            tier: 1,
+                            step: 1,
                         },
                     },
                     marksman: {

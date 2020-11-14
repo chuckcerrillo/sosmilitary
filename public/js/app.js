@@ -3304,16 +3304,16 @@ __webpack_require__.r(__webpack_exports__);
         HeroGear: {
           brawler: {
             helmet: {
-              tier: 2,
-              step: 2
+              tier: 1,
+              step: 1
             },
             chest: {
-              tier: 3,
-              step: 2
+              tier: 1,
+              step: 1
             },
             feet: {
-              tier: 4,
-              step: 2
+              tier: 1,
+              step: 1
             }
           },
           marksman: {
