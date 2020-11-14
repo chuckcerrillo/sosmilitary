@@ -100,26 +100,24 @@ export default {
                 },
                 Formation: {
                     active: 0,
-                    saved: [{
-                        captain: 'infantry',
-                        heroes: {
-                            brawler: false,
-                            marksman: false,
-                            scout: false,
-                        },
-                        plasma: 0,
-                        quantity: {
-                            Infantry: [
-                                0,0,0,0,0,0,0,0,0,0
-                            ],
-                            Hunter: [
-                                0,0,0,0,0,0,0,0,0,0
-                            ],
-                            Rider: [
-                                0,0,0,0,0,0,0,0,0,0
-                            ],
-                        }
-                    }]
+                    captain: 'infantry',
+                    heroes: {
+                        brawler: false,
+                        marksman: false,
+                        scout: false,
+                    },
+                    plasma: 0,
+                    quantity: {
+                        Infantry: [
+                            0,0,0,0,0,0,0,0,0,0
+                        ],
+                        Hunter: [
+                            0,0,0,0,0,0,0,0,0,0
+                        ],
+                        Rider: [
+                            0,0,0,0,0,0,0,0,0,0
+                        ],
+                    }
                 },
                 Heroes: {
                     rusty: {
