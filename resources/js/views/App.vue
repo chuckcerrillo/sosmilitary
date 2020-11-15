@@ -1,5 +1,5 @@
 <template>
-    <div class="flex-col flex-1 h-screen overflow-y-hidden bg-gray-200 relative">
+    <div class="flex-col flex-1 lg:h-screen lg:overflow-y-hidden bg-gray-200 relative">
         <div class="w-full bg-gray-800 text-white">
             <div class="text-2xl font-bold p-4 tracking-tighter text-center">State of Survival - Military Calculator</div>
             <div class="flex items-start justify-center text-sm">
@@ -25,7 +25,7 @@
                 >Import/Export</a>
             </div>
         </div>
-        <div class="overflow-y-auto fixed inset-x-0 h-auto" style="top:7.5rem; bottom: 16rem;">
+        <div class="overflow-y-auto lg:fixed inset-x-0 h-full lg:h-auto" style="top:7.5rem; bottom: 16rem;">
             <MilitaryStats
                 v-show="ui.section === 'stats'"
                 v-on:saveLocalStorage="saveLocalStorage"
@@ -62,8 +62,16 @@
                 :data="data"
                 class="py-8"
             />
+            <div class="lg:hidden bg-gray-700 text-white">
+                <Summary
+                    v-on:toggleSummary="toggleSummary"
+                    :library="library"
+                    :data="data"
+                    :showSummary="ui.showSummary"
+                />
+            </div>
         </div>
-        <div class="fixed z-10 bottom-0 inset-x-0 bg-gray-700 text-white mb-24" :class="ui.showSummary ? '' : 'h-40'" :style="ui.showSummary ? 'top: 7.25rem; bottom: 0;' : ''">
+        <div class="hidden lg:block lg:fixed z-10 bottom-0 inset-x-0 bg-gray-700 text-white mb-24" :class="ui.showSummary ? '' : 'h-40'" :style="ui.showSummary ? 'top: 7.25rem; bottom: 0;' : ''">
             <Summary
                 v-on:toggleSummary="toggleSummary"
                 :library="library"
@@ -71,7 +79,7 @@
                 :showSummary="ui.showSummary"
             />
         </div>
-        <div class="fixed z-20 bottom-0 inset-x-0 w-full bg-black text-white h-24">
+        <div class="relative lg:fixed lg:z-20 lg:bottom-0 lg:inset-x-0 w-full bg-black text-white lg:h-24">
 <!--            <button @click="saveLocalStorage()">Save</button>-->
 <!--            <button @click="loadLocalStorage()">Load</button>-->
 <!--            <button @click="checkLocalStorage()">Check</button>-->

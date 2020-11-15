@@ -3264,6 +3264,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -38408,7 +38416,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "flex-col flex-1 h-screen overflow-y-hidden bg-gray-200 relative"
+        "flex-col flex-1 lg:h-screen lg:overflow-y-hidden bg-gray-200 relative"
     },
     [
       _c("div", { staticClass: "w-full bg-gray-800 text-white" }, [
@@ -38492,7 +38500,7 @@ var render = function() {
       _c(
         "div",
         {
-          staticClass: "overflow-y-auto fixed inset-x-0 h-auto",
+          staticClass: "overflow-y-auto lg:fixed inset-x-0 h-full lg:h-auto",
           staticStyle: { top: "7.5rem", bottom: "16rem" }
         },
         [
@@ -38567,7 +38575,23 @@ var render = function() {
             staticClass: "py-8",
             attrs: { library: _vm.library, data: _vm.data },
             on: { saveLocalStorage: _vm.saveLocalStorage }
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "lg:hidden bg-gray-700 text-white" },
+            [
+              _c("Summary", {
+                attrs: {
+                  library: _vm.library,
+                  data: _vm.data,
+                  showSummary: _vm.ui.showSummary
+                },
+                on: { toggleSummary: _vm.toggleSummary }
+              })
+            ],
+            1
+          )
         ],
         1
       ),
@@ -38576,7 +38600,7 @@ var render = function() {
         "div",
         {
           staticClass:
-            "fixed z-10 bottom-0 inset-x-0 bg-gray-700 text-white mb-24",
+            "hidden lg:block lg:fixed z-10 bottom-0 inset-x-0 bg-gray-700 text-white mb-24",
           class: _vm.ui.showSummary ? "" : "h-40",
           style: _vm.ui.showSummary ? "top: 7.25rem; bottom: 0;" : ""
         },
@@ -38606,7 +38630,7 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "fixed z-20 bottom-0 inset-x-0 w-full bg-black text-white h-24"
+          "relative lg:fixed lg:z-20 lg:bottom-0 lg:inset-x-0 w-full bg-black text-white lg:h-24"
       },
       [
         _c("div", { staticClass: "p-4 text-gray-500 text-sm" }, [
