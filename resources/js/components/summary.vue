@@ -57,7 +57,7 @@
                 </div>
             </div>
         </div>
-        <div class="text-center font-bold">
+        <div class="hidden lg:block text-center font-bold">
             <div v-if="showSummary" class="hover:text-green-400 cursor-pointer" @click="toggleSummary()">
                 Hide detailed breakdown
             </div>

@@ -38162,7 +38162,7 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "text-center font-bold" }, [
+    _c("div", { staticClass: "hidden lg:block text-center font-bold" }, [
       _vm.showSummary
         ? _c(
             "div",
