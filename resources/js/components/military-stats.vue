@@ -3,6 +3,7 @@
         <h1 class="text-center text-2xl text-gray-800 font-bold">Military Stats</h1>
         <div class="text-xs my-2">
             <p>These are the stats that you will find in your stats screen. You can get there by opening your chief and choosing "stats" from the bottom menu. Once in the chief profile, scroll down to the "Military" section.</p>
+            <p>Note: These numbers already take into account your chief gear, chief gear badges, research, talents, and buffs. So I'm not tracking them independently for now.</p>
         </div>
 
         <div class="flex flex-wrap items-center justify-center">

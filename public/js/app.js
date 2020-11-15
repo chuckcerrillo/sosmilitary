@@ -2673,6 +2673,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "military-stats",
   props: ['library', 'data'],
@@ -38080,6 +38081,12 @@ var staticRenderFns = [
       _c("p", [
         _vm._v(
           'These are the stats that you will find in your stats screen. You can get there by opening your chief and choosing "stats" from the bottom menu. Once in the chief profile, scroll down to the "Military" section.'
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Note: These numbers already take into account your chief gear, chief gear badges, research, talents, and buffs. So I'm not tracking them independently for now."
         )
       ])
     ])
