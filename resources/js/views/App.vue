@@ -1,42 +1,69 @@
 <template>
     <div class="flex-col flex-1 h-screen overflow-y-hidden bg-gray-200 relative">
         <div class="w-full bg-gray-800 text-white">
-            <div class="text-2xl font-bold p-4 tracking-tighter">State of Survival - Military Calculator</div>
-            <div class="flex items-center justify-center text-sm p-2">
-                <a class="inline-block cursor-pointer rounded hover:bg-gray-600 hover:text-white p-2 px-8">My Stats</a>
-                <a class="inline-block cursor-pointer rounded hover:bg-gray-600 hover:text-white p-2 px-8">Heroes</a>
-                <a class="inline-block cursor-pointer rounded hover:bg-gray-600 hover:text-white p-2 px-8">Troop Formation</a>
-                <a class="inline-block cursor-pointer rounded hover:bg-gray-600 hover:text-white p-2 px-8">Import/Export</a>
+            <div class="text-2xl font-bold p-4 tracking-tighter text-center">State of Survival - Military Calculator</div>
+            <div class="flex items-start justify-center text-sm">
+                <a
+                    class="inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8"
+                    :class="ui.section === 'stats' ? 'border-blue-600 border-b-8' : ''"
+                    @click="ui.section = 'stats'"
+                >My Stats</a>
+                <a
+                    class="inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8"
+                    :class="ui.section === 'heroes' ? 'border-blue-600 border-b-8' : ''"
+                    @click="ui.section = 'heroes'"
+                >Heroes</a>
+                <a
+                    class="inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8"
+                    :class="ui.section === 'formation' ? 'border-blue-600 border-b-8' : ''"
+                    @click="ui.section = 'formation'"
+                >Troop Formation</a>
+                <a
+                    class="inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8"
+                    :class="ui.section === 'import' ? 'border-blue-600 border-b-8' : ''"
+                    @click="ui.section = 'import'"
+                >Import/Export</a>
             </div>
         </div>
         <div class="overflow-y-auto fixed inset-x-0 h-auto" style="top:7.5rem; bottom: 16rem;">
             <MilitaryStats
+                v-show="ui.section === 'stats'"
                 v-on:saveLocalStorage="saveLocalStorage"
                 :library="library"
                 :data="data"
-                class="border-b border-gray-400 py-8"
+                class="py-8"
             />
             <Formation
+                v-show="ui.section === 'formation'"
                 v-on:selectHero="selectHero"
                 v-on:saveLocalStorage="saveLocalStorage"
                 :library="library"
                 :data="data"
-                class="border-b border-gray-400 py-8"
+                class="py-8"
             />
             <Heroes
+                v-show="ui.section === 'heroes'"
                 v-on:saveLocalStorage="saveLocalStorage"
                 :library="library"
                 :data="data"
                 class="border-b border-gray-400 py-8"
             />
             <HeroGear
+                v-show="ui.section === 'heroes'"
                 v-on:saveLocalStorage="saveLocalStorage"
                 :library="library"
                 :data="data"
-                class="border-b border-gray-400 py-8"
+                class="py-8"
+            />
+            <Import
+                v-show="ui.section === 'import'"
+                v-on:saveLocalStorage="saveLocalStorage"
+                :library="library"
+                :data="data"
+                class="py-8"
             />
         </div>
-        <div class="fixed z-10 bottom-0 inset-x-0 bg-gray-700 text-white mb-24" :class="ui.showSummary ? '' : 'h-40'" :style="ui.showSummary ? 'top: 7.5rem; bottom: 0;' : ''">
+        <div class="fixed z-10 bottom-0 inset-x-0 bg-gray-700 text-white mb-24" :class="ui.showSummary ? '' : 'h-40'" :style="ui.showSummary ? 'top: 7.25rem; bottom: 0;' : ''">
             <Summary
                 v-on:toggleSummary="toggleSummary"
                 :library="library"
@@ -58,6 +85,7 @@ import MilitaryStats from '../components/military-stats'
 import Heroes from '../components/heroes'
 import Formation from '../components/formation'
 import HeroGear from '../components/hero-gear'
+import Import from '../components/import'
 import Summary from '../components/summary'
 
 export default {
@@ -67,6 +95,7 @@ export default {
         Heroes,
         Formation,
         HeroGear,
+        Import,
         Summary
     },
     data() {
@@ -100,24 +129,28 @@ export default {
                 },
                 Formation: {
                     active: 0,
-                    captain: 'infantry',
-                    heroes: {
-                        brawler: false,
-                        marksman: false,
-                        scout: false,
-                    },
-                    plasma: 0,
-                    quantity: {
-                        Infantry: [
-                            0,0,0,0,0,0,0,0,0,0
-                        ],
-                        Hunter: [
-                            0,0,0,0,0,0,0,0,0,0
-                        ],
-                        Rider: [
-                            0,0,0,0,0,0,0,0,0,0
-                        ],
-                    }
+                    saved: [
+                        {
+                            captain: 'infantry',
+                            heroes: {
+                                brawler: false,
+                                marksman: false,
+                                scout: false,
+                            },
+                            plasma: 0,
+                            quantity: {
+                                Infantry: [
+                                    0,0,0,0,0,0,0,0,0,0
+                                ],
+                                Hunter: [
+                                    0,0,0,0,0,0,0,0,0,0
+                                ],
+                                Rider: [
+                                    0,0,0,0,0,0,0,0,0,0
+                                ],
+                            }
+                        }
+                    ]
                 },
                 Heroes: {
                     rusty: {
@@ -313,6 +346,10 @@ export default {
             },
             ui : {
                 showSummary: false,
+                section: 'stats',
+            },
+            settings: {
+                totalSlots: 5,
             },
             library: {
                 Heroes: {
@@ -3671,16 +3708,24 @@ export default {
         },
         selectHero(hero)
         {
+            let formation = this.formation;
+            console.log('SELECTING HEROES');
+            console.log(this.data.Formation);
+            console.log(formation);
             if(hero)
             {
                 if(hero.type)
                 {
-                    this.data.Formation.heroes[hero.type] = hero.key;
+                    formation.heroes[hero.type] = hero.key;
                 }
             }
         },
-        saveLocalStorage()
+        saveLocalStorage(data)
         {
+            if(data)
+            {
+                this.data = data;
+            }
             localStorage.setItem('sosMilitaryData',JSON.stringify(this.data));
             console.log('Saved data to local storage');
         },
@@ -3701,9 +3746,88 @@ export default {
             }
         },
     },
+    computed: {
+        formation() {
+            return this.data.Formation.saved[this.data.Formation.active];
+        }
+    },
     mounted()
     {
         this.loadLocalStorage();
+        if(this.data.Formation.captain)
+        {
+            delete this.data.Formation.captain;
+        }
+        if(this.data.Formation.heroes)
+        {
+            delete this.data.Formation.heroes;
+        }
+        if(this.data.Formation.plasma)
+        {
+            delete this.data.Formation.plasma;
+        }
+        if(this.data.Formation.quantity)
+        {
+            delete this.data.Formation.quantity;
+        }
+        if(!(this.data.Formation && this.data.Formation.active && this.data.Formation.saved && this.data.Formation.saved[this.data.Formation.active]))
+        {
+            this.data.Formation.active = 0;
+            this.data.Formation.saved = [
+                {
+                    captain: 'infantry',
+                    heroes: {
+                        brawler: false,
+                        marksman: false,
+                        scout: false,
+                    },
+                    plasma: 0,
+                    quantity: {
+                        Infantry: [
+                            0,0,0,0,0,0,0,0,0,0
+                        ],
+                        Hunter: [
+                            0,0,0,0,0,0,0,0,0,0
+                        ],
+                        Rider: [
+                            0,0,0,0,0,0,0,0,0,0
+                        ],
+                    }
+                }
+            ]
+        }
+
+        // Initialise saved formation slots
+        let x;
+        console.log('initialise formation slots');
+        for(x = 0; x < this.settings.totalSlots; x++)
+        {
+            if(!this.data.Formation.saved[x])
+            {
+                console.log('adding slot ' + x);
+                this.data.Formation.saved[x] = {
+                    captain: 'infantry',
+                    heroes: {
+                        brawler: false,
+                        marksman: false,
+                        scout: false,
+                    },
+                    plasma: 0,
+                    quantity: {
+                        Infantry: [
+                            0,0,0,0,0,0,0,0,0,0
+                        ],
+                        Hunter: [
+                            0,0,0,0,0,0,0,0,0,0
+                        ],
+                        Rider: [
+                            0,0,0,0,0,0,0,0,0,0
+                        ],
+                    }
+                }
+            }
+        }
+        console.log(this.data.Formation);
     }
 }
 </script>

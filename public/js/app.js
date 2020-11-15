@@ -2045,6 +2045,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "formation",
   props: ['library', 'data'],
@@ -2053,12 +2066,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       ui: {
         showHeroes: false,
         selectedType: ''
+      },
+      settings: {
+        totalSlots: 5
       }
     };
   },
+  mounted: function mounted() {},
   methods: {
     setPlasmaLevel: function setPlasmaLevel(level) {
-      this.data.Formation.plasma = level;
+      this.formation.plasma = level;
       this.$emit('saveLocalStorage');
     },
     getHeroType: function getHeroType(type) {
@@ -2126,6 +2143,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   computed: {
     marchCapacity: function marchCapacity() {
       return 0;
+    },
+    formation: function formation() {
+      return this.data.Formation.saved[this.data.Formation.active];
     }
   }
 });
@@ -2549,6 +2569,73 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/import.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/import.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "import",
+  props: ['library', 'data'],
+  data: function data() {
+    return {
+      decodedData: ''
+    };
+  },
+  methods: {
+    exportData: function exportData() {
+      this.$emit('saveLocalStorage');
+    },
+    importData: function importData() {
+      try {
+        var newData = JSON.parse(atob(this.decodedData));
+
+        if (newData) {
+          this.$emit('saveLocalStorage', newData);
+          alert('Successfully imported data');
+        }
+      } catch (e) {
+        alert('Unable to import data.');
+      }
+    }
+  },
+  computed: {
+    encodedData: function encodedData() {
+      return btoa(JSON.stringify(this.data));
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/military-stats.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/military-stats.vue?vue&type=script&lang=js& ***!
@@ -2616,6 +2703,52 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2843,7 +2976,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       }; // Get hero boosts
 
-      var formationHeroes = this.data.Formation.heroes;
+      var formationHeroes = this.formation.heroes;
 
       for (var troopType in formationHeroes) {
         var hero = false;
@@ -2858,24 +2991,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       } // Get hero gear boosts
 
 
-      result.Infantry.lethality += this.library.HeroGear.sets['brawler'][this.data.HeroGear.brawler.helmet.tier - 1].steps.helmet[this.data.HeroGear.brawler.helmet.step - 1].lethality;
-      result.Infantry.lethality += this.library.HeroGear.sets['brawler'][this.data.HeroGear.brawler.chest.tier - 1].steps.helmet[this.data.HeroGear.brawler.chest.step - 1].lethality;
-      result.Infantry.lethality += this.library.HeroGear.sets['brawler'][this.data.HeroGear.brawler.feet.tier - 1].steps.helmet[this.data.HeroGear.brawler.feet.step - 1].lethality;
-      result.Hunter.lethality += this.library.HeroGear.sets['marksman'][this.data.HeroGear.marksman.helmet.tier - 1].steps.chest[this.data.HeroGear.marksman.helmet.step - 1].lethality;
-      result.Hunter.lethality += this.library.HeroGear.sets['marksman'][this.data.HeroGear.marksman.chest.tier - 1].steps.chest[this.data.HeroGear.marksman.chest.step - 1].lethality;
-      result.Hunter.lethality += this.library.HeroGear.sets['marksman'][this.data.HeroGear.marksman.feet.tier - 1].steps.chest[this.data.HeroGear.marksman.feet.step - 1].lethality;
-      result.Rider.lethality += this.library.HeroGear.sets['scout'][this.data.HeroGear.scout.helmet.tier - 1].steps.feet[this.data.HeroGear.scout.helmet.step - 1].lethality;
-      result.Rider.lethality += this.library.HeroGear.sets['scout'][this.data.HeroGear.scout.chest.tier - 1].steps.feet[this.data.HeroGear.scout.chest.step - 1].lethality;
-      result.Rider.lethality += this.library.HeroGear.sets['scout'][this.data.HeroGear.scout.feet.tier - 1].steps.feet[this.data.HeroGear.scout.feet.step - 1].lethality;
-      result.Infantry.health += this.library.HeroGear.sets['brawler'][this.data.HeroGear.brawler.helmet.tier - 1].steps.helmet[this.data.HeroGear.brawler.helmet.step - 1].health;
-      result.Infantry.health += this.library.HeroGear.sets['brawler'][this.data.HeroGear.brawler.chest.tier - 1].steps.helmet[this.data.HeroGear.brawler.chest.step - 1].health;
-      result.Infantry.health += this.library.HeroGear.sets['brawler'][this.data.HeroGear.brawler.feet.tier - 1].steps.helmet[this.data.HeroGear.brawler.feet.step - 1].health;
-      result.Hunter.health += this.library.HeroGear.sets['marksman'][this.data.HeroGear.marksman.helmet.tier - 1].steps.chest[this.data.HeroGear.marksman.helmet.step - 1].health;
-      result.Hunter.health += this.library.HeroGear.sets['marksman'][this.data.HeroGear.marksman.chest.tier - 1].steps.chest[this.data.HeroGear.marksman.chest.step - 1].health;
-      result.Hunter.health += this.library.HeroGear.sets['marksman'][this.data.HeroGear.marksman.feet.tier - 1].steps.chest[this.data.HeroGear.marksman.feet.step - 1].health;
-      result.Rider.health += this.library.HeroGear.sets['scout'][this.data.HeroGear.scout.helmet.tier - 1].steps.feet[this.data.HeroGear.scout.helmet.step - 1].health;
-      result.Rider.health += this.library.HeroGear.sets['scout'][this.data.HeroGear.scout.chest.tier - 1].steps.feet[this.data.HeroGear.scout.chest.step - 1].health;
-      result.Rider.health += this.library.HeroGear.sets['scout'][this.data.HeroGear.scout.feet.tier - 1].steps.feet[this.data.HeroGear.scout.feet.step - 1].health; // Get military stats boost
+      var types = {
+        brawler: 'Infantry',
+        marksman: 'Hunter',
+        scout: 'Rider'
+      };
+
+      for (var _troopType in types) {
+        result[types[_troopType]].lethality += this.library.HeroGear.sets[_troopType][this.data.HeroGear.brawler.helmet.tier - 1].steps.helmet[this.data.HeroGear.brawler.helmet.step - 1].lethality;
+        result[types[_troopType]].lethality += this.library.HeroGear.sets[_troopType][this.data.HeroGear.brawler.chest.tier - 1].steps.helmet[this.data.HeroGear.brawler.chest.step - 1].lethality;
+        result[types[_troopType]].lethality += this.library.HeroGear.sets[_troopType][this.data.HeroGear.brawler.feet.tier - 1].steps.helmet[this.data.HeroGear.brawler.feet.step - 1].lethality;
+        result[types[_troopType]].health += this.library.HeroGear.sets[_troopType][this.data.HeroGear.brawler.helmet.tier - 1].steps.helmet[this.data.HeroGear.brawler.helmet.step - 1].health;
+        result[types[_troopType]].health += this.library.HeroGear.sets[_troopType][this.data.HeroGear.brawler.chest.tier - 1].steps.helmet[this.data.HeroGear.brawler.chest.step - 1].health;
+        result[types[_troopType]].health += this.library.HeroGear.sets[_troopType][this.data.HeroGear.brawler.feet.tier - 1].steps.helmet[this.data.HeroGear.brawler.feet.step - 1].health;
+      } // Get military stats boost
+
 
       for (var _i = 0, _arr = ['attack', 'defense', 'lethality', 'health']; _i < _arr.length; _i++) {
         var statType = _arr[_i];
@@ -2935,13 +3065,22 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   },
   computed: {
+    formation: function formation() {
+      if (this.data.Formation) {
+        if (this.data.Formation.active && this.data.Formation.saved && this.data.Formation.saved[this.data.Formation.active]) {
+          return this.data.Formation.saved[this.data.Formation.active];
+        }
+      }
+
+      return this.data.Formation.saved[0];
+    },
     attack: function attack() {
       var attack = 0;
 
       for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
         for (var _i2 = 0, _arr2 = ['Infantry', 'Rider', 'Hunter']; _i2 < _arr2.length; _i2++) {
           var troop = _arr2[_i2];
-          var troopAttack = parseInt(this.getPlasma(this.data.Formation.plasma, 'attack', this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier]);
+          var troopAttack = parseInt(this.getPlasma(this.formation.plasma, 'attack', this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier]);
           attack += troopAttack;
 
           if (this.totalBoosts[troop].attack) {
@@ -2958,7 +3097,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
         for (var _i3 = 0, _arr3 = ['Infantry', 'Rider', 'Hunter']; _i3 < _arr3.length; _i3++) {
           var troop = _arr3[_i3];
-          var troopLethality = parseInt(this.getPlasma(this.data.Formation.plasma, 'lethality', this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier]);
+          var troopLethality = parseInt(this.getPlasma(this.formation.plasma, 'lethality', this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier]);
           lethality += troopLethality;
 
           if (this.totalBoosts[troop].lethality) {
@@ -2975,7 +3114,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
         for (var _i4 = 0, _arr4 = ['Infantry', 'Rider', 'Hunter']; _i4 < _arr4.length; _i4++) {
           var troop = _arr4[_i4];
-          var troopDefense = parseInt(this.getPlasma(this.data.Formation.plasma, 'defense', this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier]);
+          var troopDefense = parseInt(this.getPlasma(this.formation.plasma, 'defense', this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier]);
           defense += troopDefense;
 
           if (this.totalBoosts[troop].defense) {
@@ -2992,7 +3131,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
         for (var _i5 = 0, _arr5 = ['Infantry', 'Rider', 'Hunter']; _i5 < _arr5.length; _i5++) {
           var troop = _arr5[_i5];
-          var troopHealth = parseInt(this.getPlasma(this.data.Formation.plasma, 'health', this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier]);
+          var troopHealth = parseInt(this.getPlasma(this.formation.plasma, 'health', this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier]);
           health += troopHealth;
 
           if (this.totalBoosts[troop].health) {
@@ -3013,10 +3152,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       return this.defense + this.health;
     },
     selectedHeroes: function selectedHeroes() {
-      return this.data.Formation.heroes;
+      return this.formation.heroes;
     },
     isReady: function isReady() {
-      if (this.data && this.data.Formation && this.data.Formation.heroes && this.data.Formation.heroes.brawler) {
+      if (this.data && this.formation && this.formation.heroes && this.formation.heroes.brawler) {
         return true;
       }
 
@@ -3040,7 +3179,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_heroes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/heroes */ "./resources/js/components/heroes.vue");
 /* harmony import */ var _components_formation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/formation */ "./resources/js/components/formation.vue");
 /* harmony import */ var _components_hero_gear__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/hero-gear */ "./resources/js/components/hero-gear.vue");
-/* harmony import */ var _components_summary__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/summary */ "./resources/js/components/summary.vue");
+/* harmony import */ var _components_import__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/import */ "./resources/js/components/import.vue");
+/* harmony import */ var _components_summary__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/summary */ "./resources/js/components/summary.vue");
 //
 //
 //
@@ -3096,6 +3236,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -3108,7 +3276,8 @@ __webpack_require__.r(__webpack_exports__);
     Heroes: _components_heroes__WEBPACK_IMPORTED_MODULE_1__["default"],
     Formation: _components_formation__WEBPACK_IMPORTED_MODULE_2__["default"],
     HeroGear: _components_hero_gear__WEBPACK_IMPORTED_MODULE_3__["default"],
-    Summary: _components_summary__WEBPACK_IMPORTED_MODULE_4__["default"]
+    Import: _components_import__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Summary: _components_summary__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {
@@ -3141,18 +3310,20 @@ __webpack_require__.r(__webpack_exports__);
         },
         Formation: {
           active: 0,
-          captain: 'infantry',
-          heroes: {
-            brawler: false,
-            marksman: false,
-            scout: false
-          },
-          plasma: 0,
-          quantity: {
-            Infantry: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            Hunter: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            Rider: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-          }
+          saved: [{
+            captain: 'infantry',
+            heroes: {
+              brawler: false,
+              marksman: false,
+              scout: false
+            },
+            plasma: 0,
+            quantity: {
+              Infantry: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+              Hunter: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+              Rider: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            }
+          }]
         },
         Heroes: {
           rusty: {
@@ -3347,7 +3518,11 @@ __webpack_require__.r(__webpack_exports__);
         }
       },
       ui: {
-        showSummary: false
+        showSummary: false,
+        section: 'stats'
+      },
+      settings: {
+        totalSlots: 5
       },
       library: {
         Heroes: {
@@ -5657,13 +5832,22 @@ __webpack_require__.r(__webpack_exports__);
       this.ui.showSummary = !this.ui.showSummary;
     },
     selectHero: function selectHero(hero) {
+      var formation = this.formation;
+      console.log('SELECTING HEROES');
+      console.log(this.data.Formation);
+      console.log(formation);
+
       if (hero) {
         if (hero.type) {
-          this.data.Formation.heroes[hero.type] = hero.key;
+          formation.heroes[hero.type] = hero.key;
         }
       }
     },
-    saveLocalStorage: function saveLocalStorage() {
+    saveLocalStorage: function saveLocalStorage(data) {
+      if (data) {
+        this.data = data;
+      }
+
       localStorage.setItem('sosMilitaryData', JSON.stringify(this.data));
       console.log('Saved data to local storage');
     },
@@ -5682,8 +5866,73 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
+  computed: {
+    formation: function formation() {
+      return this.data.Formation.saved[this.data.Formation.active];
+    }
+  },
   mounted: function mounted() {
     this.loadLocalStorage();
+
+    if (this.data.Formation.captain) {
+      delete this.data.Formation.captain;
+    }
+
+    if (this.data.Formation.heroes) {
+      delete this.data.Formation.heroes;
+    }
+
+    if (this.data.Formation.plasma) {
+      delete this.data.Formation.plasma;
+    }
+
+    if (this.data.Formation.quantity) {
+      delete this.data.Formation.quantity;
+    }
+
+    if (!(this.data.Formation && this.data.Formation.active && this.data.Formation.saved && this.data.Formation.saved[this.data.Formation.active])) {
+      this.data.Formation.active = 0;
+      this.data.Formation.saved = [{
+        captain: 'infantry',
+        heroes: {
+          brawler: false,
+          marksman: false,
+          scout: false
+        },
+        plasma: 0,
+        quantity: {
+          Infantry: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          Hunter: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          Rider: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        }
+      }];
+    } // Initialise saved formation slots
+
+
+    var x;
+    console.log('initialise formation slots');
+
+    for (x = 0; x < this.settings.totalSlots; x++) {
+      if (!this.data.Formation.saved[x]) {
+        console.log('adding slot ' + x);
+        this.data.Formation.saved[x] = {
+          captain: 'infantry',
+          heroes: {
+            brawler: false,
+            marksman: false,
+            scout: false
+          },
+          plasma: 0,
+          quantity: {
+            Infantry: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            Hunter: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            Rider: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          }
+        };
+      }
+    }
+
+    console.log(this.data.Formation);
   }
 });
 
@@ -36882,6 +37131,33 @@ var render = function() {
     _vm._v(" "),
     _vm._m(0),
     _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "flex items-center justify-center" },
+      _vm._l([0, 1, 2, 3, 4], function(slot) {
+        return _c(
+          "div",
+          {
+            staticClass:
+              "p-2 rounded m-1 border border-gray-400 cursor-pointer",
+            class:
+              _vm.data.Formation.active === slot
+                ? "border-blue-600 text-white bg-blue-600"
+                : "text-gray-800",
+            on: {
+              click: function($event) {
+                _vm.data.Formation.active = slot
+              }
+            }
+          },
+          [_vm._v("\n            Slot " + _vm._s(slot + 1) + "\n        ")]
+        )
+      }),
+      0
+    ),
+    _vm._v(" "),
     _c(
       "div",
       { staticClass: "flex items-center justify-center" },
@@ -36897,9 +37173,7 @@ var render = function() {
               staticClass:
                 "rounded w-32 h-32 border border-gray-400 bg-gray-300 items-center flex justify-center cursor-pointer",
               class:
-                _vm.data.Formation.captain === type.type
-                  ? "border-blue-400"
-                  : "",
+                _vm.formation.captain === type.type ? "border-blue-400" : "",
               on: {
                 click: function($event) {
                   _vm.toggleHeroes(_vm.getHeroType(type.type))
@@ -36907,15 +37181,13 @@ var render = function() {
               }
             },
             [
-              _vm.data.Formation.heroes[_vm.getHeroType(type.type)]
+              _vm.formation.heroes[_vm.getHeroType(type.type)]
                 ? _c("div", [
                     _vm._v(
                       "\n                    " +
                         _vm._s(
                           _vm.findHero(
-                            _vm.data.Formation.heroes[
-                              _vm.getHeroType(type.type)
-                            ]
+                            _vm.formation.heroes[_vm.getHeroType(type.type)]
                           )
                         ) +
                         "\n                "
@@ -36927,7 +37199,7 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _vm.data.Formation.captain === type.type
+          _vm.formation.captain === type.type
             ? _c(
                 "div",
                 {
@@ -36942,7 +37214,7 @@ var render = function() {
                     "text-sm p-2 text-center text-gray-600 hover:text-blue-400 hover:underline cursor-pointer",
                   on: {
                     click: function($event) {
-                      _vm.data.Formation.captain = type.type
+                      _vm.formationcaptain = type.type
                     }
                   }
                 },
@@ -37021,7 +37293,7 @@ var render = function() {
                         staticClass:
                           "p-2 m-2 text-2xl border border-gray-400 rounded w-12 h-12 text-center bg-gray-300 hover:border-blue-400 cursor-pointer",
                         class:
-                          _vm.data.Formation.plasma === level
+                          _vm.formation.plasma === level
                             ? "border-blue-400 text-blue-600 bg-blue-200"
                             : "",
                         on: {
@@ -37051,7 +37323,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(1),
+          _vm._m(2),
           _vm._v(" "),
           _vm._l([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], function(tier) {
             return _c(
@@ -37083,7 +37355,7 @@ var render = function() {
                       _vm._v(
                         _vm._s(
                           _vm.getPlasma(
-                            _vm.data.Formation.plasma,
+                            _vm.formation.plasma,
                             "attack",
                             _vm.library.Formation.troops[troop][tier]
                           )
@@ -37095,7 +37367,7 @@ var render = function() {
                       _vm._v(
                         _vm._s(
                           _vm.getPlasma(
-                            _vm.data.Formation.plasma,
+                            _vm.formation.plasma,
                             "defense",
                             _vm.library.Formation.troops[troop][tier]
                           )
@@ -37107,7 +37379,7 @@ var render = function() {
                       _vm._v(
                         _vm._s(
                           _vm.getPlasma(
-                            _vm.data.Formation.plasma,
+                            _vm.formation.plasma,
                             "lethality",
                             _vm.library.Formation.troops[troop][tier]
                           )
@@ -37119,7 +37391,7 @@ var render = function() {
                       _vm._v(
                         _vm._s(
                           _vm.getPlasma(
-                            _vm.data.Formation.plasma,
+                            _vm.formation.plasma,
                             "health",
                             _vm.library.Formation.troops[troop][tier]
                           )
@@ -37133,15 +37405,15 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.data.Formation.quantity[troop][tier],
-                            expression: "data.Formation.quantity[troop][tier]"
+                            value: _vm.formation.quantity[troop][tier],
+                            expression: "formation.quantity[troop][tier]"
                           }
                         ],
                         staticClass:
                           "w-20 border border-gray-400 rounded p-1 text-xs",
                         attrs: { type: "number" },
                         domProps: {
-                          value: _vm.data.Formation.quantity[troop][tier]
+                          value: _vm.formation.quantity[troop][tier]
                         },
                         on: {
                           change: function($event) {
@@ -37152,7 +37424,7 @@ var render = function() {
                               return
                             }
                             _vm.$set(
-                              _vm.data.Formation.quantity[troop],
+                              _vm.formation.quantity[troop],
                               tier,
                               $event.target.value
                             )
@@ -37183,6 +37455,14 @@ var staticRenderFns = [
           'This is the troop formation you\'ll be using in a march. Choose the appropriate heroes and troops for the activity you wish to do. For instance when attacking settlements you might want to use "Siege" heroes, etc.'
         )
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c("h2", [_vm._v("Saved formation slots")])
     ])
   },
   function() {
@@ -37569,6 +37849,102 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/import.vue?vue&type=template&id=fb4a29a0&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/import.vue?vue&type=template&id=fb4a29a0&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "lg:w-200 m-auto" }, [
+    _c(
+      "h1",
+      { staticClass: "text-center mb-4 text-2xl text-gray-800 font-bold" },
+      [_vm._v("Import / Export Data")]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "flex flex-wrap items-center justify-center" }, [
+      _c("div", { staticClass: "p-1 text-gray-700" }, [
+        _c("div", { staticClass: "tracking-tight text-center text-xl" }, [
+          _vm._v("Import Data")
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.decodedData,
+                expression: "decodedData"
+              }
+            ],
+            staticClass: "w-128 h-32 border bg-white border-gray-400 rounded",
+            domProps: { value: _vm.decodedData },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.decodedData = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "border border-blue-400 rounded bg-blue-400 text-white p-2",
+            attrs: { value: "" },
+            on: {
+              click: function($event) {
+                return _vm.importData()
+              }
+            }
+          },
+          [_vm._v("Import data")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "tracking-tight text-center text-xl" }, [
+          _vm._v("Export Data")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-sm" }, [
+          _vm._v(
+            "The following string represents the data you have entered into the calculator."
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c(
+            "textarea",
+            {
+              staticClass: "w-128 h-32 border bg-white border-gray-400 rounded"
+            },
+            [_vm._v(_vm._s(_vm.encodedData))]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/military-stats.vue?vue&type=template&id=7fe1676a&scoped=true&":
 /*!*****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/military-stats.vue?vue&type=template&id=7fe1676a&scoped=true& ***!
@@ -37624,7 +38000,7 @@ var render = function() {
                             }
                           ],
                           staticClass:
-                            "p-1 border border-gray-400 rounded w-16 text-sm",
+                            "p-1 border border-gray-400 rounded w-20 text-sm",
                           attrs: {
                             type: "number",
                             max: stat.max !== false ? stat.max : "false",
@@ -37659,7 +38035,7 @@ var render = function() {
                             }
                           ],
                           staticClass:
-                            "p-1 border border-gray-400 rounded w-16 text-sm mr-1",
+                            "p-1 border border-gray-400 rounded w-20 text-sm mr-1",
                           attrs: {
                             type: "number",
                             max: stat.max !== false ? stat.max : "false",
@@ -37811,6 +38187,44 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "flex items-start justify-center" }, [
           _c("div", { staticClass: "lg:w-200 p-2" }, [
+            _c(
+              "div",
+              { staticClass: "flex items-start justify-center text-center" },
+              [
+                _c("div", { staticClass: "m-2 p-2" }, [
+                  _c("div", [_vm._v("Attack")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "font-bold text-2xl" }, [
+                    _vm._v(_vm._s(_vm.attack.toLocaleString()))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "m-2 p-2" }, [
+                  _c("div", [_vm._v("Defense")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "font-bold text-xl" }, [
+                    _vm._v(_vm._s(_vm.defense.toLocaleString()))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "m-2 p-2" }, [
+                  _c("div", [_vm._v("Lethality")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "font-bold text-xl" }, [
+                    _vm._v(_vm._s(_vm.lethality.toLocaleString()))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "m-2 p-2" }, [
+                  _c("div", [_vm._v("Health")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "font-bold text-xl" }, [
+                    _vm._v(_vm._s(_vm.health.toLocaleString()))
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
             _c("h1", { staticClass: "text-xl font-bold p-2" }, [
               _vm._v("Total Boosts")
             ]),
@@ -37990,7 +38404,83 @@ var render = function() {
         "flex-col flex-1 h-screen overflow-y-hidden bg-gray-200 relative"
     },
     [
-      _vm._m(0),
+      _c("div", { staticClass: "w-full bg-gray-800 text-white" }, [
+        _c(
+          "div",
+          {
+            staticClass: "text-2xl font-bold p-4 tracking-tighter text-center"
+          },
+          [_vm._v("State of Survival - Military Calculator")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "flex items-start justify-center text-sm" }, [
+          _c(
+            "a",
+            {
+              staticClass:
+                "inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8",
+              class:
+                _vm.ui.section === "stats" ? "border-blue-600 border-b-8" : "",
+              on: {
+                click: function($event) {
+                  _vm.ui.section = "stats"
+                }
+              }
+            },
+            [_vm._v("My Stats")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass:
+                "inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8",
+              class:
+                _vm.ui.section === "heroes" ? "border-blue-600 border-b-8" : "",
+              on: {
+                click: function($event) {
+                  _vm.ui.section = "heroes"
+                }
+              }
+            },
+            [_vm._v("Heroes")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass:
+                "inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8",
+              class:
+                _vm.ui.section === "formation"
+                  ? "border-blue-600 border-b-8"
+                  : "",
+              on: {
+                click: function($event) {
+                  _vm.ui.section = "formation"
+                }
+              }
+            },
+            [_vm._v("Troop Formation")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass:
+                "inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8",
+              class:
+                _vm.ui.section === "import" ? "border-blue-600 border-b-8" : "",
+              on: {
+                click: function($event) {
+                  _vm.ui.section = "import"
+                }
+              }
+            },
+            [_vm._v("Import/Export")]
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c(
         "div",
@@ -38000,13 +38490,29 @@ var render = function() {
         },
         [
           _c("MilitaryStats", {
-            staticClass: "border-b border-gray-400 py-8",
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.ui.section === "stats",
+                expression: "ui.section === 'stats'"
+              }
+            ],
+            staticClass: "py-8",
             attrs: { library: _vm.library, data: _vm.data },
             on: { saveLocalStorage: _vm.saveLocalStorage }
           }),
           _vm._v(" "),
           _c("Formation", {
-            staticClass: "border-b border-gray-400 py-8",
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.ui.section === "formation",
+                expression: "ui.section === 'formation'"
+              }
+            ],
+            staticClass: "py-8",
             attrs: { library: _vm.library, data: _vm.data },
             on: {
               selectHero: _vm.selectHero,
@@ -38015,13 +38521,43 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("Heroes", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.ui.section === "heroes",
+                expression: "ui.section === 'heroes'"
+              }
+            ],
             staticClass: "border-b border-gray-400 py-8",
             attrs: { library: _vm.library, data: _vm.data },
             on: { saveLocalStorage: _vm.saveLocalStorage }
           }),
           _vm._v(" "),
           _c("HeroGear", {
-            staticClass: "border-b border-gray-400 py-8",
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.ui.section === "heroes",
+                expression: "ui.section === 'heroes'"
+              }
+            ],
+            staticClass: "py-8",
+            attrs: { library: _vm.library, data: _vm.data },
+            on: { saveLocalStorage: _vm.saveLocalStorage }
+          }),
+          _vm._v(" "),
+          _c("Import", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.ui.section === "import",
+                expression: "ui.section === 'import'"
+              }
+            ],
+            staticClass: "py-8",
             attrs: { library: _vm.library, data: _vm.data },
             on: { saveLocalStorage: _vm.saveLocalStorage }
           })
@@ -38035,7 +38571,7 @@ var render = function() {
           staticClass:
             "fixed z-10 bottom-0 inset-x-0 bg-gray-700 text-white mb-24",
           class: _vm.ui.showSummary ? "" : "h-40",
-          style: _vm.ui.showSummary ? "top: 7.5rem; bottom: 0;" : ""
+          style: _vm.ui.showSummary ? "top: 7.25rem; bottom: 0;" : ""
         },
         [
           _c("Summary", {
@@ -38050,63 +38586,11 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm._m(1)
+      _vm._m(0)
     ]
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "w-full bg-gray-800 text-white" }, [
-      _c("div", { staticClass: "text-2xl font-bold p-4 tracking-tighter" }, [
-        _vm._v("State of Survival - Military Calculator")
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "flex items-center justify-center text-sm p-2" },
-        [
-          _c(
-            "a",
-            {
-              staticClass:
-                "inline-block cursor-pointer rounded hover:bg-gray-600 hover:text-white p-2 px-8"
-            },
-            [_vm._v("My Stats")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass:
-                "inline-block cursor-pointer rounded hover:bg-gray-600 hover:text-white p-2 px-8"
-            },
-            [_vm._v("Heroes")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass:
-                "inline-block cursor-pointer rounded hover:bg-gray-600 hover:text-white p-2 px-8"
-            },
-            [_vm._v("Troop Formation")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass:
-                "inline-block cursor-pointer rounded hover:bg-gray-600 hover:text-white p-2 px-8"
-            },
-            [_vm._v("Import/Export")]
-          )
-        ]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -50652,6 +51136,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_heroes_vue_vue_type_template_id_b519779a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_heroes_vue_vue_type_template_id_b519779a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/import.vue":
+/*!********************************************!*\
+  !*** ./resources/js/components/import.vue ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _import_vue_vue_type_template_id_fb4a29a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./import.vue?vue&type=template&id=fb4a29a0&scoped=true& */ "./resources/js/components/import.vue?vue&type=template&id=fb4a29a0&scoped=true&");
+/* harmony import */ var _import_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./import.vue?vue&type=script&lang=js& */ "./resources/js/components/import.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _import_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _import_vue_vue_type_template_id_fb4a29a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _import_vue_vue_type_template_id_fb4a29a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "fb4a29a0",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/import.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/import.vue?vue&type=script&lang=js&":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/import.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_import_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./import.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/import.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_import_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/import.vue?vue&type=template&id=fb4a29a0&scoped=true&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/import.vue?vue&type=template&id=fb4a29a0&scoped=true& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_import_vue_vue_type_template_id_fb4a29a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./import.vue?vue&type=template&id=fb4a29a0&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/import.vue?vue&type=template&id=fb4a29a0&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_import_vue_vue_type_template_id_fb4a29a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_import_vue_vue_type_template_id_fb4a29a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

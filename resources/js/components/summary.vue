@@ -69,6 +69,24 @@
             <h1 class="text-center text-2xl font-bold my-2 text-white">Power Breakdown</h1>
             <div class="flex items-start justify-center">
                 <div class="lg:w-200 p-2">
+                    <div class="flex items-start justify-center text-center">
+                        <div class="m-2 p-2">
+                            <div>Attack</div>
+                            <div class="font-bold text-2xl">{{ attack.toLocaleString() }}</div>
+                        </div>
+                        <div class="m-2 p-2">
+                            <div>Defense</div>
+                            <div class="font-bold text-xl">{{ defense.toLocaleString() }}</div>
+                        </div>
+                        <div class="m-2 p-2">
+                            <div>Lethality</div>
+                            <div class="font-bold text-xl">{{ lethality.toLocaleString() }}</div>
+                        </div>
+                        <div class="m-2 p-2">
+                            <div>Health</div>
+                            <div class="font-bold text-xl">{{ health.toLocaleString() }}</div>
+                        </div>
+                    </div>
                     <h1 class="text-xl font-bold p-2">Total Boosts</h1>
                     <div>
                         <div
@@ -124,6 +142,34 @@
                             </div>
                         </div>
                     </div>
+
+<!--                    <h1 class="text-xl font-bold p-2">Troop Power</h1>-->
+<!--                    <div>-->
+<!--                        <div-->
+<!--                            class="p-2 py-1 flex items-center justify-center font-bold text-xs"-->
+<!--                        >-->
+<!--                            <div class="w-20 p-1">Class</div>-->
+<!--                            <div class="w-20 p-1">Attack</div>-->
+<!--                            <div class="w-20 p-1">Defense</div>-->
+<!--                            <div class="w-20 p-1">Lethality</div>-->
+<!--                            <div class="w-20 p-1">Health</div>-->
+<!--                        </div>-->
+<!--                        <div-->
+<!--                            v-for="(troopType,num) in ['Infantry','Hunter','Rider']"-->
+<!--                            class="p-2 py-1 flex items-center justify-center text-xs rounded"-->
+<!--                            :class="num % 2 === 0 ? 'bg-gray-600':''"-->
+<!--                        >-->
+<!--                            <div class="w-20 p-1">{{ troopType }}</div>-->
+<!--                            <div-->
+<!--                                v-for="(stat,num) in ['attack','defense','lethality','health']"-->
+<!--                                class="w-20 p-1"-->
+
+<!--                            >-->
+
+<!--                                {{getTotalBoosts()[troopType][stat].toFixed(2)}}%-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
             </div>
         </div>
@@ -230,7 +276,7 @@ export default {
             };
 
             // Get hero boosts
-            let formationHeroes = this.data.Formation.heroes;
+            let formationHeroes = this.formation.heroes;
             for(let troopType in formationHeroes)
             {
                 let hero = false;
@@ -249,27 +295,17 @@ export default {
             }
 
             // Get hero gear boosts
-            result.Infantry.lethality += this.library.HeroGear.sets['brawler'][this.data.HeroGear.brawler.helmet.tier-1].steps.helmet[this.data.HeroGear.brawler.helmet.step-1].lethality;
-            result.Infantry.lethality += this.library.HeroGear.sets['brawler'][this.data.HeroGear.brawler.chest.tier-1].steps.helmet[this.data.HeroGear.brawler.chest.step-1].lethality;
-            result.Infantry.lethality += this.library.HeroGear.sets['brawler'][this.data.HeroGear.brawler.feet.tier-1].steps.helmet[this.data.HeroGear.brawler.feet.step-1].lethality;
-            result.Hunter.lethality += this.library.HeroGear.sets['marksman'][this.data.HeroGear.marksman.helmet.tier-1].steps.chest[this.data.HeroGear.marksman.helmet.step-1].lethality;
-            result.Hunter.lethality += this.library.HeroGear.sets['marksman'][this.data.HeroGear.marksman.chest.tier-1].steps.chest[this.data.HeroGear.marksman.chest.step-1].lethality;
-            result.Hunter.lethality += this.library.HeroGear.sets['marksman'][this.data.HeroGear.marksman.feet.tier-1].steps.chest[this.data.HeroGear.marksman.feet.step-1].lethality;
-            result.Rider.lethality += this.library.HeroGear.sets['scout'][this.data.HeroGear.scout.helmet.tier-1].steps.feet[this.data.HeroGear.scout.helmet.step-1].lethality;
-            result.Rider.lethality += this.library.HeroGear.sets['scout'][this.data.HeroGear.scout.chest.tier-1].steps.feet[this.data.HeroGear.scout.chest.step-1].lethality;
-            result.Rider.lethality += this.library.HeroGear.sets['scout'][this.data.HeroGear.scout.feet.tier-1].steps.feet[this.data.HeroGear.scout.feet.step-1].lethality;
+            let types = {brawler:'Infantry',marksman:'Hunter',scout:'Rider'}
+            for(let troopType in types)
+            {
+                result[types[troopType]].lethality += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.helmet.tier-1].steps.helmet[this.data.HeroGear.brawler.helmet.step-1].lethality;
+                result[types[troopType]].lethality += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.chest.tier-1].steps.helmet[this.data.HeroGear.brawler.chest.step-1].lethality;
+                result[types[troopType]].lethality += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.feet.tier-1].steps.helmet[this.data.HeroGear.brawler.feet.step-1].lethality;
 
-            result.Infantry.health += this.library.HeroGear.sets['brawler'][this.data.HeroGear.brawler.helmet.tier-1].steps.helmet[this.data.HeroGear.brawler.helmet.step-1].health;
-            result.Infantry.health += this.library.HeroGear.sets['brawler'][this.data.HeroGear.brawler.chest.tier-1].steps.helmet[this.data.HeroGear.brawler.chest.step-1].health;
-            result.Infantry.health += this.library.HeroGear.sets['brawler'][this.data.HeroGear.brawler.feet.tier-1].steps.helmet[this.data.HeroGear.brawler.feet.step-1].health;
-            result.Hunter.health += this.library.HeroGear.sets['marksman'][this.data.HeroGear.marksman.helmet.tier-1].steps.chest[this.data.HeroGear.marksman.helmet.step-1].health;
-            result.Hunter.health += this.library.HeroGear.sets['marksman'][this.data.HeroGear.marksman.chest.tier-1].steps.chest[this.data.HeroGear.marksman.chest.step-1].health;
-            result.Hunter.health += this.library.HeroGear.sets['marksman'][this.data.HeroGear.marksman.feet.tier-1].steps.chest[this.data.HeroGear.marksman.feet.step-1].health;
-            result.Rider.health += this.library.HeroGear.sets['scout'][this.data.HeroGear.scout.helmet.tier-1].steps.feet[this.data.HeroGear.scout.helmet.step-1].health;
-            result.Rider.health += this.library.HeroGear.sets['scout'][this.data.HeroGear.scout.chest.tier-1].steps.feet[this.data.HeroGear.scout.chest.step-1].health;
-            result.Rider.health += this.library.HeroGear.sets['scout'][this.data.HeroGear.scout.feet.tier-1].steps.feet[this.data.HeroGear.scout.feet.step-1].health;
-
-
+                result[types[troopType]].health += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.helmet.tier-1].steps.helmet[this.data.HeroGear.brawler.helmet.step-1].health;
+                result[types[troopType]].health += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.chest.tier-1].steps.helmet[this.data.HeroGear.brawler.chest.step-1].health;
+                result[types[troopType]].health += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.feet.tier-1].steps.helmet[this.data.HeroGear.brawler.feet.step-1].health;
+            }
 
             // Get military stats boost
             for(let statType of ['attack','defense','lethality','health'])
@@ -340,6 +376,17 @@ export default {
         },
     },
     computed: {
+        formation()
+        {
+            if(this.data.Formation)
+            {
+                if(this.data.Formation.active && this.data.Formation.saved && this.data.Formation.saved[this.data.Formation.active])
+                {
+                    return this.data.Formation.saved[this.data.Formation.active];
+                }
+            }
+            return this.data.Formation.saved[0];
+        },
         attack()
         {
             let attack = 0;
@@ -347,7 +394,7 @@ export default {
             {
                 for (let troop of ['Infantry','Rider','Hunter'])
                 {
-                    let troopAttack = parseInt(this.getPlasma(this.data.Formation.plasma,'attack',this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier])
+                    let troopAttack = parseInt(this.getPlasma(this.formation.plasma,'attack',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
                     attack += troopAttack;
                     if(this.totalBoosts[troop].attack)
                     {
@@ -364,7 +411,7 @@ export default {
             {
                 for (let troop of ['Infantry','Rider','Hunter'])
                 {
-                    let troopLethality = parseInt(this.getPlasma(this.data.Formation.plasma,'lethality',this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier])
+                    let troopLethality = parseInt(this.getPlasma(this.formation.plasma,'lethality',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
                     lethality += troopLethality;
                     if(this.totalBoosts[troop].lethality)
                     {
@@ -381,7 +428,7 @@ export default {
             {
                 for (let troop of ['Infantry','Rider','Hunter'])
                 {
-                    let troopDefense = parseInt(this.getPlasma(this.data.Formation.plasma,'defense',this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier])
+                    let troopDefense = parseInt(this.getPlasma(this.formation.plasma,'defense',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
                     defense += troopDefense;
                     if(this.totalBoosts[troop].defense)
                     {
@@ -398,7 +445,7 @@ export default {
             {
                 for (let troop of ['Infantry','Rider','Hunter'])
                 {
-                    let troopHealth = parseInt(this.getPlasma(this.data.Formation.plasma,'health',this.library.Formation.troops[troop][tier])) * parseInt(this.data.Formation.quantity[troop][tier])
+                    let troopHealth = parseInt(this.getPlasma(this.formation.plasma,'health',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
                     health += troopHealth;
                     if(this.totalBoosts[troop].health)
                     {
@@ -422,11 +469,11 @@ export default {
         },
         selectedHeroes()
         {
-            return this.data.Formation.heroes;
+            return this.formation.heroes;
         },
         isReady()
         {
-            if(this.data && this.data.Formation && this.data.Formation.heroes && this.data.Formation.heroes.brawler)
+            if(this.data && this.formation && this.formation.heroes && this.formation.heroes.brawler)
             {
                 return true;
             }

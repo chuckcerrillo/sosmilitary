@@ -4,6 +4,19 @@
         <div class="text-xs my-2">
             <p>This is the troop formation you'll be using in a march. Choose the appropriate heroes and troops for the activity you wish to do. For instance when attacking settlements you might want to use "Siege" heroes, etc.</p>
         </div>
+        <div class="text-center">
+            <h2>Saved formation slots</h2>
+        </div>
+        <div class="flex items-center justify-center">
+            <div
+                v-for="slot in [0,1,2,3,4]"
+                class="p-2 rounded m-1 border border-gray-400 cursor-pointer"
+                :class="data.Formation.active === slot ? 'border-blue-600 text-white bg-blue-600' : 'text-gray-800'"
+                @click="data.Formation.active = slot"
+            >
+                Slot {{slot+1}}
+            </div>
+        </div>
         <div class="flex items-center justify-center">
             <div
                 v-for="(type,index,num) in library.Formation.types"
@@ -12,19 +25,19 @@
                 <div class="text-center">{{ type.name }}</div>
                 <div
                     class="rounded w-32 h-32 border border-gray-400 bg-gray-300 items-center flex justify-center cursor-pointer"
-                    :class="data.Formation.captain === type.type ? 'border-blue-400':''"
+                    :class="formation.captain === type.type ? 'border-blue-400':''"
                     @click="toggleHeroes(getHeroType(type.type))"
                 >
-                    <div v-if="data.Formation.heroes[getHeroType(type.type)]">
-                        {{findHero(data.Formation.heroes[getHeroType(type.type)])}}
+                    <div v-if="formation.heroes[getHeroType(type.type)]">
+                        {{findHero(formation.heroes[getHeroType(type.type)])}}
                     </div>
                     <div v-else class="text-gray-500 text-center">Choose hero...</div>
                 </div>
-                <div v-if="data.Formation.captain === type.type"
+                <div v-if="formation.captain === type.type"
                      class="text-sm p-2 text-center text-blue-400 font-bold">
                     Captain
                 </div>
-                <div v-else class="text-sm p-2 text-center text-gray-600 hover:text-blue-400 hover:underline cursor-pointer" @click="data.Formation.captain = type.type">Make captain</div>
+                <div v-else class="text-sm p-2 text-center text-gray-600 hover:text-blue-400 hover:underline cursor-pointer" @click="formationcaptain = type.type">Make captain</div>
 
             </div>
 
@@ -58,7 +71,7 @@
                             <div
                                 v-for="level in [0,1,2,3]"
                                 class="p-2 m-2 text-2xl border border-gray-400 rounded w-12 h-12 text-center bg-gray-300 hover:border-blue-400 cursor-pointer"
-                                :class="data.Formation.plasma === level ? 'border-blue-400 text-blue-600 bg-blue-200' : ''"
+                                :class="formation.plasma === level ? 'border-blue-400 text-blue-600 bg-blue-200' : ''"
                                 @click="setPlasmaLevel(level)"
                             >
                                 <div>{{"*".repeat(level)}}</div>
@@ -93,11 +106,11 @@
                         <div class="p-1 w-8 text-right">T{{tier+1}}</div>
                         <div class="p-1 w-28">{{library.Formation.troops[troop][tier].name}}</div>
                         <div class="p-1 w-16">{{library.Formation.troops[troop][tier].stats.type}}</div>
-                        <div class="p-1 w-16 text-right">{{getPlasma(data.Formation.plasma,'attack',library.Formation.troops[troop][tier])}}</div>
-                        <div class="p-1 w-16 text-right">{{getPlasma(data.Formation.plasma,'defense',library.Formation.troops[troop][tier])}}</div>
-                        <div class="p-1 w-16 text-right">{{getPlasma(data.Formation.plasma,'lethality',library.Formation.troops[troop][tier])}}</div>
-                        <div class="p-1 w-16 text-right">{{getPlasma(data.Formation.plasma,'health',library.Formation.troops[troop][tier])}}</div>
-                        <div class="p-1 w-20"><input @change="saveLocalStorage()" type="number" class="w-20 border border-gray-400 rounded p-1 text-xs" v-model="data.Formation.quantity[troop][tier]" /></div>
+                        <div class="p-1 w-16 text-right">{{getPlasma(formation.plasma,'attack',library.Formation.troops[troop][tier])}}</div>
+                        <div class="p-1 w-16 text-right">{{getPlasma(formation.plasma,'defense',library.Formation.troops[troop][tier])}}</div>
+                        <div class="p-1 w-16 text-right">{{getPlasma(formation.plasma,'lethality',library.Formation.troops[troop][tier])}}</div>
+                        <div class="p-1 w-16 text-right">{{getPlasma(formation.plasma,'health',library.Formation.troops[troop][tier])}}</div>
+                        <div class="p-1 w-20"><input @change="saveLocalStorage()" type="number" class="w-20 border border-gray-400 rounded p-1 text-xs" v-model="formation.quantity[troop][tier]" /></div>
                     </div>
                 </div>
             </div>
@@ -118,13 +131,19 @@ export default {
             ui : {
                 showHeroes: false,
                 selectedType: '',
+            },
+            settings: {
+                totalSlots: 5
             }
         }
+    },
+    mounted() {
+
     },
     methods: {
         setPlasmaLevel(level)
         {
-            this.data.Formation.plasma = level;
+            this.formation.plasma = level;
             this.$emit('saveLocalStorage');
         },
         getHeroType(type)
@@ -193,7 +212,11 @@ export default {
         marchCapacity()
         {
             return 0;
-        }
+        },
+        formation()
+        {
+            return this.data.Formation.saved[this.data.Formation.active];
+        },
     }
 }
 </script>
