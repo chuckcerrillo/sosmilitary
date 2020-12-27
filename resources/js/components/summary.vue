@@ -1,148 +1,143 @@
 <template>
-    <div class="text-gray-200 relative">
-        <h1 class="text-center text-2xl font-bold mb-2">Summary</h1>
-        <div class="flex flex-wrap items-center justify-center mb-4">
+    <div class="relative">
+        <h1 class="text-center text-2xl font-bold mt-8 mb-2">Summary</h1>
+        <div class="flex flex-wrap items-center justify-center mb-8">
 
-<!--            <div class="text-center m-1 mx-4">-->
-<!--                <div class="text-xs">-->
-<!--                    Attack-->
-<!--                </div>-->
-<!--                <div class="text-3xl font-bold">-->
-<!--                    0.0-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            <div class="text-center m-1 mx-4">-->
-<!--                <div class="text-xs">-->
-<!--                    Defense-->
-<!--                </div>-->
-<!--                <div class="text-3xl font-bold">-->
-<!--                    0.0-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            <div class="text-center m-1 mx-4">-->
-<!--                <div class="text-xs">-->
-<!--                    Lethality-->
-<!--                </div>-->
-<!--                <div class="text-3xl font-bold">-->
-<!--                    0.0-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            <div class="text-center m-1 mx-4">-->
-<!--                <div class="text-xs">-->
-<!--                    Health-->
-<!--                </div>-->
-<!--                <div class="text-3xl font-bold">-->
-<!--                    0.0-->
-<!--                </div>-->
-<!--            </div>-->
-
-            <div class="text-center m-1 mx-4">
-                <div class="text-xs">
+            <div class="text-center m-1 bg-gray-400 mx-2 rounded p-4 py-8 w-60">
+                <div class="text-sm">
                     Total Attack Power
                 </div>
                 <div class="text-3xl font-bold">
-                    {{ totalAttackPower.toLocaleString() }}
+                    {{ Math.round(totalAttackPower).toLocaleString() }}
                 </div>
             </div>
 
-            <div class="text-center m-1 mx-4">
-                <div class="text-xs">
+            <div class="text-center m-1 bg-gray-400 mx-2 rounded p-4 py-8 w-60">
+                <div class="text-sm">
                     Total Defense Power
                 </div>
                 <div class="text-3xl font-bold">
-                    {{ totalDefensePower.toLocaleString() }}
+                    {{ Math.round(totalDefensePower).toLocaleString() }}
                 </div>
             </div>
         </div>
-        <div class="hidden lg:block text-center font-bold">
-            <div v-if="showSummary" class="hover:text-green-400 cursor-pointer" @click="toggleSummary()">
-                Hide detailed breakdown
-            </div>
-            <div v-else class="hover:text-green-400 cursor-pointer" @click="toggleSummary()">
-                Show detailed breakdown
-            </div>
-        </div>
-        <div class="text-gray-200 text border-t border-gray-600 mt-4">
-            <h1 class="text-center text-2xl font-bold my-2 text-white">Power Breakdown</h1>
+        <div class="text mt-8">
+            <h1 class="text-center text-2xl font-bold my-2">Power Breakdown</h1>
             <div class="flex items-start justify-center">
                 <div class="lg:w-200 p-2">
-                    <div class="flex items-start justify-center text-center">
-                        <div class="m-2 p-2">
+                    <div class="flex items-start justify-center text-center text-sm">
+                        <div class="w-48 m-2 p-4 rounded bg-gray-300">
                             <div>Attack</div>
-                            <div class="font-bold text-2xl">{{ attack.toLocaleString() }}</div>
+                            <div class="font-bold text-2xl">{{ Math.round(attack).toLocaleString() }}</div>
                         </div>
-                        <div class="m-2 p-2">
+                        <div class="w-48 m-2 p-4 rounded bg-gray-300">
                             <div>Defense</div>
-                            <div class="font-bold text-xl">{{ defense.toLocaleString() }}</div>
+                            <div class="font-bold text-2xl">{{ Math.round(defense).toLocaleString() }}</div>
                         </div>
-                        <div class="m-2 p-2">
+                        <div class="w-48 m-2 p-4 rounded bg-gray-300">
                             <div>Lethality</div>
-                            <div class="font-bold text-xl">{{ lethality.toLocaleString() }}</div>
+                            <div class="font-bold text-2xl">{{ Math.round(lethality).toLocaleString() }}</div>
                         </div>
-                        <div class="m-2 p-2">
+                        <div class="w-48 m-2 p-4 rounded bg-gray-300">
                             <div>Health</div>
-                            <div class="font-bold text-xl">{{ health.toLocaleString() }}</div>
+                            <div class="font-bold text-2xl">{{ Math.round(health).toLocaleString() }}</div>
                         </div>
                     </div>
-                    <h1 class="text-xl font-bold p-2">Total Boosts</h1>
-                    <div>
-                        <div
-                            class="p-2 py-1 flex items-center justify-center font-bold text-xs"
-                        >
-                            <div class="w-20 p-1">Class</div>
-                            <div class="w-20 p-1">Attack</div>
-                            <div class="w-20 p-1">Defense</div>
-                            <div class="w-20 p-1">Lethality</div>
-                            <div class="w-20 p-1">Health</div>
+
+                    <div class="flex items-start justify-center text-sm">
+                        <div class="w-48 m-2 p-4 rounded bg-gray-300">
+                            <div class="flex items-center justify-start">
+                                <div class="text-left w-16">Infantry</div>
+                                <div class="text-right w-20 font-bold">{{ Math.round(Infantry.attack).toLocaleString() }}</div>
+                            </div>
+                            <div class="flex items-center justify-start">
+                                <div class="text-left w-16">Hunter</div>
+                                <div class="text-right w-20 font-bold">{{ Math.round(Hunter.attack).toLocaleString() }}</div>
+                            </div>
+                            <div class="flex items-center justify-start">
+                                <div class="text-left w-16">Rider</div>
+                                <div class="text-right w-20 font-bold">{{ Math.round(Rider.attack).toLocaleString() }}</div>
+                            </div>
                         </div>
-                        <div
-                            v-for="(troopType,num) in ['Infantry','Hunter','Rider']"
-                            class="p-2 py-1 flex items-center justify-center text-xs rounded"
-                            :class="num % 2 === 0 ? 'bg-gray-600':''"
-                        >
-                            <div class="w-20 p-1">{{ troopType }}</div>
-                            <div
-                                v-for="(stat,num) in ['attack','defense','lethality','health']"
-                                class="w-20 p-1"
-
-                            >
-
-                                {{getTotalBoosts()[troopType][stat].toFixed(2)}}%
+                        <div class="w-48 m-2 p-4 rounded bg-gray-300">
+                            <div class="flex items-center justify-start">
+                                <div class="text-left w-16">Infantry</div>
+                                <div class="text-right w-20 font-bold">{{ Math.round(Infantry.defense).toLocaleString() }}</div>
+                            </div>
+                            <div class="flex items-center justify-start">
+                                <div class="text-left w-16">Hunter</div>
+                                <div class="text-right w-20 font-bold">{{ Math.round(Hunter.defense).toLocaleString() }}</div>
+                            </div>
+                            <div class="flex items-center justify-start">
+                                <div class="text-left w-16">Rider</div>
+                                <div class="text-right w-20 font-bold">{{ Math.round(Rider.defense).toLocaleString() }}</div>
+                            </div>
+                        </div>
+                        <div class="w-48 m-2 p-4 rounded bg-gray-300">
+                            <div class="flex items-center justify-start">
+                                <div class="text-left w-16">Infantry</div>
+                                <div class="text-right w-20 font-bold">{{ Math.round(Infantry.lethality).toLocaleString() }}</div>
+                            </div>
+                            <div class="flex items-center justify-start">
+                                <div class="text-left w-16">Hunter</div>
+                                <div class="text-right w-20 font-bold">{{ Math.round(Hunter.lethality).toLocaleString() }}</div>
+                            </div>
+                            <div class="flex items-center justify-start">
+                                <div class="text-left w-16">Rider</div>
+                                <div class="text-right w-20 font-bold">{{ Math.round(Rider.lethality).toLocaleString() }}</div>
+                            </div>
+                        </div>
+                        <div class="w-48 m-2 p-4 rounded bg-gray-300">
+                            <div class="flex items-center justify-start">
+                                <div class="text-left w-16">Infantry</div>
+                                <div class="text-right w-20 font-bold">{{ Math.round(Infantry.health).toLocaleString() }}</div>
+                            </div>
+                            <div class="flex items-center justify-start">
+                                <div class="text-left w-16">Hunter</div>
+                                <div class="text-right w-20 font-bold">{{ Math.round(Hunter.health).toLocaleString() }}</div>
+                            </div>
+                            <div class="flex items-center justify-start">
+                                <div class="text-left w-16">Rider</div>
+                                <div class="text-right w-20 font-bold">{{ Math.round(Rider.health).toLocaleString() }}</div>
                             </div>
                         </div>
                     </div>
 
-                    <h1 class="text-xl font-bold p-2">Hero Boosts</h1>
+                    <h1 class="text-xl font-bold p-2 text-center mt-4">Boost Details</h1>
                     <div>
                         <div
-                            class="p-2 py-1 flex items-center justify-center font-bold text-xs"
+                            v-for="(label,stat) in {attack:'Attack',defense:'Defense',health:'Health',lethality: 'Lethality'}"
+                            class="rounded p-2 py-1 flex items-center justify-center"
+                            :class="stat === 'defense' || stat === 'lethality' ? 'bg-gray-100' : ''"
                         >
-                            <div class="w-20 p-1">Class</div>
-                            <div class="w-20 p-1">Attack</div>
-                            <div class="w-20 p-1">Defense</div>
-                            <div class="w-20 p-1">Lethality</div>
-                            <div class="w-20 p-1">Health</div>
+                            <div class="mr-2 text-right w-40 p-1">Troop {{ label }}</div>
+                            <div class="ml-2 font-bold w-40 p-1">{{ data.Military['troop-' + stat] }}%</div>
                         </div>
                         <div
-                            v-for="(troopType,num) in ['Infantry','Hunter','Rider']"
-                            class="p-2 py-1 flex items-center justify-center text-xs rounded"
-                            :class="num % 2 === 0 ? 'bg-gray-600':''"
+                            v-for="(label,stat) in {attack:'Attack',defense:'Defense',health:'Health',lethality: 'Lethality'}"
+                            class="rounded p-2 py-1 flex items-center justify-center"
+                            :class="stat === 'defense' || stat === 'lethality' ? 'bg-gray-100' : ''"
                         >
-                            <div class="w-20 p-1">{{ troopType }}</div>
-                            <div
-                                v-for="(stat,num) in ['attack','defense','lethality','health']"
-                                class="w-20 p-1"
-
-                            >
-
-                                {{getTotalBoosts()[troopType][stat].toFixed(2)}}%
-                            </div>
+                            <div class="mr-l text-right w-40 p-1">Infantry {{ label }}</div>
+                            <div class="ml-2 font-bold w-40 p-1">{{getTotalBoosts(true)['Infantry'][stat].toFixed(2)}}%</div>
+                        </div>
+                        <div
+                            v-for="(label,stat) in {attack:'Attack',defense:'Defense',health:'Health',lethality: 'Lethality'}"
+                            class="rounded p-2 py-1 flex items-center justify-center"
+                            :class="stat === 'defense' || stat === 'lethality' ? 'bg-gray-100' : ''"
+                        >
+                            <div class="mr-l text-right w-40 p-1">Hunter {{ label }}</div>
+                            <div class="ml-2 font-bold w-40 p-1">{{getTotalBoosts(true)['Hunter'][stat].toFixed(2)}}%</div>
+                        </div>
+                        <div
+                            v-for="(label,stat) in {attack:'Attack',defense:'Defense',health:'Health',lethality: 'Lethality'}"
+                            class="rounded p-2 py-1 flex items-center justify-center"
+                            :class="stat === 'defense' || stat === 'lethality' ? 'bg-gray-100' : ''"
+                        >
+                            <div class="mr-2 text-right w-40 p-1">Rider {{ label }}</div>
+                            <div class="ml-2 font-bold w-40 p-1">{{getTotalBoosts(true)['Rider'][stat].toFixed(2)}}%</div>
                         </div>
                     </div>
-
 <!--                    <h1 class="text-xl font-bold p-2">Troop Power</h1>-->
 <!--                    <div>-->
 <!--                        <div-->
@@ -252,7 +247,7 @@ export default {
             }
             return result;
         },
-        getTotalBoosts()
+        getTotalBoosts(pure)
         {
             let result = {
                 Infantry: {
@@ -310,9 +305,12 @@ export default {
             // Get military stats boost
             for(let statType of ['attack','defense','lethality','health'])
             {
-                for(let type in result)
+                if (pure)
                 {
-                    result[type][statType] += parseFloat(this.data.Military['troop-' + statType]);
+                    for(let type in result)
+                    {
+                        result[type][statType] += parseFloat(this.data.Military['troop-' + statType]);
+                    }
                 }
 
                 result.Infantry[statType] += parseFloat(this.data.Military['infantry-' + statType]);
@@ -387,6 +385,168 @@ export default {
             }
             return this.data.Formation.saved[0];
         },
+        Infantry()
+        {
+            let attack = 0;
+            let defense = 0;
+            let health = 0;
+            let lethality = 0;
+            let troop = 'Infantry';
+            for(let tier in [9,8,7,6,5,4,3,2,1,0])
+            {
+                let value = parseInt(this.getPlasma(this.formation.plasma[troop],'attack',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
+                attack += value;
+                if(this.totalBoosts[troop].attack)
+                {
+                    attack += value * this.totalBoosts[troop].attack/100;
+                }
+            }
+
+            for(let tier in [9,8,7,6,5,4,3,2,1,0])
+            {
+                let value = parseInt(this.getPlasma(this.formation.plasma[troop],'defense',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
+                defense += value;
+                if(this.totalBoosts[troop].defense)
+                {
+                    defense += value * this.totalBoosts[troop].defense/100;
+                }
+            }
+
+            for(let tier in [9,8,7,6,5,4,3,2,1,0])
+            {
+                let value = parseInt(this.getPlasma(this.formation.plasma[troop],'lethality',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
+                lethality += value;
+                if(this.totalBoosts[troop].lethality)
+                {
+                    lethality += value * this.totalBoosts[troop].lethality/100;
+                }
+            }
+
+            for(let tier in [9,8,7,6,5,4,3,2,1,0])
+            {
+                let value = parseInt(this.getPlasma(this.formation.plasma[troop],'health',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
+                health += value;
+                if(this.totalBoosts[troop].health)
+                {
+                    health += value * this.totalBoosts[troop].health/100;
+                }
+            }
+
+            return {
+                attack: attack,
+                defense: defense,
+                lethality: lethality,
+                health: health,
+            }
+        },
+        Hunter()
+        {
+            let attack = 0;
+            let defense = 0;
+            let health = 0;
+            let lethality = 0;
+            let troop = 'Hunter';
+            for(let tier in [9,8,7,6,5,4,3,2,1,0])
+            {
+                let value = parseInt(this.getPlasma(this.formation.plasma[troop],'attack',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
+                attack += value;
+                if(this.totalBoosts[troop].attack)
+                {
+                    attack += value * this.totalBoosts[troop].attack/100;
+                }
+            }
+
+            for(let tier in [9,8,7,6,5,4,3,2,1,0])
+            {
+                let value = parseInt(this.getPlasma(this.formation.plasma[troop],'defense',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
+                defense += value;
+                if(this.totalBoosts[troop].defense)
+                {
+                    defense += value * this.totalBoosts[troop].defense/100;
+                }
+            }
+
+            for(let tier in [9,8,7,6,5,4,3,2,1,0])
+            {
+                let value = parseInt(this.getPlasma(this.formation.plasma[troop],'lethality',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
+                lethality += value;
+                if(this.totalBoosts[troop].lethality)
+                {
+                    lethality += value * this.totalBoosts[troop].lethality/100;
+                }
+            }
+
+            for(let tier in [9,8,7,6,5,4,3,2,1,0])
+            {
+                let value = parseInt(this.getPlasma(this.formation.plasma[troop],'health',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
+                health += value;
+                if(this.totalBoosts[troop].health)
+                {
+                    health += value * this.totalBoosts[troop].health/100;
+                }
+            }
+
+            return {
+                attack: attack,
+                defense: defense,
+                lethality: lethality,
+                health: health,
+            }
+        },
+        Rider()
+        {
+            let attack = 0;
+            let defense = 0;
+            let health = 0;
+            let lethality = 0;
+            let troop = 'Rider';
+            for(let tier in [9,8,7,6,5,4,3,2,1,0])
+            {
+                let value = parseInt(this.getPlasma(this.formation.plasma[troop],'attack',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
+                attack += value;
+                if(this.totalBoosts[troop].attack)
+                {
+                    attack += value * this.totalBoosts[troop].attack/100;
+                }
+            }
+
+            for(let tier in [9,8,7,6,5,4,3,2,1,0])
+            {
+                let value = parseInt(this.getPlasma(this.formation.plasma[troop],'defense',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
+                defense += value;
+                if(this.totalBoosts[troop].defense)
+                {
+                    defense += value * this.totalBoosts[troop].defense/100;
+                }
+            }
+
+            for(let tier in [9,8,7,6,5,4,3,2,1,0])
+            {
+                let value = parseInt(this.getPlasma(this.formation.plasma[troop],'lethality',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
+                lethality += value;
+                if(this.totalBoosts[troop].lethality)
+                {
+                    lethality += value * this.totalBoosts[troop].lethality/100;
+                }
+            }
+
+            for(let tier in [9,8,7,6,5,4,3,2,1,0])
+            {
+                let value = parseInt(this.getPlasma(this.formation.plasma[troop],'health',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
+                health += value;
+                if(this.totalBoosts[troop].health)
+                {
+                    health += value * this.totalBoosts[troop].health/100;
+                }
+            }
+
+            return {
+                attack: attack,
+                defense: defense,
+                lethality: lethality,
+                health: health,
+            }
+        },
         attack()
         {
             let attack = 0;
@@ -394,7 +554,7 @@ export default {
             {
                 for (let troop of ['Infantry','Rider','Hunter'])
                 {
-                    let troopAttack = parseInt(this.getPlasma(this.formation.plasma,'attack',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
+                    let troopAttack = parseInt(this.getPlasma(this.formation.plasma[troop],'attack',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
                     attack += troopAttack;
                     if(this.totalBoosts[troop].attack)
                     {
@@ -411,7 +571,7 @@ export default {
             {
                 for (let troop of ['Infantry','Rider','Hunter'])
                 {
-                    let troopLethality = parseInt(this.getPlasma(this.formation.plasma,'lethality',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
+                    let troopLethality = parseInt(this.getPlasma(this.formation.plasma[troop],'lethality',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
                     lethality += troopLethality;
                     if(this.totalBoosts[troop].lethality)
                     {
@@ -428,7 +588,7 @@ export default {
             {
                 for (let troop of ['Infantry','Rider','Hunter'])
                 {
-                    let troopDefense = parseInt(this.getPlasma(this.formation.plasma,'defense',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
+                    let troopDefense = parseInt(this.getPlasma(this.formation.plasma[troop],'defense',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
                     defense += troopDefense;
                     if(this.totalBoosts[troop].defense)
                     {
@@ -445,7 +605,7 @@ export default {
             {
                 for (let troop of ['Infantry','Rider','Hunter'])
                 {
-                    let troopHealth = parseInt(this.getPlasma(this.formation.plasma,'health',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
+                    let troopHealth = parseInt(this.getPlasma(this.formation.plasma[troop],'health',this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier])
                     health += troopHealth;
                     if(this.totalBoosts[troop].health)
                     {

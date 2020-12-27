@@ -24,12 +24,13 @@
             >
                 <div class="text-center">{{ type.name }}</div>
                 <div
-                    class="rounded w-32 h-32 border border-gray-400 bg-gray-300 items-center flex justify-center cursor-pointer"
+                    class="rounded w-32 h-36 border border-gray-400 bg-gray-300 items-center flex justify-center cursor-pointer"
                     :class="formation.captain === type.type ? 'border-blue-400':''"
                     @click="toggleHeroes(getHeroType(type.type))"
                 >
                     <div v-if="formation.heroes[getHeroType(type.type)]">
-                        {{findHero(formation.heroes[getHeroType(type.type)])}}
+                        <div class="text-center font-bold text-xs">{{findHero(formation.heroes[getHeroType(type.type)])}}</div>
+                        <div><img class="w-full" :src="'img/heroes/' + findHero(formation.heroes[getHeroType(type.type)]) + '.png'"></div>
                     </div>
                     <div v-else class="text-gray-500 text-center">Choose hero...</div>
                 </div>
@@ -65,25 +66,28 @@
         <div class="flex items-start justify-center">
             <div>
                 <div class="flex items-start justify-center">
-                    <div class="mr-1 p-4 border border-gray-400 rounded h-32">
+                    <div class="p-4 border border-gray-400 rounded">
                         <div>Plasma Level</div>
-                        <div class="flex items-center justify-start">
-                            <div
-                                v-for="level in [0,1,2,3]"
-                                class="p-2 m-2 text-2xl border border-gray-400 rounded w-12 h-12 text-center bg-gray-300 hover:border-blue-400 cursor-pointer"
-                                :class="formation.plasma === level ? 'border-blue-400 text-blue-600 bg-blue-200' : ''"
-                                @click="setPlasmaLevel(level)"
-                            >
-                                <div>{{"*".repeat(level)}}</div>
+                        <div>
+                            <div v-for="troopType in ['Infantry','Rider','Hunter']" class="flex items-center justify-start">
+                                <div class="w-20">{{troopType}}</div>
+                                <div
+                                    v-for="level in [0,1,2,3,4,5]"
+                                    class="p-2 m-2 text-2xl border border-gray-400 rounded w-20 h-12 text-center bg-gray-300 hover:border-blue-400 cursor-pointer"
+                                    :class="formation.plasma[troopType] === level ? 'border-blue-400 text-blue-600 bg-blue-200' : ''"
+                                    @click="setPlasmaLevel(troopType,level)"
+                                >
+                                    <div>{{"*".repeat(level)}}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="ml-1 p-4 border border-gray-400 rounded h-32">
-                        <div>March Capacity</div>
-                        <div class="font-bold text-3xl">{{ marchCapacity }}</div>
-                    </div>
                 </div>
-                <div>
+                <div class="mt-1 p-4 border border-gray-400 rounded h-32">
+                    <div>March Capacity</div>
+                    <div class="font-bold text-3xl">{{ marchCapacity }}</div>
+                </div>
+                <div class="mt-4">
                     <div class="flex p-1 text-xs">
                         <div class="p-1 w-8">Tier</div>
                         <div class="p-1 w-28">Name</div>
@@ -106,10 +110,10 @@
                         <div class="p-1 w-8 text-right">T{{tier+1}}</div>
                         <div class="p-1 w-28">{{library.Formation.troops[troop][tier].name}}</div>
                         <div class="p-1 w-16">{{library.Formation.troops[troop][tier].stats.type}}</div>
-                        <div class="p-1 w-16 text-right">{{getPlasma(formation.plasma,'attack',library.Formation.troops[troop][tier])}}</div>
-                        <div class="p-1 w-16 text-right">{{getPlasma(formation.plasma,'defense',library.Formation.troops[troop][tier])}}</div>
-                        <div class="p-1 w-16 text-right">{{getPlasma(formation.plasma,'lethality',library.Formation.troops[troop][tier])}}</div>
-                        <div class="p-1 w-16 text-right">{{getPlasma(formation.plasma,'health',library.Formation.troops[troop][tier])}}</div>
+                        <div class="p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'attack',library.Formation.troops[troop][tier])}}</div>
+                        <div class="p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'defense',library.Formation.troops[troop][tier])}}</div>
+                        <div class="p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'lethality',library.Formation.troops[troop][tier])}}</div>
+                        <div class="p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'health',library.Formation.troops[troop][tier])}}</div>
                         <div class="p-1 w-20"><input @change="saveLocalStorage()" type="number" class="w-20 border border-gray-400 rounded p-1 text-xs" v-model="formation.quantity[troop][tier]" /></div>
                     </div>
                 </div>
@@ -141,9 +145,9 @@ export default {
 
     },
     methods: {
-        setPlasmaLevel(level)
+        setPlasmaLevel(troopType,level)
         {
-            this.formation.plasma = level;
+            this.formation.plasma[troopType] = level;
             this.$emit('saveLocalStorage');
         },
         getHeroType(type)

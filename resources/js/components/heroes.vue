@@ -11,13 +11,13 @@
                     >
                         <div class="w-20 pr-2">Name</div>
                         <div class="w-24">Type</div>
-                        <div class="w-16">Level</div>
                         <div class="w-28">Rank</div>
+                        <div class="w-16">Level</div>
                         <div class="w-12">March Capacity</div>
                         <div class="w-16 text-center">Attack</div>
                         <div class="w-16 text-center">Defense</div>
-                        <div class="w-16 text-center">Lethality</div>
-                        <div class="w-16 text-center">Health</div>
+<!--                        <div class="w-16 text-center">Lethality</div>-->
+<!--                        <div class="w-16 text-center">Health</div>-->
                     </div>
                 </div>
                 <div
@@ -25,18 +25,23 @@
 
                 >
                     <div
-                        class="rounded flex items-center justify-start text-sm h-16 px-4"
+                        class="rounded flex items-center justify-start text-sm h-24 px-4"
                         :class="num%2===0 ? 'bg-gray-100' : ''"
                     >
-                        <div class="w-20 pr-2">{{hero.name}}</div>
-                        <div class="w-24">{{types[hero.type].name}}</div>
-                        <div class="w-16"><input @change="saveLocalStorage()" type="number" class="w-12 border border-gray-400 rounded p-1 text-xs" max="80" min="1"  value="1" v-model="data.Heroes[hero.key].level"></div>
+                        <div class="w-20 pr-2">
+                            <div class="h-16"><img class="w-full" :src="'/img/heroes/' + hero.name.toLowerCase() + '.png'"></div>
+                        </div>
+                        <div class="w-24">
+                            <div class="w-20 font-bold text-base">{{hero.name}}</div>
+                            <div class="text-sm">{{types[hero.type].name}}</div>
+                        </div>
                         <div class="w-28">{{ getRank(hero.key) }}</div>
+                        <div class="w-16"><input @change="saveLocalStorage()" type="number" class="w-12 border border-gray-400 rounded p-1 text-xs" max="80" min="1"  value="1" v-model="data.Heroes[hero.key].level"></div>
                         <div class="w-12">{{getMarch(hero.key)}}</div>
                         <div class="w-16 text-center">{{getAttack(hero.key)}}%</div>
                         <div class="w-16 text-center">{{getDefense(hero.key)}}%</div>
-                        <div class="w-16 text-center">{{getLethality(hero.key)}}%</div>
-                        <div class="w-16 text-center">{{getHealth(hero.key)}}%</div>
+<!--                        <div class="w-16 text-center">{{getLethality(hero.key)}}%</div>-->
+<!--                        <div class="w-16 text-center">{{getHealth(hero.key)}}%</div>-->
                         <div class="text-xs">
                             <a @click="promote(hero.key)" class="block p-1 hover:underline text-blue-400 cursor-pointer">Promote</a>
                             <a @click="demote(hero.key)" class="block p-1 hover:underline text-blue-400 cursor-pointer">Demote</a>

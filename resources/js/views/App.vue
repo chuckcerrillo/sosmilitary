@@ -1,7 +1,7 @@
 <template>
     <div class="flex-col flex-1 lg:h-screen lg:overflow-y-hidden bg-gray-200 relative">
         <div class="w-full bg-gray-800 text-white">
-            <div class="text-2xl font-bold p-4 tracking-tighter text-center">State of Survival - Military Calculator</div>
+            <div class="text-2xl font-bold p-4 tracking-tighter text-center">State of Survival - Build Calculator</div>
             <div class="flex items-start justify-center text-sm">
                 <a
                     class="inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8"
@@ -20,12 +20,17 @@
                 >Troop Formation</a>
                 <a
                     class="inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8"
+                    :class="ui.section === 'summary' ? 'border-blue-600 border-b-8' : ''"
+                    @click="ui.section = 'summary'"
+                >Summary</a>
+                <a
+                    class="inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8"
                     :class="ui.section === 'import' ? 'border-blue-600 border-b-8' : ''"
                     @click="ui.section = 'import'"
                 >Import/Export</a>
             </div>
         </div>
-        <div class="overflow-y-auto lg:fixed inset-x-0 h-full lg:h-auto" style="top:7.5rem; bottom: 16rem;">
+        <div class="overflow-y-auto lg:fixed inset-x-0 h-full lg:h-auto" style="top:7.5rem; bottom: 0;">
             <MilitaryStats
                 v-show="ui.section === 'stats'"
                 v-on:saveLocalStorage="saveLocalStorage"
@@ -62,21 +67,11 @@
                 :data="data"
                 class="py-8"
             />
-            <div class="lg:hidden bg-gray-700 text-white">
-                <Summary
-                    v-on:toggleSummary="toggleSummary"
-                    :library="library"
-                    :data="data"
-                    :showSummary="ui.showSummary"
-                />
-            </div>
-        </div>
-        <div class="hidden lg:block lg:fixed z-10 bottom-0 inset-x-0 bg-gray-700 text-white mb-24" :class="ui.showSummary ? '' : 'h-40'" :style="ui.showSummary ? 'top: 7.25rem; bottom: 0;' : ''">
             <Summary
+                v-show="ui.section === 'summary'"
                 v-on:toggleSummary="toggleSummary"
                 :library="library"
                 :data="data"
-                :showSummary="ui.showSummary"
             />
         </div>
         <div class="relative lg:fixed lg:z-20 lg:bottom-0 lg:inset-x-0 w-full bg-black text-white lg:h-24">
@@ -145,7 +140,11 @@ export default {
                                 marksman: false,
                                 scout: false,
                             },
-                            plasma: 0,
+                            plasma: {
+                                Infantry: 0,
+                                Hunter: 0,
+                                Rider: 0,
+                            },
                             quantity: {
                                 Infantry: [
                                     0,0,0,0,0,0,0,0,0,0
@@ -1621,6 +1620,18 @@ export default {
                                         health: 0,
                                         defense: 1,
                                     },
+                                    4 : {
+                                        attack: 0,
+                                        lethality: 0,
+                                        health: 0,
+                                        defense: 1,
+                                    },
+                                    5 : {
+                                        attack: 0,
+                                        lethality: 0,
+                                        health: 0,
+                                        defense: 2,
+                                    },
                                 }
                             },
                             {
@@ -1654,6 +1665,18 @@ export default {
                                         lethality: 0,
                                         health: 0,
                                         defense: 1,
+                                    },
+                                    4 : {
+                                        attack: 0,
+                                        lethality: 0,
+                                        health: 0,
+                                        defense: 1,
+                                    },
+                                    5 : {
+                                        attack: 0,
+                                        lethality: 0,
+                                        health: 0,
+                                        defense: 2,
                                     },
                                 }
                             },
@@ -1689,6 +1712,18 @@ export default {
                                         health: 3,
                                         defense: 1,
                                     },
+                                    4 : {
+                                        attack: 0,
+                                        lethality: 0,
+                                        health: 4,
+                                        defense: 1,
+                                    },
+                                    5 : {
+                                        attack: 0,
+                                        lethality: 0,
+                                        health: 5,
+                                        defense: 2,
+                                    },
                                 }
                             },
                             {
@@ -1723,11 +1758,23 @@ export default {
                                         health: 3,
                                         defense: 3,
                                     },
+                                    4 : {
+                                        attack: 0,
+                                        lethality: 0,
+                                        health: 4,
+                                        defense: 4,
+                                    },
+                                    5 : {
+                                        attack: 0,
+                                        lethality: 0,
+                                        health: 5,
+                                        defense: 5,
+                                    },
                                 }
                             },
                             {
                                 tier: 5,
-                                name: 'Blasters',
+                                name: 'Slashers',
                                 stats: {
                                     health: 10,
                                     attack: 5,
@@ -1756,6 +1803,18 @@ export default {
                                         lethality: 2,
                                         health: 3,
                                         defense: 3,
+                                    },
+                                    4 : {
+                                        attack: 3,
+                                        lethality: 3,
+                                        health: 4,
+                                        defense: 5,
+                                    },
+                                    5 : {
+                                        attack: 4,
+                                        lethality: 3,
+                                        health: 5,
+                                        defense: 6,
                                     },
                                 }
                             },
@@ -1791,6 +1850,18 @@ export default {
                                         health: 3,
                                         defense: 3,
                                     },
+                                    4 : {
+                                        attack: 3,
+                                        lethality: 3,
+                                        health: 4,
+                                        defense: 5,
+                                    },
+                                    5 : {
+                                        attack: 4,
+                                        lethality: 3,
+                                        health: 5,
+                                        defense: 6,
+                                    },
                                 }
                             },
                             {
@@ -1824,6 +1895,18 @@ export default {
                                         lethality: 2,
                                         health: 3,
                                         defense: 4,
+                                    },
+                                    4 : {
+                                        attack: 3,
+                                        lethality: 3,
+                                        health: 4,
+                                        defense: 5,
+                                    },
+                                    5 : {
+                                        attack: 4,
+                                        lethality: 3,
+                                        health: 5,
+                                        defense: 7,
                                     },
                                 }
                             },
@@ -1859,6 +1942,18 @@ export default {
                                         health: 3,
                                         defense: 4,
                                     },
+                                    4 : {
+                                        attack: 3,
+                                        lethality: 3,
+                                        health: 4,
+                                        defense: 5,
+                                    },
+                                    5 : {
+                                        attack: 4,
+                                        lethality: 3,
+                                        health: 5,
+                                        defense: 7,
+                                    },
                                 }
                             },
                             {
@@ -1892,6 +1987,18 @@ export default {
                                         lethality: 2,
                                         health: 3,
                                         defense: 4,
+                                    },
+                                    4 : {
+                                        attack: 3,
+                                        lethality: 3,
+                                        health: 4,
+                                        defense: 5,
+                                    },
+                                    5 : {
+                                        attack: 4,
+                                        lethality: 3,
+                                        health: 5,
+                                        defense: 7,
                                     },
                                 }
                             },
@@ -1927,6 +2034,18 @@ export default {
                                         health: 3,
                                         defense: 4,
                                     },
+                                    4 : {
+                                        attack: 3,
+                                        lethality: 3,
+                                        health: 4,
+                                        defense: 5,
+                                    },
+                                    5 : {
+                                        attack: 4,
+                                        lethality: 3,
+                                        health: 5,
+                                        defense: 7,
+                                    },
                                 }
                             },
                         ],
@@ -1959,6 +2078,18 @@ export default {
                                     },
                                     3 : {
                                         attack: 1,
+                                        lethality: 0,
+                                        health: 0,
+                                        defense: 0,
+                                    },
+                                    4 : {
+                                        attack: 1,
+                                        lethality: 0,
+                                        health: 0,
+                                        defense: 0,
+                                    },
+                                    5 : {
+                                        attack: 2,
                                         lethality: 0,
                                         health: 0,
                                         defense: 0,
@@ -1997,6 +2128,18 @@ export default {
                                         health: 0,
                                         defense: 0,
                                     },
+                                    4 : {
+                                        attack: 1,
+                                        lethality: 0,
+                                        health: 0,
+                                        defense: 0,
+                                    },
+                                    5 : {
+                                        attack: 2,
+                                        lethality: 0,
+                                        health: 0,
+                                        defense: 0,
+                                    },
                                 }
                             },
                             {
@@ -2028,6 +2171,18 @@ export default {
                                     3 : {
                                         attack: 3,
                                         lethality: 3,
+                                        health: 0,
+                                        defense: 0,
+                                    },
+                                    4 : {
+                                        attack: 4,
+                                        lethality: 4,
+                                        health: 0,
+                                        defense: 0,
+                                    },
+                                    5 : {
+                                        attack: 5,
+                                        lethality: 5,
                                         health: 0,
                                         defense: 0,
                                     },
@@ -2065,6 +2220,18 @@ export default {
                                         health: 0,
                                         defense: 0,
                                     },
+                                    4 : {
+                                        attack: 4,
+                                        lethality: 4,
+                                        health: 0,
+                                        defense: 0,
+                                    },
+                                    5 : {
+                                        attack: 5,
+                                        lethality: 5,
+                                        health: 0,
+                                        defense: 0,
+                                    },
                                 }
                             },
                             {
@@ -2098,6 +2265,18 @@ export default {
                                         lethality: 3,
                                         health: 3,
                                         defense: 3,
+                                    },
+                                    4 : {
+                                        attack: 4,
+                                        lethality: 4,
+                                        health: 3,
+                                        defense: 4,
+                                    },
+                                    5 : {
+                                        attack: 5,
+                                        lethality: 5,
+                                        health: 4,
+                                        defense: 4,
                                     },
                                 }
                             },
@@ -2133,6 +2312,18 @@ export default {
                                         health: 3,
                                         defense: 3,
                                     },
+                                    4 : {
+                                        attack: 4,
+                                        lethality: 4,
+                                        health: 3,
+                                        defense: 4,
+                                    },
+                                    5 : {
+                                        attack: 5,
+                                        lethality: 5,
+                                        health: 4,
+                                        defense: 4,
+                                    },
                                 }
                             },
                             {
@@ -2166,6 +2357,18 @@ export default {
                                         lethality: 3,
                                         health: 3,
                                         defense: 3,
+                                    },
+                                    4 : {
+                                        attack: 5,
+                                        lethality: 4,
+                                        health: 3,
+                                        defense: 4,
+                                    },
+                                    5 : {
+                                        attack: 7,
+                                        lethality: 5,
+                                        health: 4,
+                                        defense: 4,
                                     },
                                 }
                             },
@@ -2201,6 +2404,18 @@ export default {
                                         health: 3,
                                         defense: 3,
                                     },
+                                    4 : {
+                                        attack: 5,
+                                        lethality: 4,
+                                        health: 3,
+                                        defense: 4,
+                                    },
+                                    5 : {
+                                        attack: 7,
+                                        lethality: 5,
+                                        health: 4,
+                                        defense: 4,
+                                    },
                                 }
                             },
                             {
@@ -2235,11 +2450,23 @@ export default {
                                         health: 3,
                                         defense: 3,
                                     },
+                                    4 : {
+                                        attack: 5,
+                                        lethality: 4,
+                                        health: 3,
+                                        defense: 4,
+                                    },
+                                    5 : {
+                                        attack: 7,
+                                        lethality: 5,
+                                        health: 4,
+                                        defense: 4,
+                                    },
                                 }
                             },
                             {
                                 tier: 10,
-                                name: 'Nightstalkers',
+                                name: 'Bullseyes',
                                 stats: {
                                     health: 10,
                                     attack: 14,
@@ -2268,6 +2495,18 @@ export default {
                                         lethality: 3,
                                         health: 3,
                                         defense: 3,
+                                    },
+                                    4 : {
+                                        attack: 5,
+                                        lethality: 4,
+                                        health: 3,
+                                        defense: 4,
+                                    },
+                                    5 : {
+                                        attack: 7,
+                                        lethality: 5,
+                                        health: 4,
+                                        defense: 4,
                                     },
                                 }
                             },
@@ -2301,6 +2540,18 @@ export default {
                                     },
                                     3 : {
                                         attack: 1,
+                                        lethality: 0,
+                                        health: 0,
+                                        defense: 0,
+                                    },
+                                    4 : {
+                                        attack: 1,
+                                        lethality: 0,
+                                        health: 0,
+                                        defense: 0,
+                                    },
+                                    5 : {
+                                        attack: 2,
                                         lethality: 0,
                                         health: 0,
                                         defense: 0,
@@ -2339,6 +2590,18 @@ export default {
                                         health: 0,
                                         defense: 0,
                                     },
+                                    4 : {
+                                        attack: 1,
+                                        lethality: 0,
+                                        health: 0,
+                                        defense: 0,
+                                    },
+                                    5 : {
+                                        attack: 2,
+                                        lethality: 0,
+                                        health: 0,
+                                        defense: 0,
+                                    },
                                 }
                             },
                             {
@@ -2370,6 +2633,18 @@ export default {
                                     3 : {
                                         attack: 2,
                                         lethality: 3,
+                                        health: 0,
+                                        defense: 0,
+                                    },
+                                    4 : {
+                                        attack: 2,
+                                        lethality: 4,
+                                        health: 0,
+                                        defense: 0,
+                                    },
+                                    5 : {
+                                        attack: 3,
+                                        lethality: 5,
                                         health: 0,
                                         defense: 0,
                                     },
@@ -2407,6 +2682,18 @@ export default {
                                         health: 0,
                                         defense: 0,
                                     },
+                                    4 : {
+                                        attack: 4,
+                                        lethality: 4,
+                                        health: 0,
+                                        defense: 0,
+                                    },
+                                    5 : {
+                                        attack: 5,
+                                        lethality: 5,
+                                        health: 0,
+                                        defense: 0,
+                                    },
                                 }
                             },
                             {
@@ -2440,6 +2727,18 @@ export default {
                                         lethality: 3,
                                         health: 2,
                                         defense: 3,
+                                    },
+                                    4 : {
+                                        attack: 4,
+                                        lethality: 4,
+                                        health: 2,
+                                        defense: 3,
+                                    },
+                                    5 : {
+                                        attack: 5,
+                                        lethality: 5,
+                                        health: 3,
+                                        defense: 4,
                                     },
                                 }
                             },
@@ -2475,6 +2774,18 @@ export default {
                                         health: 2,
                                         defense: 3,
                                     },
+                                    4 : {
+                                        attack: 4,
+                                        lethality: 4,
+                                        health: 2,
+                                        defense: 3,
+                                    },
+                                    5 : {
+                                        attack: 5,
+                                        lethality: 5,
+                                        health: 3,
+                                        defense: 4,
+                                    },
                                 }
                             },
                             {
@@ -2508,6 +2819,18 @@ export default {
                                         lethality: 3,
                                         health: 2,
                                         defense: 3,
+                                    },
+                                    4 : {
+                                        attack: 5,
+                                        lethality: 4,
+                                        health: 2,
+                                        defense: 3,
+                                    },
+                                    5 : {
+                                        attack: 7,
+                                        lethality: 5,
+                                        health: 3,
+                                        defense: 4,
                                     },
                                 }
                             },
@@ -2543,6 +2866,18 @@ export default {
                                         health: 2,
                                         defense: 3,
                                     },
+                                    4 : {
+                                        attack: 5,
+                                        lethality: 4,
+                                        health: 2,
+                                        defense: 3,
+                                    },
+                                    5 : {
+                                        attack: 7,
+                                        lethality: 5,
+                                        health: 3,
+                                        defense: 4,
+                                    },
                                 }
                             },
                             {
@@ -2577,6 +2912,18 @@ export default {
                                         health: 2,
                                         defense: 3,
                                     },
+                                    4 : {
+                                        attack: 5,
+                                        lethality: 4,
+                                        health: 2,
+                                        defense: 3,
+                                    },
+                                    5 : {
+                                        attack: 7,
+                                        lethality: 5,
+                                        health: 3,
+                                        defense: 4,
+                                    },
                                 }
                             },
                             {
@@ -2610,6 +2957,18 @@ export default {
                                         lethality: 3,
                                         health: 2,
                                         defense: 3,
+                                    },
+                                    4 : {
+                                        attack: 5,
+                                        lethality: 4,
+                                        health: 2,
+                                        defense: 3,
+                                    },
+                                    5 : {
+                                        attack: 7,
+                                        lethality: 5,
+                                        health: 3,
+                                        defense: 4,
                                     },
                                 }
                             },
@@ -3743,11 +4102,27 @@ export default {
             if(data)
             {
                 this.data = JSON.parse(data);
+                if(this.data.Formation.saved && this.data.Formation.saved.length > 0)
+                {
+                    for(let x in this.data.Formation.saved)
+                    {
+                        let saved = this.data.Formation.saved[x];
+                        if(saved.plasma && !saved.plasma.Infantry)
+                        {
+                            this.data.Formation.saved[x].plasma = {
+                                Infantry: 0,
+                                Rider: 0,
+                                Hunter: 0
+                            }
+                            localStorage.setItem('sosMilitaryData',JSON.stringify(this.data));
+                        }
+                    }
+                }
             }
         },
         checkLocalStorage()
         {
-            let data = localStorage.getItem('sosMilitaryDatasasas');
+            let data = localStorage.getItem('sosMilitaryData');
             if(data)
             {
                 console.log(JSON.parse(data));
