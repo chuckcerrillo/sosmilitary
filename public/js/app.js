@@ -37751,9 +37751,11 @@ var render = function() {
                         attrs: {
                           src:
                             "img/heroes/" +
-                            _vm.findHero(
-                              _vm.formation.heroes[_vm.getHeroType(type.type)]
-                            ) +
+                            _vm
+                              .findHero(
+                                _vm.formation.heroes[_vm.getHeroType(type.type)]
+                              )
+                              .toLowerCase() +
                             ".png"
                         }
                       })

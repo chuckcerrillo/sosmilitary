@@ -30,7 +30,7 @@
                 >
                     <div v-if="formation.heroes[getHeroType(type.type)]">
                         <div class="text-center font-bold text-xs">{{findHero(formation.heroes[getHeroType(type.type)])}}</div>
-                        <div><img class="w-full" :src="'img/heroes/' + findHero(formation.heroes[getHeroType(type.type)]) + '.png'"></div>
+                        <div><img class="w-full" :src="'img/heroes/' + findHero(formation.heroes[getHeroType(type.type)]).toLowerCase() + '.png'"></div>
                     </div>
                     <div v-else class="text-gray-500 text-center">Choose hero...</div>
                 </div>
