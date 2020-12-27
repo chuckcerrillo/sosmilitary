@@ -85,18 +85,23 @@
                 </div>
                 <div class="mt-1 p-4 border border-gray-400 rounded h-32">
                     <div>March Capacity</div>
-                    <div class="font-bold text-3xl">{{ marchCapacity }}</div>
+                    <div class="font-bold text-3xl">
+                        <span :class="capacity>marchCapacity ? 'text-red-600':''">{{capacity}}</span>
+                        /
+                        <span>{{ marchCapacity }}</span>
+                    </div>
                 </div>
                 <div class="mt-4">
                     <div class="flex p-1 text-xs">
-                        <div class="p-1 w-8">Tier</div>
-                        <div class="p-1 w-28">Name</div>
-                        <div class="p-1 w-16">Type</div>
+                        <div class="p-1 w-24"></div>
+<!--                        <div class="p-1 w-8"></div>-->
+                        <div class="p-1 w-28">Troop</div>
+<!--                        <div class="p-1 w-16">Type</div>-->
                         <div class="p-1 w-16 text-right">Attack</div>
                         <div class="p-1 w-16 text-right">Defense</div>
                         <div class="p-1 w-16 text-right">Lethality</div>
                         <div class="p-1 w-16 text-right">Health</div>
-                        <div class="p-1 w-20">Quantity</div>
+                        <div class="p-1 ml-4 w-20">Quantity</div>
                     </div>
                 </div>
 
@@ -107,14 +112,18 @@
                         v-for="(troop,index) in ['Infantry','Rider','Hunter']"
                         class="flex p-1 text-sm items-center"
                     >
-                        <div class="p-1 w-8 text-right">T{{tier+1}}</div>
-                        <div class="p-1 w-28">{{library.Formation.troops[troop][tier].name}}</div>
-                        <div class="p-1 w-16">{{library.Formation.troops[troop][tier].stats.type}}</div>
-                        <div class="p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'attack',library.Formation.troops[troop][tier])}}</div>
-                        <div class="p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'defense',library.Formation.troops[troop][tier])}}</div>
-                        <div class="p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'lethality',library.Formation.troops[troop][tier])}}</div>
-                        <div class="p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'health',library.Formation.troops[troop][tier])}}</div>
-                        <div class="p-1 w-20"><input @change="saveLocalStorage()" type="number" class="w-20 border border-gray-400 rounded p-1 text-xs" v-model="formation.quantity[troop][tier]" /></div>
+                        <div class="p-1 w-24 text-right"><img class="w-full" :src="'img/troops/t' + (tier+1) + troop.substr(0,1).toLowerCase() + '.jpg'"></div>
+<!--                        <div class="p-1 w-8 text-right">T{{tier+1}}</div>-->
+                        <div class="p-1 w-28">
+                            <div class="text-base font-bold">{{library.Formation.troops[troop][tier].name}}</div>
+                            <div>{{troop}}</div>
+                        </div>
+<!--                        <div class="p-1 w-16">{{library.Formation.troops[troop][tier].stats.type}}</div>-->
+                        <div class="text-xl p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'attack',library.Formation.troops[troop][tier])}}</div>
+                        <div class="text-xl p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'defense',library.Formation.troops[troop][tier])}}</div>
+                        <div class="text-xl p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'lethality',library.Formation.troops[troop][tier])}}</div>
+                        <div class="text-xl p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'health',library.Formation.troops[troop][tier])}}</div>
+                        <div class="p-1 ml-4 w-20"><input @change="saveLocalStorage()" type="number" class="w-20 border border-gray-400 rounded p-1 text-xs" v-model="formation.quantity[troop][tier]" /></div>
                     </div>
                 </div>
             </div>
@@ -207,6 +216,14 @@ export default {
             }
             return false;
         },
+        getMarch(key)
+        {
+            if(key){
+                let hero = this.data.Heroes[key];
+                return this.library.Heroes.march[hero.level - 1];
+            }
+            return 0;
+        },
         saveLocalStorage()
         {
             this.$emit('saveLocalStorage');
@@ -215,7 +232,31 @@ export default {
     computed: {
         marchCapacity()
         {
-            return 0;
+            let capacity = 0;
+            capacity += parseInt(this.data.Military['march-capacity']);
+
+            for(let x in this.formation.heroes)
+            {
+                capacity += this.getMarch(this.formation.heroes[x]);
+            }
+
+            return capacity;
+        },
+        capacity()
+        {
+            let total = 0;
+            let troop = '';
+            for(let troop of ['Infantry','Rider','Hunter'])
+            {
+                for(let tier of [0,1,2,3,4,5,6,7,8,9])
+                {
+                    if(this.formation && this.formation.quantity && this.formation.quantity[troop] && this.formation.quantity[troop][tier])
+                    {
+                        total += parseInt(this.formation.quantity[troop][tier]);
+                    }
+                }
+            }
+            return total;
         },
         formation()
         {

@@ -42,7 +42,7 @@
                         <div class="w-16 text-center">{{getDefense(hero.key)}}%</div>
 <!--                        <div class="w-16 text-center">{{getLethality(hero.key)}}%</div>-->
 <!--                        <div class="w-16 text-center">{{getHealth(hero.key)}}%</div>-->
-                        <div class="text-xs">
+                        <div class="text-xs ml-4">
                             <a @click="promote(hero.key)" class="block p-1 hover:underline text-blue-400 cursor-pointer">Promote</a>
                             <a @click="demote(hero.key)" class="block p-1 hover:underline text-blue-400 cursor-pointer">Demote</a>
                         </div>

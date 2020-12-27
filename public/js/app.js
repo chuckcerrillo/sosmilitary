@@ -2062,6 +2062,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "formation",
   props: ['library', 'data'],
@@ -2140,13 +2149,46 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       return false;
     },
+    getMarch: function getMarch(key) {
+      if (key) {
+        var hero = this.data.Heroes[key];
+        return this.library.Heroes.march[hero.level - 1];
+      }
+
+      return 0;
+    },
     saveLocalStorage: function saveLocalStorage() {
       this.$emit('saveLocalStorage');
     }
   },
   computed: {
     marchCapacity: function marchCapacity() {
-      return 0;
+      var capacity = 0;
+      capacity += parseInt(this.data.Military['march-capacity']);
+
+      for (var x in this.formation.heroes) {
+        capacity += this.getMarch(this.formation.heroes[x]);
+      }
+
+      return capacity;
+    },
+    capacity: function capacity() {
+      var total = 0;
+      var troop = '';
+
+      for (var _i = 0, _arr = ['Infantry', 'Rider', 'Hunter']; _i < _arr.length; _i++) {
+        var _troop = _arr[_i];
+
+        for (var _i2 = 0, _arr2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; _i2 < _arr2.length; _i2++) {
+          var tier = _arr2[_i2];
+
+          if (this.formation && this.formation.quantity && this.formation.quantity[_troop] && this.formation.quantity[_troop][tier]) {
+            total += parseInt(this.formation.quantity[_troop][tier]);
+          }
+        }
+      }
+
+      return total;
     },
     formation: function formation() {
       return this.data.Formation.saved[this.data.Formation.active];
@@ -37700,7 +37742,11 @@ var render = function() {
               }
             }
           },
-          [_vm._v("\n            Slot " + _vm._s(slot + 1) + "\n        ")]
+          [
+            _vm._v(
+              "\n                Slot " + _vm._s(slot + 1) + "\n            "
+            )
+          ]
         )
       }),
       0
@@ -37773,7 +37819,7 @@ var render = function() {
                 {
                   staticClass: "text-sm p-2 text-center text-blue-400 font-bold"
                 },
-                [_vm._v("\n                Captain\n            ")]
+                [_vm._v("\n                    Captain\n                ")]
               )
             : _c(
                 "div",
@@ -37894,7 +37940,16 @@ var render = function() {
               _c("div", [_vm._v("March Capacity")]),
               _vm._v(" "),
               _c("div", { staticClass: "font-bold text-3xl" }, [
-                _vm._v(_vm._s(_vm.marchCapacity))
+                _c(
+                  "span",
+                  {
+                    class:
+                      _vm.capacity > _vm.marchCapacity ? "text-red-600" : ""
+                  },
+                  [_vm._v(_vm._s(_vm.capacity))]
+                ),
+                _vm._v("\n                        /\n                        "),
+                _c("span", [_vm._v(_vm._s(_vm.marchCapacity))])
               ])
             ]
           ),
@@ -37909,25 +37964,30 @@ var render = function() {
                   "div",
                   { staticClass: "flex p-1 text-sm items-center" },
                   [
-                    _c("div", { staticClass: "p-1 w-8 text-right" }, [
-                      _vm._v("T" + _vm._s(tier + 1))
+                    _c("div", { staticClass: "p-1 w-24 text-right" }, [
+                      _c("img", {
+                        staticClass: "w-full",
+                        attrs: {
+                          src:
+                            "img/troops/t" +
+                            (tier + 1) +
+                            troop.substr(0, 1).toLowerCase() +
+                            ".jpg"
+                        }
+                      })
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "p-1 w-28" }, [
-                      _vm._v(
-                        _vm._s(_vm.library.Formation.troops[troop][tier].name)
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "p-1 w-16" }, [
-                      _vm._v(
-                        _vm._s(
-                          _vm.library.Formation.troops[troop][tier].stats.type
+                      _c("div", { staticClass: "text-base font-bold" }, [
+                        _vm._v(
+                          _vm._s(_vm.library.Formation.troops[troop][tier].name)
                         )
-                      )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", [_vm._v(_vm._s(troop))])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "p-1 w-16 text-right" }, [
+                    _c("div", { staticClass: "text-xl p-1 w-16 text-right" }, [
                       _vm._v(
                         _vm._s(
                           _vm.getPlasma(
@@ -37939,7 +37999,7 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "p-1 w-16 text-right" }, [
+                    _c("div", { staticClass: "text-xl p-1 w-16 text-right" }, [
                       _vm._v(
                         _vm._s(
                           _vm.getPlasma(
@@ -37951,7 +38011,7 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "p-1 w-16 text-right" }, [
+                    _c("div", { staticClass: "text-xl p-1 w-16 text-right" }, [
                       _vm._v(
                         _vm._s(
                           _vm.getPlasma(
@@ -37963,7 +38023,7 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "p-1 w-16 text-right" }, [
+                    _c("div", { staticClass: "text-xl p-1 w-16 text-right" }, [
                       _vm._v(
                         _vm._s(
                           _vm.getPlasma(
@@ -37975,7 +38035,7 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "p-1 w-20" }, [
+                    _c("div", { staticClass: "p-1 ml-4 w-20" }, [
                       _c("input", {
                         directives: [
                           {
@@ -38047,11 +38107,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "mt-4" }, [
       _c("div", { staticClass: "flex p-1 text-xs" }, [
-        _c("div", { staticClass: "p-1 w-8" }, [_vm._v("Tier")]),
+        _c("div", { staticClass: "p-1 w-24" }),
         _vm._v(" "),
-        _c("div", { staticClass: "p-1 w-28" }, [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "p-1 w-16" }, [_vm._v("Type")]),
+        _c("div", { staticClass: "p-1 w-28" }, [_vm._v("Troop")]),
         _vm._v(" "),
         _c("div", { staticClass: "p-1 w-16 text-right" }, [_vm._v("Attack")]),
         _vm._v(" "),
@@ -38063,7 +38121,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", { staticClass: "p-1 w-16 text-right" }, [_vm._v("Health")]),
         _vm._v(" "),
-        _c("div", { staticClass: "p-1 w-20" }, [_vm._v("Quantity")])
+        _c("div", { staticClass: "p-1 ml-4 w-20" }, [_vm._v("Quantity")])
       ])
     ])
   }
@@ -38350,7 +38408,7 @@ var render = function() {
                     _vm._v(_vm._s(_vm.getDefense(hero.key)) + "%")
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "text-xs" }, [
+                  _c("div", { staticClass: "text-xs ml-4" }, [
                     _c(
                       "a",
                       {
