@@ -119,7 +119,7 @@
                             :class="stat === 'defense' || stat === 'lethality' ? 'bg-gray-100' : ''"
                         >
                             <div class="mr-l text-right w-40 p-1">Infantry {{ label }}</div>
-                            <div class="ml-2 font-bold w-40 p-1">{{getTotalBoosts(true)['Infantry'][stat].toFixed(2)}}%</div>
+                            <div class="ml-2 font-bold w-40 p-1">{{getTotalBoosts()['Infantry'][stat].toFixed(2)}}%</div>
                         </div>
                         <div
                             v-for="(label,stat) in {attack:'Attack',defense:'Defense',health:'Health',lethality: 'Lethality'}"
@@ -127,7 +127,7 @@
                             :class="stat === 'defense' || stat === 'lethality' ? 'bg-gray-100' : ''"
                         >
                             <div class="mr-l text-right w-40 p-1">Hunter {{ label }}</div>
-                            <div class="ml-2 font-bold w-40 p-1">{{getTotalBoosts(true)['Hunter'][stat].toFixed(2)}}%</div>
+                            <div class="ml-2 font-bold w-40 p-1">{{getTotalBoosts()['Hunter'][stat].toFixed(2)}}%</div>
                         </div>
                         <div
                             v-for="(label,stat) in {attack:'Attack',defense:'Defense',health:'Health',lethality: 'Lethality'}"
@@ -135,7 +135,7 @@
                             :class="stat === 'defense' || stat === 'lethality' ? 'bg-gray-100' : ''"
                         >
                             <div class="mr-2 text-right w-40 p-1">Rider {{ label }}</div>
-                            <div class="ml-2 font-bold w-40 p-1">{{getTotalBoosts(true)['Rider'][stat].toFixed(2)}}%</div>
+                            <div class="ml-2 font-bold w-40 p-1">{{getTotalBoosts()['Rider'][stat].toFixed(2)}}%</div>
                         </div>
                     </div>
 <!--                    <h1 class="text-xl font-bold p-2">Troop Power</h1>-->
@@ -274,7 +274,6 @@ export default {
             let formationHeroes = this.formation.heroes;
             for(let troopType in formationHeroes)
             {
-                let hero = false;
                 if(this.getHeroType(troopType) === 'brawler')
                 {
                     result.Infantry = this.getHeroStats(formationHeroes[troopType]);
@@ -289,18 +288,19 @@ export default {
                 }
             }
 
-            // Get hero gear boosts
-            let types = {brawler:'Infantry',marksman:'Hunter',scout:'Rider'}
-            for(let troopType in types)
-            {
-                result[types[troopType]].lethality += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.helmet.tier-1].steps.helmet[this.data.HeroGear.brawler.helmet.step-1].lethality;
-                result[types[troopType]].lethality += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.chest.tier-1].steps.helmet[this.data.HeroGear.brawler.chest.step-1].lethality;
-                result[types[troopType]].lethality += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.feet.tier-1].steps.helmet[this.data.HeroGear.brawler.feet.step-1].lethality;
 
-                result[types[troopType]].health += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.helmet.tier-1].steps.helmet[this.data.HeroGear.brawler.helmet.step-1].health;
-                result[types[troopType]].health += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.chest.tier-1].steps.helmet[this.data.HeroGear.brawler.chest.step-1].health;
-                result[types[troopType]].health += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.feet.tier-1].steps.helmet[this.data.HeroGear.brawler.feet.step-1].health;
-            }
+            // Get hero gear boosts
+            // let types = {brawler:'Infantry',marksman:'Hunter',scout:'Rider'}
+            // for(let troopType in types)
+            // {
+            //     result[types[troopType]].lethality += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.helmet.tier-1].steps.helmet[this.data.HeroGear.brawler.helmet.step-1].lethality;
+            //     result[types[troopType]].lethality += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.chest.tier-1].steps.helmet[this.data.HeroGear.brawler.chest.step-1].lethality;
+            //     result[types[troopType]].lethality += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.feet.tier-1].steps.helmet[this.data.HeroGear.brawler.feet.step-1].lethality;
+            //
+            //     result[types[troopType]].health += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.helmet.tier-1].steps.helmet[this.data.HeroGear.brawler.helmet.step-1].health;
+            //     result[types[troopType]].health += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.chest.tier-1].steps.helmet[this.data.HeroGear.brawler.chest.step-1].health;
+            //     result[types[troopType]].health += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.feet.tier-1].steps.helmet[this.data.HeroGear.brawler.feet.step-1].health;
+            // }
 
             // Get military stats boost
             for(let statType of ['attack','defense','lethality','health'])
@@ -330,7 +330,6 @@ export default {
                 let hero = this.library.Heroes.heroes[key];
                 let heroData;
                 let scale;
-                let x;
 
                 if(heroData && hero)
                 {

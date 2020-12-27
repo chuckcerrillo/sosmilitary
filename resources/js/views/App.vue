@@ -30,7 +30,7 @@
                 >Import/Export</a>
             </div>
         </div>
-        <div class="overflow-y-auto lg:fixed inset-x-0 h-full lg:h-auto" style="top:7.5rem; bottom: 0;">
+        <div class="overflow-y-auto lg:fixed inset-x-0 h-full lg:h-auto" style="top:7.5rem; bottom: 6rem;">
             <MilitaryStats
                 v-show="ui.section === 'stats'"
                 v-on:saveLocalStorage="saveLocalStorage"

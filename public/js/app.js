@@ -3026,8 +3026,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var formationHeroes = this.formation.heroes;
 
       for (var troopType in formationHeroes) {
-        var hero = false;
-
         if (this.getHeroType(troopType) === 'brawler') {
           result.Infantry = this.getHeroStats(formationHeroes[troopType]);
         } else if (this.getHeroType(troopType) === 'marksman') {
@@ -3036,22 +3034,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           result.Rider = this.getHeroStats(formationHeroes[troopType]);
         }
       } // Get hero gear boosts
-
-
-      var types = {
-        brawler: 'Infantry',
-        marksman: 'Hunter',
-        scout: 'Rider'
-      };
-
-      for (var _troopType in types) {
-        result[types[_troopType]].lethality += this.library.HeroGear.sets[_troopType][this.data.HeroGear.brawler.helmet.tier - 1].steps.helmet[this.data.HeroGear.brawler.helmet.step - 1].lethality;
-        result[types[_troopType]].lethality += this.library.HeroGear.sets[_troopType][this.data.HeroGear.brawler.chest.tier - 1].steps.helmet[this.data.HeroGear.brawler.chest.step - 1].lethality;
-        result[types[_troopType]].lethality += this.library.HeroGear.sets[_troopType][this.data.HeroGear.brawler.feet.tier - 1].steps.helmet[this.data.HeroGear.brawler.feet.step - 1].lethality;
-        result[types[_troopType]].health += this.library.HeroGear.sets[_troopType][this.data.HeroGear.brawler.helmet.tier - 1].steps.helmet[this.data.HeroGear.brawler.helmet.step - 1].health;
-        result[types[_troopType]].health += this.library.HeroGear.sets[_troopType][this.data.HeroGear.brawler.chest.tier - 1].steps.helmet[this.data.HeroGear.brawler.chest.step - 1].health;
-        result[types[_troopType]].health += this.library.HeroGear.sets[_troopType][this.data.HeroGear.brawler.feet.tier - 1].steps.helmet[this.data.HeroGear.brawler.feet.step - 1].health;
-      } // Get military stats boost
+      // let types = {brawler:'Infantry',marksman:'Hunter',scout:'Rider'}
+      // for(let troopType in types)
+      // {
+      //     result[types[troopType]].lethality += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.helmet.tier-1].steps.helmet[this.data.HeroGear.brawler.helmet.step-1].lethality;
+      //     result[types[troopType]].lethality += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.chest.tier-1].steps.helmet[this.data.HeroGear.brawler.chest.step-1].lethality;
+      //     result[types[troopType]].lethality += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.feet.tier-1].steps.helmet[this.data.HeroGear.brawler.feet.step-1].lethality;
+      //
+      //     result[types[troopType]].health += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.helmet.tier-1].steps.helmet[this.data.HeroGear.brawler.helmet.step-1].health;
+      //     result[types[troopType]].health += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.chest.tier-1].steps.helmet[this.data.HeroGear.brawler.chest.step-1].health;
+      //     result[types[troopType]].health += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.feet.tier-1].steps.helmet[this.data.HeroGear.brawler.feet.step-1].health;
+      // }
+      // Get military stats boost
 
 
       for (var _i = 0, _arr = ['attack', 'defense', 'lethality', 'health']; _i < _arr.length; _i++) {
@@ -3075,7 +3069,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var hero = this.library.Heroes.heroes[key];
         var heroData;
         var scale;
-        var x;
 
         if (heroData && hero) {
           scale = this.library.Heroes.scales[heroData.stats.base.attack];
@@ -39075,9 +39068,7 @@ var render = function() {
                       _c("div", { staticClass: "ml-2 font-bold w-40 p-1" }, [
                         _vm._v(
                           _vm._s(
-                            _vm
-                              .getTotalBoosts(true)
-                              ["Infantry"][stat].toFixed(2)
+                            _vm.getTotalBoosts()["Infantry"][stat].toFixed(2)
                           ) + "%"
                         )
                       ])
@@ -39112,7 +39103,7 @@ var render = function() {
                       _c("div", { staticClass: "ml-2 font-bold w-40 p-1" }, [
                         _vm._v(
                           _vm._s(
-                            _vm.getTotalBoosts(true)["Hunter"][stat].toFixed(2)
+                            _vm.getTotalBoosts()["Hunter"][stat].toFixed(2)
                           ) + "%"
                         )
                       ])
@@ -39147,7 +39138,7 @@ var render = function() {
                       _c("div", { staticClass: "ml-2 font-bold w-40 p-1" }, [
                         _vm._v(
                           _vm._s(
-                            _vm.getTotalBoosts(true)["Rider"][stat].toFixed(2)
+                            _vm.getTotalBoosts()["Rider"][stat].toFixed(2)
                           ) + "%"
                         )
                       ])
@@ -39292,7 +39283,7 @@ var render = function() {
         "div",
         {
           staticClass: "overflow-y-auto lg:fixed inset-x-0 h-full lg:h-auto",
-          staticStyle: { top: "7.5rem", bottom: "0" }
+          staticStyle: { top: "7.5rem", bottom: "6rem" }
         },
         [
           _c("MilitaryStats", {
