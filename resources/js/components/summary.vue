@@ -290,17 +290,17 @@ export default {
 
 
             // Get hero gear boosts
-            // let types = {brawler:'Infantry',marksman:'Hunter',scout:'Rider'}
-            // for(let troopType in types)
-            // {
-            //     result[types[troopType]].lethality += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.helmet.tier-1].steps.helmet[this.data.HeroGear.brawler.helmet.step-1].lethality;
-            //     result[types[troopType]].lethality += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.chest.tier-1].steps.helmet[this.data.HeroGear.brawler.chest.step-1].lethality;
-            //     result[types[troopType]].lethality += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.feet.tier-1].steps.helmet[this.data.HeroGear.brawler.feet.step-1].lethality;
-            //
-            //     result[types[troopType]].health += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.helmet.tier-1].steps.helmet[this.data.HeroGear.brawler.helmet.step-1].health;
-            //     result[types[troopType]].health += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.chest.tier-1].steps.helmet[this.data.HeroGear.brawler.chest.step-1].health;
-            //     result[types[troopType]].health += this.library.HeroGear.sets[troopType][this.data.HeroGear.brawler.feet.tier-1].steps.helmet[this.data.HeroGear.brawler.feet.step-1].health;
-            // }
+            let types = {brawler:'Infantry',marksman:'Hunter',scout:'Rider'}
+            for(let troopType in types)
+            {
+                result[types[troopType]].lethality += parseFloat(this.library.HeroGear.sets[troopType][this.data.HeroGear[troopType].helmet.tier-1].steps.helmet[this.data.HeroGear[troopType].helmet.step-1].lethality);
+                result[types[troopType]].lethality += parseFloat(this.library.HeroGear.sets[troopType][this.data.HeroGear[troopType].chest.tier-1].steps.chest[this.data.HeroGear[troopType].chest.step-1].lethality);
+                result[types[troopType]].lethality += parseFloat(this.library.HeroGear.sets[troopType][this.data.HeroGear[troopType].feet.tier-1].steps.feet[this.data.HeroGear[troopType].feet.step-1].lethality);
+
+                result[types[troopType]].health += parseFloat(this.library.HeroGear.sets[troopType][this.data.HeroGear[troopType].helmet.tier-1].steps.helmet[this.data.HeroGear[troopType].helmet.step-1].health);
+                result[types[troopType]].health += parseFloat(this.library.HeroGear.sets[troopType][this.data.HeroGear[troopType].chest.tier-1].steps.chest[this.data.HeroGear[troopType].chest.step-1].health);
+                result[types[troopType]].health += parseFloat(this.library.HeroGear.sets[troopType][this.data.HeroGear[troopType].feet.tier-1].steps.feet[this.data.HeroGear[troopType].feet.step-1].health);
+            }
 
             // Get military stats boost
             for(let statType of ['attack','defense','lethality','health'])

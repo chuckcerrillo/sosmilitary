@@ -209,6 +209,7 @@ export default {
                         }
                     }
                 }
+                this.saveLocalStorage();
             }
         },
         downgrade(heroType,slot)
@@ -235,6 +236,7 @@ export default {
                         item.step--;
                     }
                 }
+                this.saveLocalStorage();
             }
         },
         saveLocalStorage()
