@@ -2058,6 +2058,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "formation",
   props: ['library', 'data'],
@@ -2074,8 +2078,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   mounted: function mounted() {},
   methods: {
-    setPlasmaLevel: function setPlasmaLevel(level) {
-      this.formation.plasma = level;
+    setPlasmaLevel: function setPlasmaLevel(troopType, level) {
+      this.formation.plasma[troopType] = level;
       this.$emit('saveLocalStorage');
     },
     getHeroType: function getHeroType(type) {
@@ -2373,6 +2377,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2877,11 +2886,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "summary",
   props: ['showSummary', 'library', 'data'],
@@ -2955,7 +2959,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       return result;
     },
-    getTotalBoosts: function getTotalBoosts() {
+    getTotalBoosts: function getTotalBoosts(pure) {
       var result = {
         Infantry: {
           attack: 0,
@@ -3011,8 +3015,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       for (var _i = 0, _arr = ['attack', 'defense', 'lethality', 'health']; _i < _arr.length; _i++) {
         var statType = _arr[_i];
 
-        for (var type in result) {
-          result[type][statType] += parseFloat(this.data.Military['troop-' + statType]);
+        if (pure) {
+          for (var type in result) {
+            result[type][statType] += parseFloat(this.data.Military['troop-' + statType]);
+          }
         }
 
         result.Infantry[statType] += parseFloat(this.data.Military['infantry-' + statType]);
@@ -3075,13 +3081,172 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       return this.data.Formation.saved[0];
     },
+    Infantry: function Infantry() {
+      var attack = 0;
+      var defense = 0;
+      var health = 0;
+      var lethality = 0;
+      var troop = 'Infantry';
+
+      for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
+        var value = parseInt(this.getPlasma(this.formation.plasma[troop], 'attack', this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier]);
+        attack += value;
+
+        if (this.totalBoosts[troop].attack) {
+          attack += value * this.totalBoosts[troop].attack / 100;
+        }
+      }
+
+      for (var _tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
+        var _value = parseInt(this.getPlasma(this.formation.plasma[troop], 'defense', this.library.Formation.troops[troop][_tier])) * parseInt(this.formation.quantity[troop][_tier]);
+
+        defense += _value;
+
+        if (this.totalBoosts[troop].defense) {
+          defense += _value * this.totalBoosts[troop].defense / 100;
+        }
+      }
+
+      for (var _tier2 in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
+        var _value2 = parseInt(this.getPlasma(this.formation.plasma[troop], 'lethality', this.library.Formation.troops[troop][_tier2])) * parseInt(this.formation.quantity[troop][_tier2]);
+
+        lethality += _value2;
+
+        if (this.totalBoosts[troop].lethality) {
+          lethality += _value2 * this.totalBoosts[troop].lethality / 100;
+        }
+      }
+
+      for (var _tier3 in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
+        var _value3 = parseInt(this.getPlasma(this.formation.plasma[troop], 'health', this.library.Formation.troops[troop][_tier3])) * parseInt(this.formation.quantity[troop][_tier3]);
+
+        health += _value3;
+
+        if (this.totalBoosts[troop].health) {
+          health += _value3 * this.totalBoosts[troop].health / 100;
+        }
+      }
+
+      return {
+        attack: attack,
+        defense: defense,
+        lethality: lethality,
+        health: health
+      };
+    },
+    Hunter: function Hunter() {
+      var attack = 0;
+      var defense = 0;
+      var health = 0;
+      var lethality = 0;
+      var troop = 'Hunter';
+
+      for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
+        var value = parseInt(this.getPlasma(this.formation.plasma[troop], 'attack', this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier]);
+        attack += value;
+
+        if (this.totalBoosts[troop].attack) {
+          attack += value * this.totalBoosts[troop].attack / 100;
+        }
+      }
+
+      for (var _tier4 in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
+        var _value4 = parseInt(this.getPlasma(this.formation.plasma[troop], 'defense', this.library.Formation.troops[troop][_tier4])) * parseInt(this.formation.quantity[troop][_tier4]);
+
+        defense += _value4;
+
+        if (this.totalBoosts[troop].defense) {
+          defense += _value4 * this.totalBoosts[troop].defense / 100;
+        }
+      }
+
+      for (var _tier5 in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
+        var _value5 = parseInt(this.getPlasma(this.formation.plasma[troop], 'lethality', this.library.Formation.troops[troop][_tier5])) * parseInt(this.formation.quantity[troop][_tier5]);
+
+        lethality += _value5;
+
+        if (this.totalBoosts[troop].lethality) {
+          lethality += _value5 * this.totalBoosts[troop].lethality / 100;
+        }
+      }
+
+      for (var _tier6 in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
+        var _value6 = parseInt(this.getPlasma(this.formation.plasma[troop], 'health', this.library.Formation.troops[troop][_tier6])) * parseInt(this.formation.quantity[troop][_tier6]);
+
+        health += _value6;
+
+        if (this.totalBoosts[troop].health) {
+          health += _value6 * this.totalBoosts[troop].health / 100;
+        }
+      }
+
+      return {
+        attack: attack,
+        defense: defense,
+        lethality: lethality,
+        health: health
+      };
+    },
+    Rider: function Rider() {
+      var attack = 0;
+      var defense = 0;
+      var health = 0;
+      var lethality = 0;
+      var troop = 'Rider';
+
+      for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
+        var value = parseInt(this.getPlasma(this.formation.plasma[troop], 'attack', this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier]);
+        attack += value;
+
+        if (this.totalBoosts[troop].attack) {
+          attack += value * this.totalBoosts[troop].attack / 100;
+        }
+      }
+
+      for (var _tier7 in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
+        var _value7 = parseInt(this.getPlasma(this.formation.plasma[troop], 'defense', this.library.Formation.troops[troop][_tier7])) * parseInt(this.formation.quantity[troop][_tier7]);
+
+        defense += _value7;
+
+        if (this.totalBoosts[troop].defense) {
+          defense += _value7 * this.totalBoosts[troop].defense / 100;
+        }
+      }
+
+      for (var _tier8 in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
+        var _value8 = parseInt(this.getPlasma(this.formation.plasma[troop], 'lethality', this.library.Formation.troops[troop][_tier8])) * parseInt(this.formation.quantity[troop][_tier8]);
+
+        lethality += _value8;
+
+        if (this.totalBoosts[troop].lethality) {
+          lethality += _value8 * this.totalBoosts[troop].lethality / 100;
+        }
+      }
+
+      for (var _tier9 in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
+        var _value9 = parseInt(this.getPlasma(this.formation.plasma[troop], 'health', this.library.Formation.troops[troop][_tier9])) * parseInt(this.formation.quantity[troop][_tier9]);
+
+        health += _value9;
+
+        if (this.totalBoosts[troop].health) {
+          health += _value9 * this.totalBoosts[troop].health / 100;
+        }
+      }
+
+      return {
+        attack: attack,
+        defense: defense,
+        lethality: lethality,
+        health: health
+      };
+    },
     attack: function attack() {
       var attack = 0;
 
       for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
         for (var _i2 = 0, _arr2 = ['Infantry', 'Rider', 'Hunter']; _i2 < _arr2.length; _i2++) {
           var troop = _arr2[_i2];
-          var troopAttack = parseInt(this.getPlasma(this.formation.plasma, 'attack', this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier]);
+          var troopAttack = parseInt(this.getPlasma(this.formation.plasma[troop], 'attack', this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier]);
           attack += troopAttack;
 
           if (this.totalBoosts[troop].attack) {
@@ -3098,7 +3263,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
         for (var _i3 = 0, _arr3 = ['Infantry', 'Rider', 'Hunter']; _i3 < _arr3.length; _i3++) {
           var troop = _arr3[_i3];
-          var troopLethality = parseInt(this.getPlasma(this.formation.plasma, 'lethality', this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier]);
+          var troopLethality = parseInt(this.getPlasma(this.formation.plasma[troop], 'lethality', this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier]);
           lethality += troopLethality;
 
           if (this.totalBoosts[troop].lethality) {
@@ -3115,7 +3280,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
         for (var _i4 = 0, _arr4 = ['Infantry', 'Rider', 'Hunter']; _i4 < _arr4.length; _i4++) {
           var troop = _arr4[_i4];
-          var troopDefense = parseInt(this.getPlasma(this.formation.plasma, 'defense', this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier]);
+          var troopDefense = parseInt(this.getPlasma(this.formation.plasma[troop], 'defense', this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier]);
           defense += troopDefense;
 
           if (this.totalBoosts[troop].defense) {
@@ -3132,7 +3297,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
         for (var _i5 = 0, _arr5 = ['Infantry', 'Rider', 'Hunter']; _i5 < _arr5.length; _i5++) {
           var troop = _arr5[_i5];
-          var troopHealth = parseInt(this.getPlasma(this.formation.plasma, 'health', this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier]);
+          var troopHealth = parseInt(this.getPlasma(this.formation.plasma[troop], 'health', this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier]);
           health += troopHealth;
 
           if (this.totalBoosts[troop].health) {
@@ -3182,11 +3347,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_hero_gear__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/hero-gear */ "./resources/js/components/hero-gear.vue");
 /* harmony import */ var _components_import__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/import */ "./resources/js/components/import.vue");
 /* harmony import */ var _components_summary__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/summary */ "./resources/js/components/summary.vue");
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3326,7 +3486,11 @@ __webpack_require__.r(__webpack_exports__);
               marksman: false,
               scout: false
             },
-            plasma: 0,
+            plasma: {
+              Infantry: 0,
+              Hunter: 0,
+              Rider: 0
+            },
             quantity: {
               Infantry: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
               Hunter: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -4058,6 +4222,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 0,
                   health: 0,
                   defense: 1
+                },
+                4: {
+                  attack: 0,
+                  lethality: 0,
+                  health: 0,
+                  defense: 1
+                },
+                5: {
+                  attack: 0,
+                  lethality: 0,
+                  health: 0,
+                  defense: 2
                 }
               }
             }, {
@@ -4091,6 +4267,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 0,
                   health: 0,
                   defense: 1
+                },
+                4: {
+                  attack: 0,
+                  lethality: 0,
+                  health: 0,
+                  defense: 1
+                },
+                5: {
+                  attack: 0,
+                  lethality: 0,
+                  health: 0,
+                  defense: 2
                 }
               }
             }, {
@@ -4124,6 +4312,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 0,
                   health: 3,
                   defense: 1
+                },
+                4: {
+                  attack: 0,
+                  lethality: 0,
+                  health: 4,
+                  defense: 1
+                },
+                5: {
+                  attack: 0,
+                  lethality: 0,
+                  health: 5,
+                  defense: 2
                 }
               }
             }, {
@@ -4157,11 +4357,23 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 0,
                   health: 3,
                   defense: 3
+                },
+                4: {
+                  attack: 0,
+                  lethality: 0,
+                  health: 4,
+                  defense: 4
+                },
+                5: {
+                  attack: 0,
+                  lethality: 0,
+                  health: 5,
+                  defense: 5
                 }
               }
             }, {
               tier: 5,
-              name: 'Blasters',
+              name: 'Slashers',
               stats: {
                 health: 10,
                 attack: 5,
@@ -4190,6 +4402,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 2,
                   health: 3,
                   defense: 3
+                },
+                4: {
+                  attack: 3,
+                  lethality: 3,
+                  health: 4,
+                  defense: 5
+                },
+                5: {
+                  attack: 4,
+                  lethality: 3,
+                  health: 5,
+                  defense: 6
                 }
               }
             }, {
@@ -4223,6 +4447,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 2,
                   health: 3,
                   defense: 3
+                },
+                4: {
+                  attack: 3,
+                  lethality: 3,
+                  health: 4,
+                  defense: 5
+                },
+                5: {
+                  attack: 4,
+                  lethality: 3,
+                  health: 5,
+                  defense: 6
                 }
               }
             }, {
@@ -4256,6 +4492,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 2,
                   health: 3,
                   defense: 4
+                },
+                4: {
+                  attack: 3,
+                  lethality: 3,
+                  health: 4,
+                  defense: 5
+                },
+                5: {
+                  attack: 4,
+                  lethality: 3,
+                  health: 5,
+                  defense: 7
                 }
               }
             }, {
@@ -4289,6 +4537,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 2,
                   health: 3,
                   defense: 4
+                },
+                4: {
+                  attack: 3,
+                  lethality: 3,
+                  health: 4,
+                  defense: 5
+                },
+                5: {
+                  attack: 4,
+                  lethality: 3,
+                  health: 5,
+                  defense: 7
                 }
               }
             }, {
@@ -4322,6 +4582,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 2,
                   health: 3,
                   defense: 4
+                },
+                4: {
+                  attack: 3,
+                  lethality: 3,
+                  health: 4,
+                  defense: 5
+                },
+                5: {
+                  attack: 4,
+                  lethality: 3,
+                  health: 5,
+                  defense: 7
                 }
               }
             }, {
@@ -4355,6 +4627,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 2,
                   health: 3,
                   defense: 4
+                },
+                4: {
+                  attack: 3,
+                  lethality: 3,
+                  health: 4,
+                  defense: 5
+                },
+                5: {
+                  attack: 4,
+                  lethality: 3,
+                  health: 5,
+                  defense: 7
                 }
               }
             }],
@@ -4386,6 +4670,18 @@ __webpack_require__.r(__webpack_exports__);
                 },
                 3: {
                   attack: 1,
+                  lethality: 0,
+                  health: 0,
+                  defense: 0
+                },
+                4: {
+                  attack: 1,
+                  lethality: 0,
+                  health: 0,
+                  defense: 0
+                },
+                5: {
+                  attack: 2,
                   lethality: 0,
                   health: 0,
                   defense: 0
@@ -4422,6 +4718,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 0,
                   health: 0,
                   defense: 0
+                },
+                4: {
+                  attack: 1,
+                  lethality: 0,
+                  health: 0,
+                  defense: 0
+                },
+                5: {
+                  attack: 2,
+                  lethality: 0,
+                  health: 0,
+                  defense: 0
                 }
               }
             }, {
@@ -4453,6 +4761,18 @@ __webpack_require__.r(__webpack_exports__);
                 3: {
                   attack: 3,
                   lethality: 3,
+                  health: 0,
+                  defense: 0
+                },
+                4: {
+                  attack: 4,
+                  lethality: 4,
+                  health: 0,
+                  defense: 0
+                },
+                5: {
+                  attack: 5,
+                  lethality: 5,
                   health: 0,
                   defense: 0
                 }
@@ -4488,6 +4808,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 3,
                   health: 0,
                   defense: 0
+                },
+                4: {
+                  attack: 4,
+                  lethality: 4,
+                  health: 0,
+                  defense: 0
+                },
+                5: {
+                  attack: 5,
+                  lethality: 5,
+                  health: 0,
+                  defense: 0
                 }
               }
             }, {
@@ -4521,6 +4853,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 3,
                   health: 3,
                   defense: 3
+                },
+                4: {
+                  attack: 4,
+                  lethality: 4,
+                  health: 3,
+                  defense: 4
+                },
+                5: {
+                  attack: 5,
+                  lethality: 5,
+                  health: 4,
+                  defense: 4
                 }
               }
             }, {
@@ -4554,6 +4898,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 3,
                   health: 3,
                   defense: 3
+                },
+                4: {
+                  attack: 4,
+                  lethality: 4,
+                  health: 3,
+                  defense: 4
+                },
+                5: {
+                  attack: 5,
+                  lethality: 5,
+                  health: 4,
+                  defense: 4
                 }
               }
             }, {
@@ -4587,6 +4943,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 3,
                   health: 3,
                   defense: 3
+                },
+                4: {
+                  attack: 5,
+                  lethality: 4,
+                  health: 3,
+                  defense: 4
+                },
+                5: {
+                  attack: 7,
+                  lethality: 5,
+                  health: 4,
+                  defense: 4
                 }
               }
             }, {
@@ -4620,6 +4988,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 3,
                   health: 3,
                   defense: 3
+                },
+                4: {
+                  attack: 5,
+                  lethality: 4,
+                  health: 3,
+                  defense: 4
+                },
+                5: {
+                  attack: 7,
+                  lethality: 5,
+                  health: 4,
+                  defense: 4
                 }
               }
             }, {
@@ -4653,11 +5033,23 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 3,
                   health: 3,
                   defense: 3
+                },
+                4: {
+                  attack: 5,
+                  lethality: 4,
+                  health: 3,
+                  defense: 4
+                },
+                5: {
+                  attack: 7,
+                  lethality: 5,
+                  health: 4,
+                  defense: 4
                 }
               }
             }, {
               tier: 10,
-              name: 'Nightstalkers',
+              name: 'Bullseyes',
               stats: {
                 health: 10,
                 attack: 14,
@@ -4686,6 +5078,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 3,
                   health: 3,
                   defense: 3
+                },
+                4: {
+                  attack: 5,
+                  lethality: 4,
+                  health: 3,
+                  defense: 4
+                },
+                5: {
+                  attack: 7,
+                  lethality: 5,
+                  health: 4,
+                  defense: 4
                 }
               }
             }],
@@ -4717,6 +5121,18 @@ __webpack_require__.r(__webpack_exports__);
                 },
                 3: {
                   attack: 1,
+                  lethality: 0,
+                  health: 0,
+                  defense: 0
+                },
+                4: {
+                  attack: 1,
+                  lethality: 0,
+                  health: 0,
+                  defense: 0
+                },
+                5: {
+                  attack: 2,
                   lethality: 0,
                   health: 0,
                   defense: 0
@@ -4753,6 +5169,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 0,
                   health: 0,
                   defense: 0
+                },
+                4: {
+                  attack: 1,
+                  lethality: 0,
+                  health: 0,
+                  defense: 0
+                },
+                5: {
+                  attack: 2,
+                  lethality: 0,
+                  health: 0,
+                  defense: 0
                 }
               }
             }, {
@@ -4784,6 +5212,18 @@ __webpack_require__.r(__webpack_exports__);
                 3: {
                   attack: 2,
                   lethality: 3,
+                  health: 0,
+                  defense: 0
+                },
+                4: {
+                  attack: 2,
+                  lethality: 4,
+                  health: 0,
+                  defense: 0
+                },
+                5: {
+                  attack: 3,
+                  lethality: 5,
                   health: 0,
                   defense: 0
                 }
@@ -4819,6 +5259,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 3,
                   health: 0,
                   defense: 0
+                },
+                4: {
+                  attack: 4,
+                  lethality: 4,
+                  health: 0,
+                  defense: 0
+                },
+                5: {
+                  attack: 5,
+                  lethality: 5,
+                  health: 0,
+                  defense: 0
                 }
               }
             }, {
@@ -4852,6 +5304,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 3,
                   health: 2,
                   defense: 3
+                },
+                4: {
+                  attack: 4,
+                  lethality: 4,
+                  health: 2,
+                  defense: 3
+                },
+                5: {
+                  attack: 5,
+                  lethality: 5,
+                  health: 3,
+                  defense: 4
                 }
               }
             }, {
@@ -4885,6 +5349,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 3,
                   health: 2,
                   defense: 3
+                },
+                4: {
+                  attack: 4,
+                  lethality: 4,
+                  health: 2,
+                  defense: 3
+                },
+                5: {
+                  attack: 5,
+                  lethality: 5,
+                  health: 3,
+                  defense: 4
                 }
               }
             }, {
@@ -4918,6 +5394,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 3,
                   health: 2,
                   defense: 3
+                },
+                4: {
+                  attack: 5,
+                  lethality: 4,
+                  health: 2,
+                  defense: 3
+                },
+                5: {
+                  attack: 7,
+                  lethality: 5,
+                  health: 3,
+                  defense: 4
                 }
               }
             }, {
@@ -4951,6 +5439,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 3,
                   health: 2,
                   defense: 3
+                },
+                4: {
+                  attack: 5,
+                  lethality: 4,
+                  health: 2,
+                  defense: 3
+                },
+                5: {
+                  attack: 7,
+                  lethality: 5,
+                  health: 3,
+                  defense: 4
                 }
               }
             }, {
@@ -4984,6 +5484,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 3,
                   health: 2,
                   defense: 3
+                },
+                4: {
+                  attack: 5,
+                  lethality: 4,
+                  health: 2,
+                  defense: 3
+                },
+                5: {
+                  attack: 7,
+                  lethality: 5,
+                  health: 3,
+                  defense: 4
                 }
               }
             }, {
@@ -5017,6 +5529,18 @@ __webpack_require__.r(__webpack_exports__);
                   lethality: 3,
                   health: 2,
                   defense: 3
+                },
+                4: {
+                  attack: 5,
+                  lethality: 4,
+                  health: 2,
+                  defense: 3
+                },
+                5: {
+                  attack: 7,
+                  lethality: 5,
+                  health: 3,
+                  defense: 4
                 }
               }
             }]
@@ -5865,10 +6389,25 @@ __webpack_require__.r(__webpack_exports__);
 
       if (data) {
         this.data = JSON.parse(data);
+
+        if (this.data.Formation.saved && this.data.Formation.saved.length > 0) {
+          for (var x in this.data.Formation.saved) {
+            var saved = this.data.Formation.saved[x];
+
+            if (saved.plasma && !saved.plasma.Infantry) {
+              this.data.Formation.saved[x].plasma = {
+                Infantry: 0,
+                Rider: 0,
+                Hunter: 0
+              };
+              localStorage.setItem('sosMilitaryData', JSON.stringify(this.data));
+            }
+          }
+        }
       }
     },
     checkLocalStorage: function checkLocalStorage() {
-      var data = localStorage.getItem('sosMilitaryDatasasas');
+      var data = localStorage.getItem('sosMilitaryData');
 
       if (data) {
         console.log(JSON.parse(data));
@@ -37180,7 +37719,7 @@ var render = function() {
             "div",
             {
               staticClass:
-                "rounded w-32 h-32 border border-gray-400 bg-gray-300 items-center flex justify-center cursor-pointer",
+                "rounded w-32 h-36 border border-gray-400 bg-gray-300 items-center flex justify-center cursor-pointer",
               class:
                 _vm.formation.captain === type.type ? "border-blue-400" : "",
               on: {
@@ -37192,15 +37731,33 @@ var render = function() {
             [
               _vm.formation.heroes[_vm.getHeroType(type.type)]
                 ? _c("div", [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(
-                          _vm.findHero(
-                            _vm.formation.heroes[_vm.getHeroType(type.type)]
+                    _c(
+                      "div",
+                      { staticClass: "text-center font-bold text-xs" },
+                      [
+                        _vm._v(
+                          _vm._s(
+                            _vm.findHero(
+                              _vm.formation.heroes[_vm.getHeroType(type.type)]
+                            )
                           )
-                        ) +
-                        "\n                "
-                    )
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("img", {
+                        staticClass: "w-full",
+                        attrs: {
+                          src:
+                            "img/heroes/" +
+                            _vm.findHero(
+                              _vm.formation.heroes[_vm.getHeroType(type.type)]
+                            ) +
+                            ".png"
+                        }
+                      })
+                    ])
                   ])
                 : _c("div", { staticClass: "text-gray-500 text-center" }, [
                     _vm._v("Choose hero...")
@@ -37286,51 +37843,59 @@ var render = function() {
         "div",
         [
           _c("div", { staticClass: "flex items-start justify-center" }, [
-            _c(
-              "div",
-              { staticClass: "mr-1 p-4 border border-gray-400 rounded h-32" },
-              [
-                _c("div", [_vm._v("Plasma Level")]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "flex items-center justify-start" },
-                  _vm._l([0, 1, 2, 3], function(level) {
-                    return _c(
-                      "div",
-                      {
-                        staticClass:
-                          "p-2 m-2 text-2xl border border-gray-400 rounded w-12 h-12 text-center bg-gray-300 hover:border-blue-400 cursor-pointer",
-                        class:
-                          _vm.formation.plasma === level
-                            ? "border-blue-400 text-blue-600 bg-blue-200"
-                            : "",
-                        on: {
-                          click: function($event) {
-                            return _vm.setPlasmaLevel(level)
-                          }
-                        }
-                      },
-                      [_c("div", [_vm._v(_vm._s("*".repeat(level)))])]
-                    )
-                  }),
-                  0
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "ml-1 p-4 border border-gray-400 rounded h-32" },
-              [
-                _c("div", [_vm._v("March Capacity")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "font-bold text-3xl" }, [
-                  _vm._v(_vm._s(_vm.marchCapacity))
-                ])
-              ]
-            )
+            _c("div", { staticClass: "p-4 border border-gray-400 rounded" }, [
+              _c("div", [_vm._v("Plasma Level")]),
+              _vm._v(" "),
+              _c(
+                "div",
+                _vm._l(["Infantry", "Rider", "Hunter"], function(troopType) {
+                  return _c(
+                    "div",
+                    { staticClass: "flex items-center justify-start" },
+                    [
+                      _c("div", { staticClass: "w-20" }, [
+                        _vm._v(_vm._s(troopType))
+                      ]),
+                      _vm._v(" "),
+                      _vm._l([0, 1, 2, 3, 4, 5], function(level) {
+                        return _c(
+                          "div",
+                          {
+                            staticClass:
+                              "p-2 m-2 text-2xl border border-gray-400 rounded w-20 h-12 text-center bg-gray-300 hover:border-blue-400 cursor-pointer",
+                            class:
+                              _vm.formation.plasma[troopType] === level
+                                ? "border-blue-400 text-blue-600 bg-blue-200"
+                                : "",
+                            on: {
+                              click: function($event) {
+                                return _vm.setPlasmaLevel(troopType, level)
+                              }
+                            }
+                          },
+                          [_c("div", [_vm._v(_vm._s("*".repeat(level)))])]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                }),
+                0
+              )
+            ])
           ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "mt-1 p-4 border border-gray-400 rounded h-32" },
+            [
+              _c("div", [_vm._v("March Capacity")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "font-bold text-3xl" }, [
+                _vm._v(_vm._s(_vm.marchCapacity))
+              ])
+            ]
+          ),
           _vm._v(" "),
           _vm._m(2),
           _vm._v(" "),
@@ -37364,7 +37929,7 @@ var render = function() {
                       _vm._v(
                         _vm._s(
                           _vm.getPlasma(
-                            _vm.formation.plasma,
+                            _vm.formation.plasma[troop],
                             "attack",
                             _vm.library.Formation.troops[troop][tier]
                           )
@@ -37376,7 +37941,7 @@ var render = function() {
                       _vm._v(
                         _vm._s(
                           _vm.getPlasma(
-                            _vm.formation.plasma,
+                            _vm.formation.plasma[troop],
                             "defense",
                             _vm.library.Formation.troops[troop][tier]
                           )
@@ -37388,7 +37953,7 @@ var render = function() {
                       _vm._v(
                         _vm._s(
                           _vm.getPlasma(
-                            _vm.formation.plasma,
+                            _vm.formation.plasma[troop],
                             "lethality",
                             _vm.library.Formation.troops[troop][tier]
                           )
@@ -37400,7 +37965,7 @@ var render = function() {
                       _vm._v(
                         _vm._s(
                           _vm.getPlasma(
-                            _vm.formation.plasma,
+                            _vm.formation.plasma[troop],
                             "health",
                             _vm.library.Formation.troops[troop][tier]
                           )
@@ -37478,7 +38043,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
+    return _c("div", { staticClass: "mt-4" }, [
       _c("div", { staticClass: "flex p-1 text-xs" }, [
         _c("div", { staticClass: "p-1 w-8" }, [_vm._v("Tier")]),
         _vm._v(" "),
@@ -37705,16 +38270,33 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "rounded flex items-center justify-start text-sm h-16 px-4",
+                    "rounded flex items-center justify-start text-sm h-24 px-4",
                   class: num % 2 === 0 ? "bg-gray-100" : ""
                 },
                 [
                   _c("div", { staticClass: "w-20 pr-2" }, [
-                    _vm._v(_vm._s(hero.name))
+                    _c("div", { staticClass: "h-16" }, [
+                      _c("img", {
+                        staticClass: "w-full",
+                        attrs: {
+                          src: "/img/heroes/" + hero.name.toLowerCase() + ".png"
+                        }
+                      })
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "w-24" }, [
-                    _vm._v(_vm._s(_vm.types[hero.type].name))
+                    _c("div", { staticClass: "w-20 font-bold text-base" }, [
+                      _vm._v(_vm._s(hero.name))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-sm" }, [
+                      _vm._v(_vm._s(_vm.types[hero.type].name))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "w-28" }, [
+                    _vm._v(_vm._s(_vm.getRank(hero.key)))
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "w-16" }, [
@@ -37754,10 +38336,6 @@ var render = function() {
                     })
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "w-28" }, [
-                    _vm._v(_vm._s(_vm.getRank(hero.key)))
-                  ]),
-                  _vm._v(" "),
                   _c("div", { staticClass: "w-12" }, [
                     _vm._v(_vm._s(_vm.getMarch(hero.key)))
                   ]),
@@ -37768,14 +38346,6 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "w-16 text-center" }, [
                     _vm._v(_vm._s(_vm.getDefense(hero.key)) + "%")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "w-16 text-center" }, [
-                    _vm._v(_vm._s(_vm.getLethality(hero.key)) + "%")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "w-16 text-center" }, [
-                    _vm._v(_vm._s(_vm.getHealth(hero.key)) + "%")
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "text-xs" }, [
@@ -37834,19 +38404,15 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("div", { staticClass: "w-24" }, [_vm._v("Type")]),
           _vm._v(" "),
-          _c("div", { staticClass: "w-16" }, [_vm._v("Level")]),
-          _vm._v(" "),
           _c("div", { staticClass: "w-28" }, [_vm._v("Rank")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "w-16" }, [_vm._v("Level")]),
           _vm._v(" "),
           _c("div", { staticClass: "w-12" }, [_vm._v("March Capacity")]),
           _vm._v(" "),
           _c("div", { staticClass: "w-16 text-center" }, [_vm._v("Attack")]),
           _vm._v(" "),
-          _c("div", { staticClass: "w-16 text-center" }, [_vm._v("Defense")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "w-16 text-center" }, [_vm._v("Lethality")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "w-16 text-center" }, [_vm._v("Health")])
+          _c("div", { staticClass: "w-16 text-center" }, [_vm._v("Defense")])
         ]
       )
     ])
@@ -38121,276 +38687,423 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "text-gray-200 relative" }, [
-    _c("h1", { staticClass: "text-center text-2xl font-bold mb-2" }, [
+  return _c("div", { staticClass: "relative" }, [
+    _c("h1", { staticClass: "text-center text-2xl font-bold mt-8 mb-2" }, [
       _vm._v("Summary")
     ]),
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "flex flex-wrap items-center justify-center mb-4" },
+      { staticClass: "flex flex-wrap items-center justify-center mb-8" },
       [
-        _c("div", { staticClass: "text-center m-1 mx-4" }, [
-          _c("div", { staticClass: "text-xs" }, [
-            _vm._v("\n                    Total Attack Power\n                ")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "text-3xl font-bold" }, [
-            _vm._v(
-              "\n                    " +
-                _vm._s(_vm.totalAttackPower.toLocaleString()) +
-                "\n                "
-            )
-          ])
-        ]),
+        _c(
+          "div",
+          {
+            staticClass:
+              "text-center m-1 bg-gray-400 mx-2 rounded p-4 py-8 w-60"
+          },
+          [
+            _c("div", { staticClass: "text-sm" }, [
+              _vm._v(
+                "\n                    Total Attack Power\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-3xl font-bold" }, [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(Math.round(_vm.totalAttackPower).toLocaleString()) +
+                  "\n                "
+              )
+            ])
+          ]
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "text-center m-1 mx-4" }, [
-          _c("div", { staticClass: "text-xs" }, [
-            _vm._v(
-              "\n                    Total Defense Power\n                "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "text-3xl font-bold" }, [
-            _vm._v(
-              "\n                    " +
-                _vm._s(_vm.totalDefensePower.toLocaleString()) +
-                "\n                "
-            )
-          ])
-        ])
+        _c(
+          "div",
+          {
+            staticClass:
+              "text-center m-1 bg-gray-400 mx-2 rounded p-4 py-8 w-60"
+          },
+          [
+            _c("div", { staticClass: "text-sm" }, [
+              _vm._v(
+                "\n                    Total Defense Power\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-3xl font-bold" }, [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(Math.round(_vm.totalDefensePower).toLocaleString()) +
+                  "\n                "
+              )
+            ])
+          ]
+        )
       ]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "hidden lg:block text-center font-bold" }, [
-      _vm.showSummary
-        ? _c(
+    _c("div", { staticClass: "text mt-8" }, [
+      _c("h1", { staticClass: "text-center text-2xl font-bold my-2" }, [
+        _vm._v("Power Breakdown")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex items-start justify-center" }, [
+        _c("div", { staticClass: "lg:w-200 p-2" }, [
+          _c(
             "div",
             {
-              staticClass: "hover:text-green-400 cursor-pointer",
-              on: {
-                click: function($event) {
-                  return _vm.toggleSummary()
-                }
-              }
+              staticClass: "flex items-start justify-center text-center text-sm"
             },
-            [_vm._v("\n                Hide detailed breakdown\n            ")]
-          )
-        : _c(
+            [
+              _c("div", { staticClass: "w-48 m-2 p-4 rounded bg-gray-300" }, [
+                _c("div", [_vm._v("Attack")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "font-bold text-2xl" }, [
+                  _vm._v(_vm._s(Math.round(_vm.attack).toLocaleString()))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-48 m-2 p-4 rounded bg-gray-300" }, [
+                _c("div", [_vm._v("Defense")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "font-bold text-2xl" }, [
+                  _vm._v(_vm._s(Math.round(_vm.defense).toLocaleString()))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-48 m-2 p-4 rounded bg-gray-300" }, [
+                _c("div", [_vm._v("Lethality")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "font-bold text-2xl" }, [
+                  _vm._v(_vm._s(Math.round(_vm.lethality).toLocaleString()))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-48 m-2 p-4 rounded bg-gray-300" }, [
+                _c("div", [_vm._v("Health")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "font-bold text-2xl" }, [
+                  _vm._v(_vm._s(Math.round(_vm.health).toLocaleString()))
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
             "div",
-            {
-              staticClass: "hover:text-green-400 cursor-pointer",
-              on: {
-                click: function($event) {
-                  return _vm.toggleSummary()
-                }
-              }
-            },
-            [_vm._v("\n                Show detailed breakdown\n            ")]
-          )
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "text-gray-200 text border-t border-gray-600 mt-4" },
-      [
-        _c(
-          "h1",
-          { staticClass: "text-center text-2xl font-bold my-2 text-white" },
-          [_vm._v("Power Breakdown")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex items-start justify-center" }, [
-          _c("div", { staticClass: "lg:w-200 p-2" }, [
-            _c(
-              "div",
-              { staticClass: "flex items-start justify-center text-center" },
-              [
-                _c("div", { staticClass: "m-2 p-2" }, [
-                  _c("div", [_vm._v("Attack")]),
+            { staticClass: "flex items-start justify-center text-sm" },
+            [
+              _c("div", { staticClass: "w-48 m-2 p-4 rounded bg-gray-300" }, [
+                _c("div", { staticClass: "flex items-center justify-start" }, [
+                  _c("div", { staticClass: "text-left w-16" }, [
+                    _vm._v("Infantry")
+                  ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "font-bold text-2xl" }, [
-                    _vm._v(_vm._s(_vm.attack.toLocaleString()))
+                  _c("div", { staticClass: "text-right w-20 font-bold" }, [
+                    _vm._v(
+                      _vm._s(Math.round(_vm.Infantry.attack).toLocaleString())
+                    )
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "m-2 p-2" }, [
-                  _c("div", [_vm._v("Defense")]),
+                _c("div", { staticClass: "flex items-center justify-start" }, [
+                  _c("div", { staticClass: "text-left w-16" }, [
+                    _vm._v("Hunter")
+                  ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "font-bold text-xl" }, [
-                    _vm._v(_vm._s(_vm.defense.toLocaleString()))
+                  _c("div", { staticClass: "text-right w-20 font-bold" }, [
+                    _vm._v(
+                      _vm._s(Math.round(_vm.Hunter.attack).toLocaleString())
+                    )
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "m-2 p-2" }, [
-                  _c("div", [_vm._v("Lethality")]),
+                _c("div", { staticClass: "flex items-center justify-start" }, [
+                  _c("div", { staticClass: "text-left w-16" }, [
+                    _vm._v("Rider")
+                  ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "font-bold text-xl" }, [
-                    _vm._v(_vm._s(_vm.lethality.toLocaleString()))
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "m-2 p-2" }, [
-                  _c("div", [_vm._v("Health")]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "font-bold text-xl" }, [
-                    _vm._v(_vm._s(_vm.health.toLocaleString()))
+                  _c("div", { staticClass: "text-right w-20 font-bold" }, [
+                    _vm._v(
+                      _vm._s(Math.round(_vm.Rider.attack).toLocaleString())
+                    )
                   ])
                 ])
-              ]
-            ),
-            _vm._v(" "),
-            _c("h1", { staticClass: "text-xl font-bold p-2" }, [
-              _vm._v("Total Boosts")
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              [
-                _vm._m(0),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-48 m-2 p-4 rounded bg-gray-300" }, [
+                _c("div", { staticClass: "flex items-center justify-start" }, [
+                  _c("div", { staticClass: "text-left w-16" }, [
+                    _vm._v("Infantry")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text-right w-20 font-bold" }, [
+                    _vm._v(
+                      _vm._s(Math.round(_vm.Infantry.defense).toLocaleString())
+                    )
+                  ])
+                ]),
                 _vm._v(" "),
-                _vm._l(["Infantry", "Hunter", "Rider"], function(
-                  troopType,
-                  num
-                ) {
+                _c("div", { staticClass: "flex items-center justify-start" }, [
+                  _c("div", { staticClass: "text-left w-16" }, [
+                    _vm._v("Hunter")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text-right w-20 font-bold" }, [
+                    _vm._v(
+                      _vm._s(Math.round(_vm.Hunter.defense).toLocaleString())
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex items-center justify-start" }, [
+                  _c("div", { staticClass: "text-left w-16" }, [
+                    _vm._v("Rider")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text-right w-20 font-bold" }, [
+                    _vm._v(
+                      _vm._s(Math.round(_vm.Rider.defense).toLocaleString())
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-48 m-2 p-4 rounded bg-gray-300" }, [
+                _c("div", { staticClass: "flex items-center justify-start" }, [
+                  _c("div", { staticClass: "text-left w-16" }, [
+                    _vm._v("Infantry")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text-right w-20 font-bold" }, [
+                    _vm._v(
+                      _vm._s(
+                        Math.round(_vm.Infantry.lethality).toLocaleString()
+                      )
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex items-center justify-start" }, [
+                  _c("div", { staticClass: "text-left w-16" }, [
+                    _vm._v("Hunter")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text-right w-20 font-bold" }, [
+                    _vm._v(
+                      _vm._s(Math.round(_vm.Hunter.lethality).toLocaleString())
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex items-center justify-start" }, [
+                  _c("div", { staticClass: "text-left w-16" }, [
+                    _vm._v("Rider")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text-right w-20 font-bold" }, [
+                    _vm._v(
+                      _vm._s(Math.round(_vm.Rider.lethality).toLocaleString())
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-48 m-2 p-4 rounded bg-gray-300" }, [
+                _c("div", { staticClass: "flex items-center justify-start" }, [
+                  _c("div", { staticClass: "text-left w-16" }, [
+                    _vm._v("Infantry")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text-right w-20 font-bold" }, [
+                    _vm._v(
+                      _vm._s(Math.round(_vm.Infantry.health).toLocaleString())
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex items-center justify-start" }, [
+                  _c("div", { staticClass: "text-left w-16" }, [
+                    _vm._v("Hunter")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text-right w-20 font-bold" }, [
+                    _vm._v(
+                      _vm._s(Math.round(_vm.Hunter.health).toLocaleString())
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex items-center justify-start" }, [
+                  _c("div", { staticClass: "text-left w-16" }, [
+                    _vm._v("Rider")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text-right w-20 font-bold" }, [
+                    _vm._v(
+                      _vm._s(Math.round(_vm.Rider.health).toLocaleString())
+                    )
+                  ])
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("h1", { staticClass: "text-xl font-bold p-2 text-center mt-4" }, [
+            _vm._v("Boost Details")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            [
+              _vm._l(
+                {
+                  attack: "Attack",
+                  defense: "Defense",
+                  health: "Health",
+                  lethality: "Lethality"
+                },
+                function(label, stat) {
                   return _c(
                     "div",
                     {
                       staticClass:
-                        "p-2 py-1 flex items-center justify-center text-xs rounded",
-                      class: num % 2 === 0 ? "bg-gray-600" : ""
+                        "rounded p-2 py-1 flex items-center justify-center",
+                      class:
+                        stat === "defense" || stat === "lethality"
+                          ? "bg-gray-100"
+                          : ""
                     },
                     [
-                      _c("div", { staticClass: "w-20 p-1" }, [
-                        _vm._v(_vm._s(troopType))
+                      _c("div", { staticClass: "mr-2 text-right w-40 p-1" }, [
+                        _vm._v("Troop " + _vm._s(label))
                       ]),
                       _vm._v(" "),
-                      _vm._l(
-                        ["attack", "defense", "lethality", "health"],
-                        function(stat, num) {
-                          return _c("div", { staticClass: "w-20 p-1" }, [
-                            _vm._v(
-                              "\n\n                                " +
-                                _vm._s(
-                                  _vm
-                                    .getTotalBoosts()
-                                    [troopType][stat].toFixed(2)
-                                ) +
-                                "%\n                            "
-                            )
-                          ])
-                        }
-                      )
-                    ],
-                    2
+                      _c("div", { staticClass: "ml-2 font-bold w-40 p-1" }, [
+                        _vm._v(_vm._s(_vm.data.Military["troop-" + stat]) + "%")
+                      ])
+                    ]
                   )
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c("h1", { staticClass: "text-xl font-bold p-2" }, [
-              _vm._v("Hero Boosts")
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              [
-                _vm._m(1),
-                _vm._v(" "),
-                _vm._l(["Infantry", "Hunter", "Rider"], function(
-                  troopType,
-                  num
-                ) {
+                }
+              ),
+              _vm._v(" "),
+              _vm._l(
+                {
+                  attack: "Attack",
+                  defense: "Defense",
+                  health: "Health",
+                  lethality: "Lethality"
+                },
+                function(label, stat) {
                   return _c(
                     "div",
                     {
                       staticClass:
-                        "p-2 py-1 flex items-center justify-center text-xs rounded",
-                      class: num % 2 === 0 ? "bg-gray-600" : ""
+                        "rounded p-2 py-1 flex items-center justify-center",
+                      class:
+                        stat === "defense" || stat === "lethality"
+                          ? "bg-gray-100"
+                          : ""
                     },
                     [
-                      _c("div", { staticClass: "w-20 p-1" }, [
-                        _vm._v(_vm._s(troopType))
+                      _c("div", { staticClass: "mr-l text-right w-40 p-1" }, [
+                        _vm._v("Infantry " + _vm._s(label))
                       ]),
                       _vm._v(" "),
-                      _vm._l(
-                        ["attack", "defense", "lethality", "health"],
-                        function(stat, num) {
-                          return _c("div", { staticClass: "w-20 p-1" }, [
-                            _vm._v(
-                              "\n\n                                " +
-                                _vm._s(
-                                  _vm
-                                    .getTotalBoosts()
-                                    [troopType][stat].toFixed(2)
-                                ) +
-                                "%\n                            "
-                            )
-                          ])
-                        }
-                      )
-                    ],
-                    2
+                      _c("div", { staticClass: "ml-2 font-bold w-40 p-1" }, [
+                        _vm._v(
+                          _vm._s(
+                            _vm
+                              .getTotalBoosts(true)
+                              ["Infantry"][stat].toFixed(2)
+                          ) + "%"
+                        )
+                      ])
+                    ]
                   )
-                })
-              ],
-              2
-            )
-          ])
+                }
+              ),
+              _vm._v(" "),
+              _vm._l(
+                {
+                  attack: "Attack",
+                  defense: "Defense",
+                  health: "Health",
+                  lethality: "Lethality"
+                },
+                function(label, stat) {
+                  return _c(
+                    "div",
+                    {
+                      staticClass:
+                        "rounded p-2 py-1 flex items-center justify-center",
+                      class:
+                        stat === "defense" || stat === "lethality"
+                          ? "bg-gray-100"
+                          : ""
+                    },
+                    [
+                      _c("div", { staticClass: "mr-l text-right w-40 p-1" }, [
+                        _vm._v("Hunter " + _vm._s(label))
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "ml-2 font-bold w-40 p-1" }, [
+                        _vm._v(
+                          _vm._s(
+                            _vm.getTotalBoosts(true)["Hunter"][stat].toFixed(2)
+                          ) + "%"
+                        )
+                      ])
+                    ]
+                  )
+                }
+              ),
+              _vm._v(" "),
+              _vm._l(
+                {
+                  attack: "Attack",
+                  defense: "Defense",
+                  health: "Health",
+                  lethality: "Lethality"
+                },
+                function(label, stat) {
+                  return _c(
+                    "div",
+                    {
+                      staticClass:
+                        "rounded p-2 py-1 flex items-center justify-center",
+                      class:
+                        stat === "defense" || stat === "lethality"
+                          ? "bg-gray-100"
+                          : ""
+                    },
+                    [
+                      _c("div", { staticClass: "mr-2 text-right w-40 p-1" }, [
+                        _vm._v("Rider " + _vm._s(label))
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "ml-2 font-bold w-40 p-1" }, [
+                        _vm._v(
+                          _vm._s(
+                            _vm.getTotalBoosts(true)["Rider"][stat].toFixed(2)
+                          ) + "%"
+                        )
+                      ])
+                    ]
+                  )
+                }
+              )
+            ],
+            2
+          )
         ])
-      ]
-    )
+      ])
+    ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "p-2 py-1 flex items-center justify-center font-bold text-xs"
-      },
-      [
-        _c("div", { staticClass: "w-20 p-1" }, [_vm._v("Class")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "w-20 p-1" }, [_vm._v("Attack")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "w-20 p-1" }, [_vm._v("Defense")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "w-20 p-1" }, [_vm._v("Lethality")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "w-20 p-1" }, [_vm._v("Health")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "p-2 py-1 flex items-center justify-center font-bold text-xs"
-      },
-      [
-        _c("div", { staticClass: "w-20 p-1" }, [_vm._v("Class")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "w-20 p-1" }, [_vm._v("Attack")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "w-20 p-1" }, [_vm._v("Defense")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "w-20 p-1" }, [_vm._v("Lethality")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "w-20 p-1" }, [_vm._v("Health")])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -38425,7 +39138,7 @@ var render = function() {
           {
             staticClass: "text-2xl font-bold p-4 tracking-tighter text-center"
           },
-          [_vm._v("State of Survival - Military Calculator")]
+          [_vm._v("State of Survival - Build Calculator")]
         ),
         _vm._v(" "),
         _c("div", { staticClass: "flex items-start justify-center text-sm" }, [
@@ -38485,6 +39198,24 @@ var render = function() {
               staticClass:
                 "inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8",
               class:
+                _vm.ui.section === "summary"
+                  ? "border-blue-600 border-b-8"
+                  : "",
+              on: {
+                click: function($event) {
+                  _vm.ui.section = "summary"
+                }
+              }
+            },
+            [_vm._v("Summary")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass:
+                "inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8",
+              class:
                 _vm.ui.section === "import" ? "border-blue-600 border-b-8" : "",
               on: {
                 click: function($event) {
@@ -38501,7 +39232,7 @@ var render = function() {
         "div",
         {
           staticClass: "overflow-y-auto lg:fixed inset-x-0 h-full lg:h-auto",
-          staticStyle: { top: "7.5rem", bottom: "16rem" }
+          staticStyle: { top: "7.5rem", bottom: "0" }
         },
         [
           _c("MilitaryStats", {
@@ -38577,40 +39308,16 @@ var render = function() {
             on: { saveLocalStorage: _vm.saveLocalStorage }
           }),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "lg:hidden bg-gray-700 text-white" },
-            [
-              _c("Summary", {
-                attrs: {
-                  library: _vm.library,
-                  data: _vm.data,
-                  showSummary: _vm.ui.showSummary
-                },
-                on: { toggleSummary: _vm.toggleSummary }
-              })
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "hidden lg:block lg:fixed z-10 bottom-0 inset-x-0 bg-gray-700 text-white mb-24",
-          class: _vm.ui.showSummary ? "" : "h-40",
-          style: _vm.ui.showSummary ? "top: 7.25rem; bottom: 0;" : ""
-        },
-        [
           _c("Summary", {
-            attrs: {
-              library: _vm.library,
-              data: _vm.data,
-              showSummary: _vm.ui.showSummary
-            },
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.ui.section === "summary",
+                expression: "ui.section === 'summary'"
+              }
+            ],
+            attrs: { library: _vm.library, data: _vm.data },
             on: { toggleSummary: _vm.toggleSummary }
           })
         ],
