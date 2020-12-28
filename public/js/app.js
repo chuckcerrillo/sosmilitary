@@ -2071,6 +2071,27 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "formation",
   props: ['library', 'data'],
@@ -2207,6 +2228,32 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2423,6 +2470,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3047,17 +3102,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       };
 
       for (var _troopType in types) {
-        result[types[_troopType]].lethality += parseFloat(this.library.HeroGear.sets[_troopType][this.data.HeroGear[_troopType].helmet.tier - 1].steps.helmet[this.data.HeroGear[_troopType].helmet.step - 1].lethality);
-        result[types[_troopType]].lethality += parseFloat(this.library.HeroGear.sets[_troopType][this.data.HeroGear[_troopType].chest.tier - 1].steps.chest[this.data.HeroGear[_troopType].chest.step - 1].lethality);
-        result[types[_troopType]].lethality += parseFloat(this.library.HeroGear.sets[_troopType][this.data.HeroGear[_troopType].feet.tier - 1].steps.feet[this.data.HeroGear[_troopType].feet.step - 1].lethality);
-        result[types[_troopType]].health += parseFloat(this.library.HeroGear.sets[_troopType][this.data.HeroGear[_troopType].helmet.tier - 1].steps.helmet[this.data.HeroGear[_troopType].helmet.step - 1].health);
-        result[types[_troopType]].health += parseFloat(this.library.HeroGear.sets[_troopType][this.data.HeroGear[_troopType].chest.tier - 1].steps.chest[this.data.HeroGear[_troopType].chest.step - 1].health);
-        result[types[_troopType]].health += parseFloat(this.library.HeroGear.sets[_troopType][this.data.HeroGear[_troopType].feet.tier - 1].steps.feet[this.data.HeroGear[_troopType].feet.step - 1].health);
+        for (var _i = 0, _arr = ['lethality', 'health']; _i < _arr.length; _i++) {
+          var stat = _arr[_i];
+
+          for (var _i2 = 0, _arr2 = ['helmet', 'chest', 'feet']; _i2 < _arr2.length; _i2++) {
+            var slot = _arr2[_i2];
+            result[types[_troopType]][stat] += parseFloat(this.library.HeroGear.sets[_troopType][this.data.HeroGear[_troopType][slot].tier - 1].steps[slot][this.data.HeroGear[_troopType][slot].step - 1][stat]);
+          }
+        }
       } // Get military stats boost
 
 
-      for (var _i = 0, _arr = ['attack', 'defense', 'lethality', 'health']; _i < _arr.length; _i++) {
-        var statType = _arr[_i];
+      for (var _i3 = 0, _arr3 = ['attack', 'defense', 'lethality', 'health']; _i3 < _arr3.length; _i3++) {
+        var statType = _arr3[_i3];
 
         if (pure) {
           for (var type in result) {
@@ -3287,8 +3344,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var attack = 0;
 
       for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
-        for (var _i2 = 0, _arr2 = ['Infantry', 'Rider', 'Hunter']; _i2 < _arr2.length; _i2++) {
-          var troop = _arr2[_i2];
+        for (var _i4 = 0, _arr4 = ['Infantry', 'Rider', 'Hunter']; _i4 < _arr4.length; _i4++) {
+          var troop = _arr4[_i4];
           var troopAttack = parseInt(this.getPlasma(this.formation.plasma[troop], 'attack', this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier]);
           attack += troopAttack;
 
@@ -3304,8 +3361,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var lethality = 0;
 
       for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
-        for (var _i3 = 0, _arr3 = ['Infantry', 'Rider', 'Hunter']; _i3 < _arr3.length; _i3++) {
-          var troop = _arr3[_i3];
+        for (var _i5 = 0, _arr5 = ['Infantry', 'Rider', 'Hunter']; _i5 < _arr5.length; _i5++) {
+          var troop = _arr5[_i5];
           var troopLethality = parseInt(this.getPlasma(this.formation.plasma[troop], 'lethality', this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier]);
           lethality += troopLethality;
 
@@ -3321,8 +3378,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var defense = 0;
 
       for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
-        for (var _i4 = 0, _arr4 = ['Infantry', 'Rider', 'Hunter']; _i4 < _arr4.length; _i4++) {
-          var troop = _arr4[_i4];
+        for (var _i6 = 0, _arr6 = ['Infantry', 'Rider', 'Hunter']; _i6 < _arr6.length; _i6++) {
+          var troop = _arr6[_i6];
           var troopDefense = parseInt(this.getPlasma(this.formation.plasma[troop], 'defense', this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier]);
           defense += troopDefense;
 
@@ -3338,8 +3395,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var health = 0;
 
       for (var tier in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]) {
-        for (var _i5 = 0, _arr5 = ['Infantry', 'Rider', 'Hunter']; _i5 < _arr5.length; _i5++) {
-          var troop = _arr5[_i5];
+        for (var _i7 = 0, _arr7 = ['Infantry', 'Rider', 'Hunter']; _i7 < _arr7.length; _i7++) {
+          var troop = _arr7[_i7];
           var troopHealth = parseInt(this.getPlasma(this.formation.plasma[troop], 'health', this.library.Formation.troops[troop][tier])) * parseInt(this.formation.quantity[troop][tier]);
           health += troopHealth;
 
@@ -3390,6 +3447,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_hero_gear__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/hero-gear */ "./resources/js/components/hero-gear.vue");
 /* harmony import */ var _components_import__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/import */ "./resources/js/components/import.vue");
 /* harmony import */ var _components_summary__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/summary */ "./resources/js/components/summary.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -37887,7 +37976,7 @@ var render = function() {
       [_vm._v("Troops")]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "flex items-start justify-center" }, [
+    _c("div", { staticClass: "flex items-start justify-center p-2" }, [
       _c(
         "div",
         [
@@ -37902,16 +37991,18 @@ var render = function() {
                     "div",
                     { staticClass: "flex items-center justify-start" },
                     [
-                      _c("div", { staticClass: "w-20" }, [
-                        _vm._v(_vm._s(troopType))
-                      ]),
+                      _c(
+                        "div",
+                        { staticClass: "text-sm lg:text-base w-16 lg:w-20" },
+                        [_vm._v(_vm._s(troopType))]
+                      ),
                       _vm._v(" "),
                       _vm._l([0, 1, 2, 3, 4, 5], function(level) {
                         return _c(
                           "div",
                           {
                             staticClass:
-                              "p-2 m-2 text-2xl border border-gray-400 rounded w-20 h-12 text-center bg-gray-300 hover:border-blue-400 cursor-pointer",
+                              "p-1 lg:p-2 m-1 lg:m-2 text-base lg:text-2xl border border-gray-400 rounded w-12 lg:w-20 lg:h-12 text-center bg-gray-300 hover:border-blue-400 cursor-pointer",
                             class:
                               _vm.formation.plasma[troopType] === level
                                 ? "border-blue-400 text-blue-600 bg-blue-200"
@@ -37922,7 +38013,15 @@ var render = function() {
                               }
                             }
                           },
-                          [_c("div", [_vm._v(_vm._s("*".repeat(level)))])]
+                          [
+                            _c("div", { staticClass: "hidden lg:block" }, [
+                              _vm._v(_vm._s("*".repeat(level)))
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "lg:hidden" }, [
+                              _vm._v(_vm._s(level))
+                            ])
+                          ]
                         )
                       })
                     ],
@@ -37960,12 +38059,13 @@ var render = function() {
           _vm._l([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], function(tier) {
             return _c(
               "div",
+              { staticClass: "p-2" },
               _vm._l(["Infantry", "Rider", "Hunter"], function(troop, index) {
                 return _c(
                   "div",
                   { staticClass: "flex p-1 text-sm items-center" },
                   [
-                    _c("div", { staticClass: "p-1 w-24 text-right" }, [
+                    _c("div", { staticClass: "p-1 w-16 lg:w-24 text-right" }, [
                       _c("img", {
                         staticClass: "w-full",
                         attrs: {
@@ -37978,7 +38078,7 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "p-1 w-28" }, [
+                    _c("div", { staticClass: "hidden lg:block p-1 w-28" }, [
                       _c("div", { staticClass: "text-base font-bold" }, [
                         _vm._v(
                           _vm._s(_vm.library.Formation.troops[troop][tier].name)
@@ -37988,53 +38088,157 @@ var render = function() {
                       _c("div", [_vm._v(_vm._s(troop))])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "text-xl p-1 w-16 text-right" }, [
-                      _vm._v(
-                        _vm._s(
-                          _vm.getPlasma(
-                            _vm.formation.plasma[troop],
-                            "attack",
-                            _vm.library.Formation.troops[troop][tier]
-                          )
+                    _c("div", { staticClass: "lg:hidden p-1 w-24" }, [
+                      _c("div", { staticClass: "text-sm font-bold" }, [
+                        _vm._v(
+                          _vm._s(_vm.library.Formation.troops[troop][tier].name)
                         )
-                      )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "text-xs" }, [
+                        _vm._v(_vm._s(troop))
+                      ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "text-xl p-1 w-16 text-right" }, [
-                      _vm._v(
-                        _vm._s(
-                          _vm.getPlasma(
-                            _vm.formation.plasma[troop],
-                            "defense",
-                            _vm.library.Formation.troops[troop][tier]
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "hidden lg:block text-xl p-1 w-16 text-right"
+                      },
+                      [
+                        _vm._v(
+                          _vm._s(
+                            _vm.getPlasma(
+                              _vm.formation.plasma[troop],
+                              "attack",
+                              _vm.library.Formation.troops[troop][tier]
+                            )
                           )
                         )
-                      )
-                    ]),
+                      ]
+                    ),
                     _vm._v(" "),
-                    _c("div", { staticClass: "text-xl p-1 w-16 text-right" }, [
-                      _vm._v(
-                        _vm._s(
-                          _vm.getPlasma(
-                            _vm.formation.plasma[troop],
-                            "lethality",
-                            _vm.library.Formation.troops[troop][tier]
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "hidden lg:block text-xl p-1 w-16 text-right"
+                      },
+                      [
+                        _vm._v(
+                          _vm._s(
+                            _vm.getPlasma(
+                              _vm.formation.plasma[troop],
+                              "defense",
+                              _vm.library.Formation.troops[troop][tier]
+                            )
                           )
                         )
-                      )
-                    ]),
+                      ]
+                    ),
                     _vm._v(" "),
-                    _c("div", { staticClass: "text-xl p-1 w-16 text-right" }, [
-                      _vm._v(
-                        _vm._s(
-                          _vm.getPlasma(
-                            _vm.formation.plasma[troop],
-                            "health",
-                            _vm.library.Formation.troops[troop][tier]
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "hidden lg:block text-xl p-1 w-16 text-right"
+                      },
+                      [
+                        _vm._v(
+                          _vm._s(
+                            _vm.getPlasma(
+                              _vm.formation.plasma[troop],
+                              "lethality",
+                              _vm.library.Formation.troops[troop][tier]
+                            )
                           )
                         )
-                      )
-                    ]),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "hidden lg:block text-xl p-1 w-16 text-right"
+                      },
+                      [
+                        _vm._v(
+                          _vm._s(
+                            _vm.getPlasma(
+                              _vm.formation.plasma[troop],
+                              "health",
+                              _vm.library.Formation.troops[troop][tier]
+                            )
+                          )
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "lg:hidden text-sm p-1 w-8 text-right" },
+                      [
+                        _vm._v(
+                          _vm._s(
+                            _vm.getPlasma(
+                              _vm.formation.plasma[troop],
+                              "attack",
+                              _vm.library.Formation.troops[troop][tier]
+                            )
+                          )
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "lg:hidden text-sm p-1 w-8 text-right" },
+                      [
+                        _vm._v(
+                          _vm._s(
+                            _vm.getPlasma(
+                              _vm.formation.plasma[troop],
+                              "defense",
+                              _vm.library.Formation.troops[troop][tier]
+                            )
+                          )
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "lg:hidden text-sm p-1 w-8 text-right" },
+                      [
+                        _vm._v(
+                          _vm._s(
+                            _vm.getPlasma(
+                              _vm.formation.plasma[troop],
+                              "lethality",
+                              _vm.library.Formation.troops[troop][tier]
+                            )
+                          )
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "lg:hidden text-sm p-1 w-8 text-right" },
+                      [
+                        _vm._v(
+                          _vm._s(
+                            _vm.getPlasma(
+                              _vm.formation.plasma[troop],
+                              "health",
+                              _vm.library.Formation.troops[troop][tier]
+                            )
+                          )
+                        )
+                      ]
+                    ),
                     _vm._v(" "),
                     _c("div", { staticClass: "p-1 ml-4 w-20" }, [
                       _c("input", {
@@ -38106,23 +38310,49 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mt-4" }, [
+    return _c("div", { staticClass: "mt-4 p-2" }, [
       _c("div", { staticClass: "flex p-1 text-xs" }, [
-        _c("div", { staticClass: "p-1 w-24" }),
+        _c("div", { staticClass: "p-1 w-16 lg:w-24" }),
         _vm._v(" "),
-        _c("div", { staticClass: "p-1 w-28" }, [_vm._v("Troop")]),
+        _c("div", { staticClass: "hidden lg:block p-1 w-28" }, [
+          _vm._v("Troop")
+        ]),
         _vm._v(" "),
-        _c("div", { staticClass: "p-1 w-16 text-right" }, [_vm._v("Attack")]),
+        _c("div", { staticClass: "lg:hidden p-1 w-24" }, [_vm._v("Troop")]),
         _vm._v(" "),
-        _c("div", { staticClass: "p-1 w-16 text-right" }, [_vm._v("Defense")]),
+        _c("div", { staticClass: "hidden lg:block p-1 w-16 text-right" }, [
+          _vm._v("Attack")
+        ]),
         _vm._v(" "),
-        _c("div", { staticClass: "p-1 w-16 text-right" }, [
+        _c("div", { staticClass: "hidden lg:block p-1 w-16 text-right" }, [
+          _vm._v("Defense")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "hidden lg:block p-1 w-16 text-right" }, [
           _vm._v("Lethality")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "p-1 w-16 text-right" }, [_vm._v("Health")]),
+        _c("div", { staticClass: "hidden lg:block p-1 w-16 text-right" }, [
+          _vm._v("Health")
+        ]),
         _vm._v(" "),
-        _c("div", { staticClass: "p-1 ml-4 w-20" }, [_vm._v("Quantity")])
+        _c("div", { staticClass: "lg:hidden p-1 w-8 text-right" }, [
+          _vm._v("A")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "lg:hidden p-1 w-8 text-right" }, [
+          _vm._v("D")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "lg:hidden p-1 w-8 text-right" }, [
+          _vm._v("L")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "lg:hidden p-1 w-8 text-right" }, [
+          _vm._v("H")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "block p-1 ml-4 w-20" }, [_vm._v("Quantity")])
       ])
     ])
   }
@@ -38157,19 +38387,19 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "m-auto w-180" },
+      { staticClass: "m-auto lg:w-180" },
       _vm._l(_vm.library.HeroGear.types, function(type, index, num) {
         return _c(
           "div",
           {
             staticClass:
-              "flex p-1 text-gray-700 border items-center justify-center"
+              "lg:flex p-1 text-gray-700 border items-center justify-center"
           },
           [
             _c("div", { staticClass: "w-24" }, [_vm._v(_vm._s(type.name))]),
             _vm._v(" "),
             _vm._l(_vm.library.HeroGear.slots, function(slot) {
-              return _c("div", [
+              return _c("div", { staticClass: "hidden lg:block" }, [
                 _c("div", { staticClass: "text-center mx-1 px-1 text-xs" }, [
                   _vm._v(_vm._s(slot.display))
                 ]),
@@ -38195,11 +38425,11 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                            " +
+                            "\n                                " +
                               _vm._s(
                                 "*".repeat(_vm.gears[index][slot.type].step)
                               ) +
-                              "\n                        "
+                              "\n                            "
                           )
                         ]
                       ),
@@ -38244,6 +38474,88 @@ var render = function() {
                 ])
               ])
             }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "lg:hidden" },
+              _vm._l(_vm.library.HeroGear.slots, function(slot) {
+                return _c("div", { staticClass: "flex" }, [
+                  _c("div", { staticClass: "mx-1 px-1 text-xs w-24" }, [
+                    _vm._v(_vm._s(slot.display))
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "rounded w-full border border-gray-400 bg-gray-300 items-center justify-center m-1 p-2",
+                      class: "bg-" + _vm.gears[index][slot.type].color + "-200"
+                    },
+                    [
+                      _c("div", [
+                        _c("div", { staticClass: "text-center text-sm" }, [
+                          _vm._v(_vm._s(_vm.gears[index][slot.type].name))
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "text-yellow-600 font-bold text-center text-xl"
+                          },
+                          [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(
+                                  "*".repeat(_vm.gears[index][slot.type].step)
+                                ) +
+                                "\n                            "
+                            )
+                          ]
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text-xs text-center" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "p-1 m-1 text-xs rounded hover:bg-green-400 hover:text-white cursor-pointer",
+                        on: {
+                          change: function($event) {
+                            return _vm.saveLocalStorage()
+                          },
+                          click: function($event) {
+                            return _vm.upgrade(index, slot.type)
+                          }
+                        }
+                      },
+                      [_vm._v("Upgrade")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "p-1 m-1 text-xs rounded hover:bg-red-400 hover:text-white cursor-pointer",
+                        on: {
+                          change: function($event) {
+                            return _vm.saveLocalStorage()
+                          },
+                          click: function($event) {
+                            return _vm.downgrade(index, slot.type)
+                          }
+                        }
+                      },
+                      [_vm._v("Downgrade")]
+                    )
+                  ])
+                ])
+              }),
+              0
+            ),
             _vm._v(" "),
             _c("div", [
               _c("div", { staticClass: "w-32 text-xs p-1 font-bold" }, [
@@ -38319,7 +38631,7 @@ var render = function() {
       [_vm._v("Heroes")]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "flex items-center justify-center" }, [
+    _c("div", { staticClass: "flex items-center lg:justify-center" }, [
       _c(
         "div",
         [
@@ -38331,12 +38643,12 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "rounded flex items-center justify-start text-sm h-24 px-4",
+                    "rounded flex items-center justify-start text-xs lg:text-sm h-24 px-2 lg:px-4",
                   class: num % 2 === 0 ? "bg-gray-100" : ""
                 },
                 [
-                  _c("div", { staticClass: "w-20 pr-2" }, [
-                    _c("div", { staticClass: "h-16" }, [
+                  _c("div", { staticClass: "w-16 lg:w-20 pr-2" }, [
+                    _c("div", { staticClass: "w-full" }, [
                       _c("img", {
                         staticClass: "w-full",
                         attrs: {
@@ -38346,21 +38658,25 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "w-24" }, [
+                  _c("div", { staticClass: "w-20" }, [
                     _c("div", { staticClass: "w-20 font-bold text-base" }, [
                       _vm._v(_vm._s(hero.name))
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "text-sm" }, [
+                    _c("div", { staticClass: "text-xs" }, [
                       _vm._v(_vm._s(_vm.types[hero.type].name))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "lg:hidden text-xs" }, [
+                      _vm._v(_vm._s(_vm.getRank(hero.key)))
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "w-28" }, [
+                  _c("div", { staticClass: "hidden lg:block w-28" }, [
                     _vm._v(_vm._s(_vm.getRank(hero.key)))
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "w-16" }, [
+                  _c("div", { staticClass: "w-12 lg:w-16" }, [
                     _c("input", {
                       directives: [
                         {
@@ -38371,7 +38687,7 @@ var render = function() {
                         }
                       ],
                       staticClass:
-                        "w-12 border border-gray-400 rounded p-1 text-xs",
+                        "w-8 lg:w-12 border border-gray-400 rounded p-1 text-xs",
                       attrs: {
                         type: "number",
                         max: "80",
@@ -38403,10 +38719,6 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "w-16 text-center" }, [
                     _vm._v(_vm._s(_vm.getAttack(hero.key)) + "%")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "w-16 text-center" }, [
-                    _vm._v(_vm._s(_vm.getDefense(hero.key)) + "%")
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "text-xs ml-4" }, [
@@ -38461,19 +38773,39 @@ var staticRenderFns = [
             "rounded flex items-center justify-start text-xs p-4 font-bold"
         },
         [
-          _c("div", { staticClass: "w-20 pr-2" }, [_vm._v("Name")]),
+          _c("div", { staticClass: "hidden lg:block w-20 pr-2" }, [
+            _vm._v("Name")
+          ]),
           _vm._v(" "),
-          _c("div", { staticClass: "w-24" }, [_vm._v("Type")]),
+          _c("div", { staticClass: "lg:hidden w-16" }),
           _vm._v(" "),
-          _c("div", { staticClass: "w-28" }, [_vm._v("Rank")]),
+          _c("div", { staticClass: "lg:hidden w-20 pr-2" }, [_vm._v("Name")]),
           _vm._v(" "),
-          _c("div", { staticClass: "w-16" }, [_vm._v("Level")]),
+          _c("div", { staticClass: "hidden lg:block w-24" }, [_vm._v("Type")]),
           _vm._v(" "),
-          _c("div", { staticClass: "w-12" }, [_vm._v("March Capacity")]),
+          _c("div", { staticClass: "hidden lg:block w-28" }, [_vm._v("Rank")]),
           _vm._v(" "),
-          _c("div", { staticClass: "w-16 text-center" }, [_vm._v("Attack")]),
+          _c("div", { staticClass: "hidden lg:block w-16" }, [_vm._v("Level")]),
           _vm._v(" "),
-          _c("div", { staticClass: "w-16 text-center" }, [_vm._v("Defense")])
+          _c("div", { staticClass: "lg:hidden w-12" }, [_vm._v("LVL")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hidden lg:block w-12 lg:w-16" }, [
+            _vm._v("March Capacity")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "lg:hidden w-8" }, [_vm._v("Cap")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hidden lg:block w-16 text-center" }, [
+            _vm._v("Attack")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hidden lg:block w-16 text-center" }, [
+            _vm._v("Defense")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "lg:hidden w-16 text-center" }, [
+            _vm._v("Atk/Def")
+          ])
         ]
       )
     ])
@@ -38523,7 +38855,8 @@ var render = function() {
                 expression: "decodedData"
               }
             ],
-            staticClass: "w-128 h-32 border bg-white border-gray-400 rounded",
+            staticClass:
+              "w-full h-32 lg:h-40 border bg-white border-gray-400 rounded",
             domProps: { value: _vm.decodedData },
             on: {
               input: function($event) {
@@ -38565,7 +38898,8 @@ var render = function() {
           _c(
             "textarea",
             {
-              staticClass: "w-128 h-32 border bg-white border-gray-400 rounded"
+              staticClass:
+                "w-full h-32 lg:h-40 border bg-white border-gray-400 rounded"
             },
             [_vm._v(_vm._s(_vm.encodedData))]
           )
@@ -39191,106 +39525,216 @@ var render = function() {
         "flex-col flex-1 lg:h-screen lg:overflow-y-hidden bg-gray-200 relative"
     },
     [
-      _c("div", { staticClass: "w-full bg-gray-800 text-white" }, [
-        _c(
-          "div",
-          {
-            staticClass: "text-2xl font-bold p-4 tracking-tighter text-center"
-          },
-          [_vm._v("State of Survival - Build Calculator")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex items-start justify-center text-sm" }, [
-          _c(
-            "a",
-            {
-              staticClass:
-                "inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8",
-              class:
-                _vm.ui.section === "stats" ? "border-blue-600 border-b-8" : "",
-              on: {
-                click: function($event) {
-                  _vm.ui.section = "stats"
-                }
-              }
-            },
-            [_vm._v("My Stats")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass:
-                "inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8",
-              class:
-                _vm.ui.section === "heroes" ? "border-blue-600 border-b-8" : "",
-              on: {
-                click: function($event) {
-                  _vm.ui.section = "heroes"
-                }
-              }
-            },
-            [_vm._v("Heroes")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass:
-                "inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8",
-              class:
-                _vm.ui.section === "formation"
-                  ? "border-blue-600 border-b-8"
-                  : "",
-              on: {
-                click: function($event) {
-                  _vm.ui.section = "formation"
-                }
-              }
-            },
-            [_vm._v("Troop Formation")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass:
-                "inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8",
-              class:
-                _vm.ui.section === "summary"
-                  ? "border-blue-600 border-b-8"
-                  : "",
-              on: {
-                click: function($event) {
-                  _vm.ui.section = "summary"
-                }
-              }
-            },
-            [_vm._v("Summary")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass:
-                "inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8",
-              class:
-                _vm.ui.section === "import" ? "border-blue-600 border-b-8" : "",
-              on: {
-                click: function($event) {
-                  _vm.ui.section = "import"
-                }
-              }
-            },
-            [_vm._v("Import/Export")]
-          )
-        ])
-      ]),
+      _vm._m(0),
       _vm._v(" "),
       _c(
         "div",
         {
-          staticClass: "overflow-y-auto lg:fixed inset-x-0 h-full lg:h-auto",
+          staticClass:
+            "lg:hidden fixed inset-x-0 bottom-0 w-full bg-gray-800 text-white z-20"
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass:
+                "flex flex-1 items-center justify-between text-xs text-center h-12"
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass:
+                    "inline-block cursor-pointer hover:bg-blue-600 hover:text-white p-2 px-4 h-full",
+                  class: _vm.ui.section === "stats" ? "bg-blue-600" : "",
+                  on: {
+                    click: function($event) {
+                      _vm.ui.section = "stats"
+                    }
+                  }
+                },
+                [_vm._v("Military Stats")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass:
+                    "inline-block cursor-pointer hover:bg-blue-600 hover:text-white p-2 px-4 h-full",
+                  class: _vm.ui.section === "heroes" ? "bg-blue-600" : "",
+                  on: {
+                    click: function($event) {
+                      _vm.ui.section = "heroes"
+                    }
+                  }
+                },
+                [_vm._v("Heroes and Gear")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass:
+                    "inline-block cursor-pointer hover:bg-blue-600 hover:text-white p-2 px-4 h-full",
+                  class: _vm.ui.section === "formation" ? "bg-blue-600" : "",
+                  on: {
+                    click: function($event) {
+                      _vm.ui.section = "formation"
+                    }
+                  }
+                },
+                [_vm._v("Troop Formation")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass:
+                    "inline-block cursor-pointer hover:bg-blue-600 hover:text-white p-2 px-4 h-full",
+                  class: _vm.ui.section === "summary" ? "bg-blue-600" : "",
+                  on: {
+                    click: function($event) {
+                      _vm.ui.section = "summary"
+                    }
+                  }
+                },
+                [_vm._v("Summary")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass:
+                    "inline-block cursor-pointer hover:bg-blue-600 hover:text-white p-2 px-4 h-full",
+                  class: _vm.ui.section === "import" ? "bg-blue-600" : "",
+                  on: {
+                    click: function($event) {
+                      _vm.ui.section = "import"
+                    }
+                  }
+                },
+                [_vm._v("Import / Export")]
+              )
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "hidden lg:block w-full bg-gray-800 text-white" },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "text-2xl font-bold p-4 tracking-tighter text-center"
+            },
+            [_vm._v("State of Survival - Build Calculator")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "flex items-start justify-center text-sm" },
+            [
+              _c(
+                "a",
+                {
+                  staticClass:
+                    "inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8",
+                  class:
+                    _vm.ui.section === "stats"
+                      ? "border-blue-600 border-b-8"
+                      : "",
+                  on: {
+                    click: function($event) {
+                      _vm.ui.section = "stats"
+                    }
+                  }
+                },
+                [_vm._v("Military Stats")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass:
+                    "inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8",
+                  class:
+                    _vm.ui.section === "heroes"
+                      ? "border-blue-600 border-b-8"
+                      : "",
+                  on: {
+                    click: function($event) {
+                      _vm.ui.section = "heroes"
+                    }
+                  }
+                },
+                [_vm._v("Heroes and Gear")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass:
+                    "inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8",
+                  class:
+                    _vm.ui.section === "formation"
+                      ? "border-blue-600 border-b-8"
+                      : "",
+                  on: {
+                    click: function($event) {
+                      _vm.ui.section = "formation"
+                    }
+                  }
+                },
+                [_vm._v("Troop Formation")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass:
+                    "inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8",
+                  class:
+                    _vm.ui.section === "summary"
+                      ? "border-blue-600 border-b-8"
+                      : "",
+                  on: {
+                    click: function($event) {
+                      _vm.ui.section = "summary"
+                    }
+                  }
+                },
+                [_vm._v("Summary")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass:
+                    "inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8",
+                  class:
+                    _vm.ui.section === "import"
+                      ? "border-blue-600 border-b-8"
+                      : "",
+                  on: {
+                    click: function($event) {
+                      _vm.ui.section = "import"
+                    }
+                  }
+                },
+                [_vm._v("Import / Export")]
+              )
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "overflow-y-auto lg:fixed py-16 px-2 lg:p-0 inset-x-0 h-full lg:h-auto",
           staticStyle: { top: "7.5rem", bottom: "6rem" }
         },
         [
@@ -39383,7 +39827,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm._m(0)
+      _vm._m(1)
     ]
   )
 }
@@ -39396,7 +39840,34 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "relative lg:fixed lg:z-20 lg:bottom-0 lg:inset-x-0 w-full bg-black text-white lg:h-24"
+          "lg:hidden fixed inset-x-0 top-0 w-full bg-gray-800 p-4 text-gray-500 text-xs"
+      },
+      [
+        _c("div", { staticClass: "text-base font-bold text-gray-200" }, [
+          _vm._v("SOS Military Calculator")
+        ]),
+        _vm._v("\n            Fan made by "),
+        _c(
+          "a",
+          {
+            staticClass: "text-white hover:underline",
+            attrs: { href: "https://www.cerriscapades.com/" }
+          },
+          [_vm._v("Cerriscapades")]
+        ),
+        _vm._v(". No affiliation with KingsGroup.")
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "hidden lg:block relative lg:fixed lg:z-20 lg:bottom-0 lg:inset-x-0 w-full bg-black text-white lg:h-24"
       },
       [
         _c("div", { staticClass: "p-4 text-gray-500 text-sm" }, [

@@ -8,14 +8,14 @@
             >
                 <div class="tracking-tight text-center text-xl">Import Data</div>
                 <div>
-                    <textarea v-model="decodedData" class="w-128 h-32 border bg-white border-gray-400 rounded"></textarea>
+                    <textarea v-model="decodedData" class="w-full h-32 lg:h-40 border bg-white border-gray-400 rounded"></textarea>
                 </div>
                 <button class="border border-blue-400 rounded bg-blue-400 text-white p-2" value="" @click="importData()">Import data</button>
 
                 <div class="tracking-tight text-center text-xl">Export Data</div>
                 <p class="text-sm">The following string represents the data you have entered into the calculator.</p>
                 <div>
-                    <textarea class="w-128 h-32 border bg-white border-gray-400 rounded">{{encodedData}}</textarea>
+                    <textarea class="w-full h-32 lg:h-40 border bg-white border-gray-400 rounded">{{encodedData}}</textarea>
                 </div>
             </div>
         </div>

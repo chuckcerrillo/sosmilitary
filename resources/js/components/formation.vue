@@ -63,21 +63,22 @@
         </div>
 
         <h1 class="text-center text-2xl text-gray-800 font-bold my-4">Troops</h1>
-        <div class="flex items-start justify-center">
+        <div class="flex items-start justify-center p-2">
             <div>
                 <div class="flex items-start justify-center">
                     <div class="p-4 border border-gray-400 rounded">
                         <div>Plasma Level</div>
                         <div>
                             <div v-for="troopType in ['Infantry','Rider','Hunter']" class="flex items-center justify-start">
-                                <div class="w-20">{{troopType}}</div>
+                                <div class="text-sm lg:text-base w-16 lg:w-20">{{troopType}}</div>
                                 <div
                                     v-for="level in [0,1,2,3,4,5]"
-                                    class="p-2 m-2 text-2xl border border-gray-400 rounded w-20 h-12 text-center bg-gray-300 hover:border-blue-400 cursor-pointer"
+                                    class="p-1 lg:p-2 m-1 lg:m-2 text-base lg:text-2xl border border-gray-400 rounded w-12 lg:w-20 lg:h-12 text-center bg-gray-300 hover:border-blue-400 cursor-pointer"
                                     :class="formation.plasma[troopType] === level ? 'border-blue-400 text-blue-600 bg-blue-200' : ''"
                                     @click="setPlasmaLevel(troopType,level)"
                                 >
-                                    <div>{{"*".repeat(level)}}</div>
+                                    <div class="hidden lg:block">{{"*".repeat(level)}}</div>
+                                    <div class="lg:hidden">{{level}}</div>
                                 </div>
                             </div>
                         </div>
@@ -91,38 +92,58 @@
                         <span>{{ marchCapacity }}</span>
                     </div>
                 </div>
-                <div class="mt-4">
+                <div class="mt-4 p-2">
                     <div class="flex p-1 text-xs">
-                        <div class="p-1 w-24"></div>
+                        <div class="p-1 w-16 lg:w-24"></div>
 <!--                        <div class="p-1 w-8"></div>-->
-                        <div class="p-1 w-28">Troop</div>
+                        <div class="hidden lg:block p-1 w-28">Troop</div>
+                        <div class="lg:hidden p-1 w-24">Troop</div>
 <!--                        <div class="p-1 w-16">Type</div>-->
-                        <div class="p-1 w-16 text-right">Attack</div>
-                        <div class="p-1 w-16 text-right">Defense</div>
-                        <div class="p-1 w-16 text-right">Lethality</div>
-                        <div class="p-1 w-16 text-right">Health</div>
-                        <div class="p-1 ml-4 w-20">Quantity</div>
+                        <div class="hidden lg:block p-1 w-16 text-right">Attack</div>
+                        <div class="hidden lg:block p-1 w-16 text-right">Defense</div>
+                        <div class="hidden lg:block p-1 w-16 text-right">Lethality</div>
+                        <div class="hidden lg:block p-1 w-16 text-right">Health</div>
+
+                        <div class="lg:hidden p-1 w-8 text-right">A</div>
+                        <div class="lg:hidden p-1 w-8 text-right">D</div>
+                        <div class="lg:hidden p-1 w-8 text-right">L</div>
+                        <div class="lg:hidden p-1 w-8 text-right">H</div>
+
+                        <div class="block p-1 ml-4 w-20">Quantity</div>
                     </div>
                 </div>
 
                 <div
                     v-for="tier in [9,8,7,6,5,4,3,2,1,0]"
+                    class="p-2"
                 >
                     <div
                         v-for="(troop,index) in ['Infantry','Rider','Hunter']"
                         class="flex p-1 text-sm items-center"
                     >
-                        <div class="p-1 w-24 text-right"><img class="w-full" :src="'img/troops/t' + (tier+1) + troop.substr(0,1).toLowerCase() + '.jpg'"></div>
+                        <div class="p-1 w-16 lg:w-24 text-right"><img class="w-full" :src="'img/troops/t' + (tier+1) + troop.substr(0,1).toLowerCase() + '.jpg'"></div>
 <!--                        <div class="p-1 w-8 text-right">T{{tier+1}}</div>-->
-                        <div class="p-1 w-28">
+                        <div class="hidden lg:block p-1 w-28">
                             <div class="text-base font-bold">{{library.Formation.troops[troop][tier].name}}</div>
                             <div>{{troop}}</div>
                         </div>
+
+                        <div class="lg:hidden p-1 w-24">
+                            <div class="text-sm font-bold">{{library.Formation.troops[troop][tier].name}}</div>
+                            <div class="text-xs">{{troop}}</div>
+                        </div>
+
 <!--                        <div class="p-1 w-16">{{library.Formation.troops[troop][tier].stats.type}}</div>-->
-                        <div class="text-xl p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'attack',library.Formation.troops[troop][tier])}}</div>
-                        <div class="text-xl p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'defense',library.Formation.troops[troop][tier])}}</div>
-                        <div class="text-xl p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'lethality',library.Formation.troops[troop][tier])}}</div>
-                        <div class="text-xl p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'health',library.Formation.troops[troop][tier])}}</div>
+                        <div class="hidden lg:block text-xl p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'attack',library.Formation.troops[troop][tier])}}</div>
+                        <div class="hidden lg:block text-xl p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'defense',library.Formation.troops[troop][tier])}}</div>
+                        <div class="hidden lg:block text-xl p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'lethality',library.Formation.troops[troop][tier])}}</div>
+                        <div class="hidden lg:block text-xl p-1 w-16 text-right">{{getPlasma(formation.plasma[troop],'health',library.Formation.troops[troop][tier])}}</div>
+
+                        <div class="lg:hidden text-sm p-1 w-8 text-right">{{getPlasma(formation.plasma[troop],'attack',library.Formation.troops[troop][tier])}}</div>
+                        <div class="lg:hidden text-sm p-1 w-8 text-right">{{getPlasma(formation.plasma[troop],'defense',library.Formation.troops[troop][tier])}}</div>
+                        <div class="lg:hidden text-sm p-1 w-8 text-right">{{getPlasma(formation.plasma[troop],'lethality',library.Formation.troops[troop][tier])}}</div>
+                        <div class="lg:hidden text-sm p-1 w-8 text-right">{{getPlasma(formation.plasma[troop],'health',library.Formation.troops[troop][tier])}}</div>
+
                         <div class="p-1 ml-4 w-20"><input @change="saveLocalStorage()" type="number" class="w-20 border border-gray-400 rounded p-1 text-xs" v-model="formation.quantity[troop][tier]" /></div>
                     </div>
                 </div>

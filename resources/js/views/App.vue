@@ -1,18 +1,50 @@
 <template>
     <div class="flex-col flex-1 lg:h-screen lg:overflow-y-hidden bg-gray-200 relative">
-        <div class="w-full bg-gray-800 text-white">
+        <div class="lg:hidden fixed inset-x-0 top-0 w-full bg-gray-800 p-4 text-gray-500 text-xs">
+            <div class="text-base font-bold text-gray-200">SOS Military Calculator</div>
+            Fan made by <a class="text-white hover:underline" href="https://www.cerriscapades.com/">Cerriscapades</a>. No affiliation with KingsGroup.</div>
+        <div class="lg:hidden fixed inset-x-0 bottom-0 w-full bg-gray-800 text-white z-20">
+            <div class="flex flex-1 items-center justify-between text-xs text-center h-12">
+                <a
+                    class="inline-block cursor-pointer hover:bg-blue-600 hover:text-white p-2 px-4 h-full"
+                    :class="ui.section === 'stats' ? 'bg-blue-600' : ''"
+                    @click="ui.section = 'stats'"
+                >Military Stats</a>
+                <a
+                    class="inline-block cursor-pointer hover:bg-blue-600 hover:text-white p-2 px-4 h-full"
+                    :class="ui.section === 'heroes' ? 'bg-blue-600' : ''"
+                    @click="ui.section = 'heroes'"
+                >Heroes and Gear</a>
+                <a
+                    class="inline-block cursor-pointer hover:bg-blue-600 hover:text-white p-2 px-4 h-full"
+                    :class="ui.section === 'formation' ? 'bg-blue-600' : ''"
+                    @click="ui.section = 'formation'"
+                >Troop Formation</a>
+                <a
+                    class="inline-block cursor-pointer hover:bg-blue-600 hover:text-white p-2 px-4 h-full"
+                    :class="ui.section === 'summary' ? 'bg-blue-600' : ''"
+                    @click="ui.section = 'summary'"
+                >Summary</a>
+                <a
+                    class="inline-block cursor-pointer hover:bg-blue-600 hover:text-white p-2 px-4 h-full"
+                    :class="ui.section === 'import' ? 'bg-blue-600' : ''"
+                    @click="ui.section = 'import'"
+                >Import / Export</a>
+            </div>
+        </div>
+        <div class="hidden lg:block w-full bg-gray-800 text-white">
             <div class="text-2xl font-bold p-4 tracking-tighter text-center">State of Survival - Build Calculator</div>
             <div class="flex items-start justify-center text-sm">
                 <a
                     class="inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8"
                     :class="ui.section === 'stats' ? 'border-blue-600 border-b-8' : ''"
                     @click="ui.section = 'stats'"
-                >My Stats</a>
+                >Military Stats</a>
                 <a
                     class="inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8"
                     :class="ui.section === 'heroes' ? 'border-blue-600 border-b-8' : ''"
                     @click="ui.section = 'heroes'"
-                >Heroes</a>
+                >Heroes and Gear</a>
                 <a
                     class="inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8"
                     :class="ui.section === 'formation' ? 'border-blue-600 border-b-8' : ''"
@@ -27,10 +59,10 @@
                     class="inline-block cursor-pointer hover:bg-blue-600 hover:text-white pt-3 p-2 px-8"
                     :class="ui.section === 'import' ? 'border-blue-600 border-b-8' : ''"
                     @click="ui.section = 'import'"
-                >Import/Export</a>
+                >Import / Export</a>
             </div>
         </div>
-        <div class="overflow-y-auto lg:fixed inset-x-0 h-full lg:h-auto" style="top:7.5rem; bottom: 6rem;">
+        <div class="overflow-y-auto lg:fixed py-16 px-2 lg:p-0 inset-x-0 h-full lg:h-auto" style="top:7.5rem; bottom: 6rem;">
             <MilitaryStats
                 v-show="ui.section === 'stats'"
                 v-on:saveLocalStorage="saveLocalStorage"
@@ -74,7 +106,7 @@
                 :data="data"
             />
         </div>
-        <div class="relative lg:fixed lg:z-20 lg:bottom-0 lg:inset-x-0 w-full bg-black text-white lg:h-24">
+        <div class="hidden lg:block relative lg:fixed lg:z-20 lg:bottom-0 lg:inset-x-0 w-full bg-black text-white lg:h-24">
 <!--            <button @click="saveLocalStorage()">Save</button>-->
 <!--            <button @click="loadLocalStorage()">Load</button>-->
 <!--            <button @click="checkLocalStorage()">Check</button>-->

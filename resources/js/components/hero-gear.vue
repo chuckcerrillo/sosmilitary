@@ -1,33 +1,59 @@
 <template>
     <div class="lg:w-200 m-auto">
         <h1 class="text-center text-2xl text-gray-800 font-bold mb-8">Hero Gear</h1>
-        <div class="m-auto w-180">
+        <div class="m-auto lg:w-180">
             <div
                 v-for="(type,index,num) in library.HeroGear.types"
-                class="flex p-1 text-gray-700 border items-center justify-center"
+                class="lg:flex p-1 text-gray-700 border items-center justify-center"
             >
                 <div class="w-24">{{ type.name }}</div>
 
                 <div
                     v-for="slot in library.HeroGear.slots"
+                    class="hidden lg:block"
                 >
-                    <div class="text-center mx-1 px-1 text-xs">{{ slot.display }}</div>
-                    <div class="flex">
+                        <div class="text-center mx-1 px-1 text-xs">{{ slot.display }}</div>
+                        <div class="flex">
+                            <div
+                                class="rounded w-36 border border-gray-400 bg-gray-300 items-center justify-center m-1 p-2"
+                                :class="'bg-' + gears[index][slot.type].color + '-200'"
+                            >
+                                <div class="text-center text-sm">{{gears[index][slot.type].name}}</div>
+                                <div class="text-yellow-600 font-bold text-center text-3xl">
+                                    {{"*".repeat(gears[index][slot.type].step)}}
+                                </div>
+                                <div class="text-xs text-center">
+                                    <button @change="saveLocalStorage()" @click="upgrade(index,slot.type)" class="p-1 m-1 text-xs rounded hover:bg-green-400 hover:text-white cursor-pointer">Upgrade</button>
+                                    <button @change="saveLocalStorage()" @click="downgrade(index,slot.type)" class="p-1 m-1 text-xs rounded hover:bg-red-400 hover:text-white cursor-pointer">Downgrade</button>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+                <div class="lg:hidden">
+                    <div
+                        v-for="slot in library.HeroGear.slots"
+                        class="flex"
+                    >
+                        <div class="mx-1 px-1 text-xs w-24">{{ slot.display }}</div>
                         <div
-                            class="rounded w-36 border border-gray-400 bg-gray-300 items-center justify-center m-1 p-2"
+                            class="rounded w-full border border-gray-400 bg-gray-300 items-center justify-center m-1 p-2"
                             :class="'bg-' + gears[index][slot.type].color + '-200'"
                         >
-                            <div class="text-center text-sm">{{gears[index][slot.type].name}}</div>
-                            <div class="text-yellow-600 font-bold text-center text-3xl">
-                                {{"*".repeat(gears[index][slot.type].step)}}
+                            <div>
+                                <div class="text-center text-sm">{{gears[index][slot.type].name}}</div>
+                                <div class="text-yellow-600 font-bold text-center text-xl">
+                                    {{"*".repeat(gears[index][slot.type].step)}}
+                                </div>
                             </div>
-                            <div class="text-xs text-center">
-                                <button @change="saveLocalStorage()" @click="upgrade(index,slot.type)" class="p-1 m-1 text-xs rounded hover:bg-green-400 hover:text-white cursor-pointer">Upgrade</button>
-                                <button @change="saveLocalStorage()" @click="downgrade(index,slot.type)" class="p-1 m-1 text-xs rounded hover:bg-red-400 hover:text-white cursor-pointer">Downgrade</button>
-                            </div>
+                        </div>
+                        <div class="text-xs text-center">
+                            <button @change="saveLocalStorage()" @click="upgrade(index,slot.type)" class="p-1 m-1 text-xs rounded hover:bg-green-400 hover:text-white cursor-pointer">Upgrade</button>
+                            <button @change="saveLocalStorage()" @click="downgrade(index,slot.type)" class="p-1 m-1 text-xs rounded hover:bg-red-400 hover:text-white cursor-pointer">Downgrade</button>
                         </div>
                     </div>
                 </div>
+
                 <div>
                     <div class="w-32 text-xs p-1 font-bold">Total Boosts:</div>
                     <div class="flex w-32 text-xs">

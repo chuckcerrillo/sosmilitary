@@ -293,13 +293,13 @@ export default {
             let types = {brawler:'Infantry',marksman:'Hunter',scout:'Rider'}
             for(let troopType in types)
             {
-                result[types[troopType]].lethality += parseFloat(this.library.HeroGear.sets[troopType][this.data.HeroGear[troopType].helmet.tier-1].steps.helmet[this.data.HeroGear[troopType].helmet.step-1].lethality);
-                result[types[troopType]].lethality += parseFloat(this.library.HeroGear.sets[troopType][this.data.HeroGear[troopType].chest.tier-1].steps.chest[this.data.HeroGear[troopType].chest.step-1].lethality);
-                result[types[troopType]].lethality += parseFloat(this.library.HeroGear.sets[troopType][this.data.HeroGear[troopType].feet.tier-1].steps.feet[this.data.HeroGear[troopType].feet.step-1].lethality);
-
-                result[types[troopType]].health += parseFloat(this.library.HeroGear.sets[troopType][this.data.HeroGear[troopType].helmet.tier-1].steps.helmet[this.data.HeroGear[troopType].helmet.step-1].health);
-                result[types[troopType]].health += parseFloat(this.library.HeroGear.sets[troopType][this.data.HeroGear[troopType].chest.tier-1].steps.chest[this.data.HeroGear[troopType].chest.step-1].health);
-                result[types[troopType]].health += parseFloat(this.library.HeroGear.sets[troopType][this.data.HeroGear[troopType].feet.tier-1].steps.feet[this.data.HeroGear[troopType].feet.step-1].health);
+                for(let stat of ['lethality','health'])
+                {
+                    for(let slot of ['helmet','chest','feet'])
+                    {
+                        result[types[troopType]][stat] += parseFloat(this.library.HeroGear.sets[troopType][this.data.HeroGear[troopType][slot].tier-1].steps[slot][this.data.HeroGear[troopType][slot].step-1][stat]);
+                    }
+                }
             }
 
             // Get military stats boost
@@ -316,8 +316,6 @@ export default {
                 result.Infantry[statType] += parseFloat(this.data.Military['infantry-' + statType]);
                 result.Hunter[statType] += parseFloat(this.data.Military['hunter-' + statType]);
                 result.Rider[statType] += parseFloat(this.data.Military['rider-' + statType]);
-
-
             }
 
             return result;

@@ -1,7 +1,7 @@
 <template>
     <div class="lg:w-200 m-auto">
         <h1 class="text-center text-2xl text-gray-800 font-bold mb-8">Heroes</h1>
-        <div class="flex items-center justify-center">
+        <div class="flex items-center lg:justify-center">
 
 
             <div>
@@ -9,13 +9,21 @@
                     <div
                         class="rounded flex items-center justify-start text-xs p-4 font-bold"
                     >
-                        <div class="w-20 pr-2">Name</div>
-                        <div class="w-24">Type</div>
-                        <div class="w-28">Rank</div>
-                        <div class="w-16">Level</div>
-                        <div class="w-12">March Capacity</div>
-                        <div class="w-16 text-center">Attack</div>
-                        <div class="w-16 text-center">Defense</div>
+                        <div class="hidden lg:block w-20 pr-2">Name</div>
+                        <div class="lg:hidden w-16"></div>
+                        <div class="lg:hidden w-20 pr-2">Name</div>
+                        <div class="hidden lg:block w-24">Type</div>
+                        <div class="hidden lg:block w-28">Rank</div>
+                        <div class="hidden lg:block w-16">Level</div>
+                        <div class="lg:hidden w-12">LVL</div>
+
+                        <div class="hidden lg:block w-12 lg:w-16">March Capacity</div>
+                        <div class="lg:hidden w-8">Cap</div>
+
+                        <div class="hidden lg:block w-16 text-center">Attack</div>
+                        <div class="hidden lg:block w-16 text-center">Defense</div>
+
+                        <div class="lg:hidden w-16 text-center">Atk/Def</div>
 <!--                        <div class="w-16 text-center">Lethality</div>-->
 <!--                        <div class="w-16 text-center">Health</div>-->
                     </div>
@@ -25,21 +33,21 @@
 
                 >
                     <div
-                        class="rounded flex items-center justify-start text-sm h-24 px-4"
+                        class="rounded flex items-center justify-start text-xs lg:text-sm h-24 px-2 lg:px-4"
                         :class="num%2===0 ? 'bg-gray-100' : ''"
                     >
-                        <div class="w-20 pr-2">
-                            <div class="h-16"><img class="w-full" :src="'/img/heroes/' + hero.name.toLowerCase() + '.png'"></div>
+                        <div class="w-16 lg:w-20 pr-2">
+                            <div class="w-full"><img class="w-full" :src="'/img/heroes/' + hero.name.toLowerCase() + '.png'"></div>
                         </div>
-                        <div class="w-24">
+                        <div class="w-20">
                             <div class="w-20 font-bold text-base">{{hero.name}}</div>
-                            <div class="text-sm">{{types[hero.type].name}}</div>
+                            <div class="text-xs">{{types[hero.type].name}}</div>
+                            <div class="lg:hidden text-xs">{{ getRank(hero.key) }}</div>
                         </div>
-                        <div class="w-28">{{ getRank(hero.key) }}</div>
-                        <div class="w-16"><input @change="saveLocalStorage()" type="number" class="w-12 border border-gray-400 rounded p-1 text-xs" max="80" min="1"  value="1" v-model="data.Heroes[hero.key].level"></div>
+                        <div class="hidden lg:block w-28">{{ getRank(hero.key) }}</div>
+                        <div class="w-12 lg:w-16"><input @change="saveLocalStorage()" type="number" class="w-8 lg:w-12 border border-gray-400 rounded p-1 text-xs" max="80" min="1"  value="1" v-model="data.Heroes[hero.key].level"></div>
                         <div class="w-12">{{getMarch(hero.key)}}</div>
                         <div class="w-16 text-center">{{getAttack(hero.key)}}%</div>
-                        <div class="w-16 text-center">{{getDefense(hero.key)}}%</div>
 <!--                        <div class="w-16 text-center">{{getLethality(hero.key)}}%</div>-->
 <!--                        <div class="w-16 text-center">{{getHealth(hero.key)}}%</div>-->
                         <div class="text-xs ml-4">
