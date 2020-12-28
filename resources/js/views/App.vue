@@ -1,6 +1,6 @@
 <template>
     <div class="flex-col flex-1 lg:h-screen lg:overflow-y-hidden bg-gray-200 relative">
-        <div class="lg:hidden fixed inset-x-0 top-0 w-full bg-gray-800 p-4 text-gray-500 text-xs">
+        <div class="lg:hidden fixed inset-x-0 top-0 w-full bg-gray-800 p-4 text-gray-500 text-xs z-20">
             <div class="text-base font-bold text-gray-200">SOS Military Calculator</div>
             Fan made by <a class="text-white hover:underline" href="https://www.cerriscapades.com/">Cerriscapades</a>. No affiliation with KingsGroup.</div>
         <div class="lg:hidden fixed inset-x-0 bottom-0 w-full bg-gray-800 text-white z-20">
@@ -32,7 +32,7 @@
                 >Import / Export</a>
             </div>
         </div>
-        <div class="hidden lg:block w-full bg-gray-800 text-white">
+        <div class="hidden lg:block w-full bg-gray-800 text-white relative z-20">
             <div class="text-2xl font-bold p-4 tracking-tighter text-center">State of Survival - Build Calculator</div>
             <div class="flex items-start justify-center text-sm">
                 <a

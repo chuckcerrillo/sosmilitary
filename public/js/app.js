@@ -39622,7 +39622,10 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "hidden lg:block w-full bg-gray-800 text-white" },
+        {
+          staticClass:
+            "hidden lg:block w-full bg-gray-800 text-white relative z-20"
+        },
         [
           _c(
             "div",
@@ -39840,7 +39843,7 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "lg:hidden fixed inset-x-0 top-0 w-full bg-gray-800 p-4 text-gray-500 text-xs"
+          "lg:hidden fixed inset-x-0 top-0 w-full bg-gray-800 p-4 text-gray-500 text-xs z-20"
       },
       [
         _c("div", { staticClass: "text-base font-bold text-gray-200" }, [
